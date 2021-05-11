@@ -391,10 +391,17 @@ CONTAINS
        elseif (pft(jp).eq.'foram') then
           NO3up(jp)           = 0.0
           Nfix(jp)            = 0.0
-          calcify(jp)         = 0.0
+          calcify(jp)         = 1.0
           silicify(jp)        = 0.0
           autotrophy(jp)      = 0.0
           heterotrophy(jp)    = 1.0
+       elseif (pft(jp).eq.'sym_foram') then
+          NO3up(jp)           = 0.0
+          Nfix(jp)            = 0.0
+          calcify(jp)         = 1.0
+          silicify(jp)        = 0.0
+          autotrophy(jp)      = trophic_tradeoff
+          heterotrophy(jp)    = 1.0 - trophic_tradeoff
        else
           print*," "
           print*,"! ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
@@ -514,7 +521,7 @@ CONTAINS
     gkernel(:,:)  =exp(-log(prdpry(:,:)/ppopt_mat(:,:))**2 / (2*ppsig_mat(:,:)**2)) ! [jpred,jprey] populate whole array at once, then find exceptions to set to 0.0 based on type
     do jpred=1,npmax
     select case(pft(jpred))
-      case('foram')
+      case('foram','sym_foram')
         do jprey=1,npmax
           if(autotrophy(jprey).gt.0.0 .AND. carnivory(jpred))gkernel(jpred,jprey)=0.0 ! if predator is carnivorous and prey is phytoplankton, - no grazing
           if(heterotrophy(jprey).gt.0.0 .AND. herbivory(jpred))gkernel(jpred,jprey)=0.0 ! if predator is carnivorous and prey is phytoplankton, - no grazing
