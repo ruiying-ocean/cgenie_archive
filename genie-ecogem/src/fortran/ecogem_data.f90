@@ -430,11 +430,10 @@ CONTAINS
     mort(:)       = 0.0
 
     !------------------------------------------------------------------------
-    !Use smaller size for symbiotic foram's autotroph part
+    !Use smaller size for symbiotic foram's autotroph part    
     if (pft(jp).eq.'sym_foram') then    
        !size of symbionts in benthic foram is about 220 μm (C.Schmidt et al., 2018)
        !set symbionts size to 1/10 of their host
-       real parameter :: sym_size_ratio = 0.10
        s_diameter(:) = sym_size_ratio * diameter(:)
        s_volume(:)   = 1.0/6.0 * const_pi * s_diameter(:) ** 3
     else
