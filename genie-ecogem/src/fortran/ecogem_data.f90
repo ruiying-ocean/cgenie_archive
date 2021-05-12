@@ -429,6 +429,20 @@ CONTAINS
     biosink(:)    = 0.0
     mort(:)       = 0.0
 
+    !------------------------------------------------------------------------
+    !Use smaller size for symbiotic foram's autotroph part
+    if (pft(jp).eq.'sym_foram') then    
+       !size of symbionts in benthic foram is about 220 μm (C.Schmidt et al., 2018)
+       !set symbionts size to 1/10 of their host
+       real parameter :: sym_size_ratio = 0.10
+       s_diameter(:) = sym_size_ratio * diameter(:)
+       s_volume(:)   = 1.0/6.0 * const_pi * s_diameter(:) ** 3
+    else
+       !no change for other functional types
+       s_diameter(:) = diameter(:)
+       s_volume(:) = volume(:)
+    endif
+    
     !-----------------------------------------------------------------------------------------
     ! populate array like in wardetal.2018
     if(ctrl_grazing_explicit.eqv..false.)then
@@ -447,23 +461,23 @@ CONTAINS
     !-----------------------------------------------------------------------------------------
     ! maximum photosynthetic rate
     !    vmax(iDIC,:)    = vmaxDIC_a * volume(:) ** vmaxDIC_b * autotrophy(:)
-    vmax(iDIC,:)    = (vmaxDIC_a  + log10(volume(:))) / (vmaxDIC_b + vmaxDIC_c * log10(volume(:)) + log10(volume(:))**2) * autotrophy(:)
+    vmax(iDIC,:)    = (vmaxDIC_a  + log10(s_volume(:))) / (vmaxDIC_b + vmaxDIC_c * log10(s_volume(:)) + log10(s_volume(:))**2) * autotrophy(:)
     !-----------------------------------------------------------------------------------------
     if (nquota) then ! nitrogen parameters
-       qmin(iNitr,:)      =    qminN_a * volume(:) **    qminN_b
-       qmax(iNitr,:)      =    qmaxN_a * volume(:) **    qmaxN_b
+       qmin(iNitr,:)      =    qminN_a * s_volume(:) **    qminN_b
+       qmax(iNitr,:)      =    qmaxN_a * s_volume(:) **    qmaxN_b
        if (maxval((qmin(iNitr,:)/qmax(iNitr,:))).gt.1.0) print*,"WARNING: Nitrogen Qmin > Qmax. Population inviable!"
        if (useNO3) then ! nitrate parameters
-          vmax(iNO3,:)     =  vmaxNO3_a * volume(:) **  vmaxNO3_b * autotrophy(:) * NO3up(:)
-          affinity(iNO3,:) = affinNO3_a * volume(:) ** affinNO3_b * autotrophy(:) * NO3up(:)
+          vmax(iNO3,:)     =  vmaxNO3_a * s_volume(:) **  vmaxNO3_b * autotrophy(:) * NO3up(:)
+          affinity(iNO3,:) = affinNO3_a * s_volume(:) ** affinNO3_b * autotrophy(:) * NO3up(:)
        endif
        if (useNO2) then ! nitrite parameters
-          vmax(iNO2,:)     =  vmaxNO2_a * volume(:) **  vmaxNO2_b * autotrophy(:)
-          affinity(iNO2,:) = affinNO2_a * volume(:) ** affinNO2_b * autotrophy(:)
+          vmax(iNO2,:)     =  vmaxNO2_a * s_volume(:) **  vmaxNO2_b * autotrophy(:)
+          affinity(iNO2,:) = affinNO2_a * s_volume(:) ** affinNO2_b * autotrophy(:)
        endif
        if (useNH4) then ! ammonium parameters
-          vmax(iNH4,:)     =  vmaxNH4_a * volume(:) **  vmaxNH4_b * autotrophy(:)
-          affinity(iNH4,:) = affinNH4_a * volume(:) ** affinNH4_b * autotrophy(:)
+          vmax(iNH4,:)     =  vmaxNH4_a * s_volume(:) **  vmaxNH4_b * autotrophy(:)
+          affinity(iNH4,:) = affinNH4_a * s_volume(:) ** affinNH4_b * autotrophy(:)
        endif
        kexc(iNitr,:)      =    kexcN_a * volume(:) **    kexcN_b
 
@@ -473,20 +487,20 @@ CONTAINS
     endif
     !-----------------------------------------------------------------------------------------
     if (pquota) then ! phosphorus parameters
-       qmin(iPhos,:)    =   qminP_a  * volume(:) **    qminP_b
-       qmax(iPhos,:)    =   qmaxP_a  * volume(:) **    qmaxP_b
+       qmin(iPhos,:)    =   qminP_a  * s_volume(:) **    qminP_b
+       qmax(iPhos,:)    =   qmaxP_a  * s_volume(:) **    qmaxP_b
        if (maxval((qmin(iPhos,:)/qmax(iPhos,:))).gt.1.0) print*,"WARNING: Phosphate Qmin > Qmax. Population inviable!"
-       vmax(iPO4,:)     = vmaxPO4_a  * volume(:) **  vmaxPO4_b * autotrophy(:)
-       affinity(iPO4,:) = affinPO4_a * volume(:) ** affinPO4_b * autotrophy(:)
+       vmax(iPO4,:)     = vmaxPO4_a  * s_volume(:) **  vmaxPO4_b * autotrophy(:)
+       affinity(iPO4,:) = affinPO4_a * s_volume(:) ** affinPO4_b * autotrophy(:)
        kexc(iPhos,:)    =   kexcP_a  * volume(:) **    kexcP_b
     endif
     !-----------------------------------------------------------------------------------------
     if (fquota) then ! iron parameters
-       qmin(iIron,:)   =  qminFe_a * volume(:) **  qminFe_b
-       qmax(iIron,:)   =  qmaxFe_a * volume(:) **  qmaxFe_b
+       qmin(iIron,:)   =  qminFe_a * s_volume(:) **  qminFe_b
+       qmax(iIron,:)   =  qmaxFe_a * s_volume(:) **  qmaxFe_b
        if (maxval((qmin(iIron,:)/qmax(iIron,:))).gt.1.0) print*,"WARNING: Iron Qmin > Qmax. Population inviable!"
-       vmax(iFe,:)     =  vmaxFe_a * volume(:) **  vmaxFe_b * autotrophy(:)
-       affinity(iFe,:) = affinFe_a * volume(:) ** affinFe_b * autotrophy(:)
+       vmax(iFe,:)     =  vmaxFe_a * s_volume(:) **  vmaxFe_b * autotrophy(:)
+       affinity(iFe,:) = affinFe_a * s_volume(:) ** affinFe_b * autotrophy(:)
        kexc(iIron,:)   =  kexcFe_a * volume(:) **  kexcFe_b
     endif
     !-----------------------------------------------------------------------------------------
@@ -500,8 +514,8 @@ CONTAINS
     endif
     !-----------------------------------------------------------------------------------------
     ! other parameters
-    qcarbon(:)  =     qcarbon_a * volume(:) ** qcarbon_b
-    alphachl(:) =    alphachl_a * volume(:) ** alphachl_b
+    qcarbon(:)  =     qcarbon_a * s_volume(:) ** qcarbon_b
+    alphachl(:) =    alphachl_a * s_volume(:) ** alphachl_b
     graz(:)     =        graz_a * volume(:) ** graz_b     * heterotrophy(:)
     kg(:)       =          kg_a * volume(:) ** kg_b
     pp_opt(:)   =pp_opt_a_array * volume(:) ** pp_opt_b
