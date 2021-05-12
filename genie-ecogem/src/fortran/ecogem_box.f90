@@ -155,7 +155,7 @@ CONTAINS
     do ii=2,iimax ! not carbon...
        ! resource and temperature limited uptake
        if (nuts(ii).gt.0.0) then
-          up_inorg(ii,:) = gamma_T * vmax(ii,:) * affinity(ii,:) * nuts(ii) &
+          up_inorg(ii,:) = gamma_T * vmax(ii,:) * affinity(ii,:) * nuts(ii) & !times symbionts' number * s_number(:)
                & / (vmax(ii,:) + affinity(ii,:) * nuts(ii))
           ! Equivalent to classic Michaelis-Menten form ...
           !     up_inorg(ii,:) = gamma_T * vmax(ii,:) * nuts(ii) / (nuts(ii) +kn(ii,:))
@@ -307,7 +307,7 @@ CONTAINS
           ! theoretical light replete photosynthesis given current temperature and nutrient limitation: (s^-1)
           PCmax(:) = vmax(iDIC,:) * VLlimit(:) * gamma_T
           ! light-limited photosynthesis: (s^-1)
-          PCPhot(:) = PCmax(:) * (1.0 - exp(-alpha(:)*Chl2C(:)*E0/PCmax))
+          PCPhot(:) = PCmax(:) * (1.0 - exp(-alpha(:)*Chl2C(:)*E0/PCmax)) !* s_number(:) !times the number of symbionts
           PCPhot(:) = MERGE(PCPhot(:),0.0,PCmax.gt.0.0) ! Check for divide by zero
           ! Chlorophyll Synthesis Calculations
           ! Chlorophyll synthesis per mole N uptake: (mg chl (mmol N)^-1)
