@@ -428,19 +428,6 @@ CONTAINS
     respir(:)     = 0.0
     biosink(:)    = 0.0
     mort(:)       = 0.0
-
-    !------------------------------------------------------------------------
-    !Use smaller size for symbiotic foram's autotroph part    
-    if (pft(jp).eq.'sym_foram') then    
-       !size of symbionts in benthic foram is about 220 μm (C.Schmidt et al., 2018)
-       !set symbionts size to 1/10 of their host
-       s_diameter(:) = sym_size_ratio * diameter(:)
-       s_volume(:)   = 1.0/6.0 * const_pi * s_diameter(:) ** 3
-    else
-       !no change for other functional types
-       s_diameter(:) = diameter(:)
-       s_volume(:) = volume(:)
-    endif
     
     !-----------------------------------------------------------------------------------------
     ! populate array like in wardetal.2018
@@ -457,6 +444,20 @@ CONTAINS
     ! set growth costs (could do the same for autotrophy in coccolithophores) - Fanny Mar21
     heterotrophy(:) = heterotrophy(:)*growthcost_factor(:)
 
+
+    !------------------------------------------------------------------------
+    !Use smaller size for symbiotic foram's autotroph part
+    do jp=1,npmax
+       if (pft(jp).eq.'sym_foram') then
+          !size of symbionts in benthic foram is about 2~20 μm (C.Schmidt et al., 2018)
+          !set symbionts size to 1/10 of their host and calculate new volume
+          s_volume(:) = (sym_size_ratio ** 3) * volume(:)
+       else
+          !no change for other functional types
+          s_volume(:) = volume(:)
+       endif
+    enddo
+    
     !-----------------------------------------------------------------------------------------
     ! maximum photosynthetic rate
     !    vmax(iDIC,:)    = vmaxDIC_a * volume(:) ** vmaxDIC_b * autotrophy(:)

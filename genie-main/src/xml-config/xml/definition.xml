@@ -8573,14 +8573,14 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
 	                  <description>PAR attenutation by sea-ice cover?</description>
                     </param>
        <!-- Grazing parameters -->
-                    <param name="trophic_tradeoff">
-			<value datatype="real">1.0</value>
-	                  <description>Auto/Hetero trade-off parameter</description>
-                    </param>
-		    <param name="sym_size_ratio">
-			<value datatype="real">0.1</value>
-	                  <description>the size ratio between symbionts and foraminifera</description>
-                    </param>
+            <param name="trophic_tradeoff">
+                <value datatype="real">1.0</value>
+                <description>Auto/Hetero trade-off parameter</description>
+            </param>
+            <param name="sym_size_ratio">
+                <value datatype="real">0.1</value>
+                <description>the size ratio between symbionts and foraminifera</description>
+            </param>
 <!-- Grazing parameters -->
                     <param name="ass_eff">
 			<value datatype="real">0.7</value>
