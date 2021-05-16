@@ -446,17 +446,18 @@ CONTAINS
 
 
     !------------------------------------------------------------------------
-    !Use smaller size for symbiotic foram's autotroph part
+    !smaller size for symbiotic foram's autotroph part
     do jp=1,npmax
        if (pft(jp).eq.'sym_foram') then
-          !size of symbionts in benthic foram is about 2~20 μm (C.Schmidt et al., 2018)
-          !set symbionts size to 1/10 of their host and calculate new volume
-          s_volume(:) = (sym_size_ratio ** 3) * volume(:)
+          s_volume(jp) = (sym_size_ratio ** 3) * volume(jp) !size of symbionts in benthic foram is about 2~20 μm (C.Schmidt et al., 2018)
+          s_number(jp) = floor(10 ** (6.237E-3*diameter(jp)+1.3422)) !the linear relationship comes from Spero 1985
        else
-          !no change for other functional types
-          s_volume(:) = volume(:)
+          s_volume(jp) = volume(jp)
+          s_number(jp) = 1.0
        endif
     enddo
+    print *, "s_volume(:)/volume(:) = ", s_volume(:)/volume(:)
+    print *, "s_number(:) = ", s_number(:)
     
     !-----------------------------------------------------------------------------------------
     ! maximum photosynthetic rate
