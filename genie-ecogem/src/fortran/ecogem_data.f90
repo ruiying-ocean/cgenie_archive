@@ -456,8 +456,6 @@ CONTAINS
           s_number(jp) = 1.0
        endif
     enddo
-    print *, "s_volume(:)/volume(:) = ", s_volume(:)/volume(:)
-    print *, "s_number(:) = ", s_number(:)
     
     !-----------------------------------------------------------------------------------------
     ! maximum photosynthetic rate
