@@ -193,9 +193,11 @@ SUBROUTINE initialise_ecogem(    &
   ! Size
   ALLOCATE(volume(npmax),STAT=alloc_error)
   call check_iostat(alloc_error,__LINE__,__FILE__)
-  ALLOCATE(s_volume(npmax),STAT=alloc_error)
+  ALLOCATE(sym_volume(npmax),STAT=alloc_error)
   call check_iostat(alloc_error,__LINE__,__FILE__)
-  ALLOCATE(s_number(npmax),STAT=alloc_error)
+  ALLOCATE(sym_number(npmax),STAT=alloc_error)
+  call check_iostat(alloc_error,__LINE__,__FILE__)
+  ALLOCATE(sym_respir_ratio(npmax),STAT=alloc_error)
   call check_iostat(alloc_error,__LINE__,__FILE__)
   ALLOCATE(logvol(npmax),STAT=alloc_error)
   call check_iostat(alloc_error,__LINE__,__FILE__)

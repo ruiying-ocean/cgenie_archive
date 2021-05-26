@@ -446,37 +446,40 @@ CONTAINS
 
 
     !------------------------------------------------------------------------
-    !smaller size for symbiotic foram's autotroph part
+    !smaller size for symbiotic foram's autotroph part, Rui May 2021
     do jp=1,npmax
        if (pft(jp).eq.'sym_foram') then
-          s_volume(jp) = (sym_size_ratio ** 3) * volume(jp) !size of symbionts in benthic foram is about 2~20 μm (C.Schmidt et al., 2018)
-          s_number(jp) = floor(10 ** (6.237E-3*diameter(jp)+1.3422)) !the linear relationship comes from Spero 1985
+          sym_volume(jp) = (sym_size_ratio ** 3) * volume(jp) !size of symbionts in benthic foram is about 10 μm
+          sym_number(jp) = floor(10 ** (6.237E-3*diameter(jp)+1.3422)) * sym_num_scale !the linear relationship comes from Spero 1985
+          sym_respir_ratio(jp) = 0.7
        else
-          s_volume(jp) = volume(jp)
-          s_number(jp) = 1.0
+          sym_volume(jp) = volume(jp)
+          sym_number(jp) = 1.0
+          sym_respir_ratio(jp) = 1.0
        endif
     enddo
     
     !-----------------------------------------------------------------------------------------
     ! maximum photosynthetic rate
     !    vmax(iDIC,:)    = vmaxDIC_a * volume(:) ** vmaxDIC_b * autotrophy(:)
-    vmax(iDIC,:)    = (vmaxDIC_a  + log10(s_volume(:))) / (vmaxDIC_b + vmaxDIC_c * log10(s_volume(:)) + log10(s_volume(:))**2) * autotrophy(:)
+    vmax(iDIC,:)    = (vmaxDIC_a  + log10(sym_volume(:))) / (vmaxDIC_b + vmaxDIC_c * log10(sym_volume(:)) + log10(sym_volume(:))**2) &
+         & * autotrophy(:) * sym_number(:) * sym_respir_ratio(:)
     !-----------------------------------------------------------------------------------------
     if (nquota) then ! nitrogen parameters
-       qmin(iNitr,:)      =    qminN_a * s_volume(:) **    qminN_b
-       qmax(iNitr,:)      =    qmaxN_a * s_volume(:) **    qmaxN_b
+       qmin(iNitr,:)      =    qminN_a * sym_volume(:) **    qminN_b
+       qmax(iNitr,:)      =    qmaxN_a * sym_volume(:) **    qmaxN_b
        if (maxval((qmin(iNitr,:)/qmax(iNitr,:))).gt.1.0) print*,"WARNING: Nitrogen Qmin > Qmax. Population inviable!"
        if (useNO3) then ! nitrate parameters
-          vmax(iNO3,:)     =  vmaxNO3_a * s_volume(:) **  vmaxNO3_b * autotrophy(:) * NO3up(:)
-          affinity(iNO3,:) = affinNO3_a * s_volume(:) ** affinNO3_b * autotrophy(:) * NO3up(:)
+          vmax(iNO3,:)     =  vmaxNO3_a * sym_volume(:) **  vmaxNO3_b * autotrophy(:) * NO3up(:)
+          affinity(iNO3,:) = affinNO3_a * sym_volume(:) ** affinNO3_b * autotrophy(:) * NO3up(:)
        endif
        if (useNO2) then ! nitrite parameters
-          vmax(iNO2,:)     =  vmaxNO2_a * s_volume(:) **  vmaxNO2_b * autotrophy(:)
-          affinity(iNO2,:) = affinNO2_a * s_volume(:) ** affinNO2_b * autotrophy(:)
+          vmax(iNO2,:)     =  vmaxNO2_a * sym_volume(:) **  vmaxNO2_b * autotrophy(:)
+          affinity(iNO2,:) = affinNO2_a * sym_volume(:) ** affinNO2_b * autotrophy(:)
        endif
        if (useNH4) then ! ammonium parameters
-          vmax(iNH4,:)     =  vmaxNH4_a * s_volume(:) **  vmaxNH4_b * autotrophy(:)
-          affinity(iNH4,:) = affinNH4_a * s_volume(:) ** affinNH4_b * autotrophy(:)
+          vmax(iNH4,:)     =  vmaxNH4_a * sym_volume(:) **  vmaxNH4_b * autotrophy(:)
+          affinity(iNH4,:) = affinNH4_a * sym_volume(:) ** affinNH4_b * autotrophy(:)
        endif
        kexc(iNitr,:)      =    kexcN_a * volume(:) **    kexcN_b
 
@@ -486,20 +489,20 @@ CONTAINS
     endif
     !-----------------------------------------------------------------------------------------
     if (pquota) then ! phosphorus parameters
-       qmin(iPhos,:)    =   qminP_a  * s_volume(:) **    qminP_b
-       qmax(iPhos,:)    =   qmaxP_a  * s_volume(:) **    qmaxP_b
+       qmin(iPhos,:)    =   qminP_a  * sym_volume(:) **    qminP_b
+       qmax(iPhos,:)    =   qmaxP_a  * sym_volume(:) **    qmaxP_b
        if (maxval((qmin(iPhos,:)/qmax(iPhos,:))).gt.1.0) print*,"WARNING: Phosphate Qmin > Qmax. Population inviable!"
-       vmax(iPO4,:)     = vmaxPO4_a  * s_volume(:) **  vmaxPO4_b * autotrophy(:)
-       affinity(iPO4,:) = affinPO4_a * s_volume(:) ** affinPO4_b * autotrophy(:)
+       vmax(iPO4,:)     = vmaxPO4_a  * sym_volume(:) **  vmaxPO4_b * autotrophy(:)
+       affinity(iPO4,:) = affinPO4_a * sym_volume(:) ** affinPO4_b * autotrophy(:)
        kexc(iPhos,:)    =   kexcP_a  * volume(:) **    kexcP_b
     endif
     !-----------------------------------------------------------------------------------------
     if (fquota) then ! iron parameters
-       qmin(iIron,:)   =  qminFe_a * s_volume(:) **  qminFe_b
-       qmax(iIron,:)   =  qmaxFe_a * s_volume(:) **  qmaxFe_b
+       qmin(iIron,:)   =  qminFe_a * sym_volume(:) **  qminFe_b
+       qmax(iIron,:)   =  qmaxFe_a * sym_volume(:) **  qmaxFe_b
        if (maxval((qmin(iIron,:)/qmax(iIron,:))).gt.1.0) print*,"WARNING: Iron Qmin > Qmax. Population inviable!"
-       vmax(iFe,:)     =  vmaxFe_a * s_volume(:) **  vmaxFe_b * autotrophy(:)
-       affinity(iFe,:) = affinFe_a * s_volume(:) ** affinFe_b * autotrophy(:)
+       vmax(iFe,:)     =  vmaxFe_a * sym_volume(:) **  vmaxFe_b * autotrophy(:)
+       affinity(iFe,:) = affinFe_a * sym_volume(:) ** affinFe_b * autotrophy(:)
        kexc(iIron,:)   =  kexcFe_a * volume(:) **  kexcFe_b
     endif
     !-----------------------------------------------------------------------------------------
@@ -513,8 +516,8 @@ CONTAINS
     endif
     !-----------------------------------------------------------------------------------------
     ! other parameters
-    qcarbon(:)  =     qcarbon_a * s_volume(:) ** qcarbon_b
-    alphachl(:) =    alphachl_a * s_volume(:) ** alphachl_b
+    qcarbon(:)  =     qcarbon_a * sym_volume(:) ** qcarbon_b
+    alphachl(:) =    alphachl_a * sym_volume(:) ** alphachl_b
     graz(:)     =        graz_a * volume(:) ** graz_b     * heterotrophy(:)
     kg(:)       =          kg_a * volume(:) ** kg_b
     pp_opt(:)   =pp_opt_a_array * volume(:) ** pp_opt_b
@@ -522,6 +525,20 @@ CONTAINS
     respir(:)   =      respir_a * volume(:) ** respir_b
     biosink(:)  =     biosink_a * volume(:) ** biosink_b
     mort(:)     =       (mort_a * volume(:) ** mort_b) * mort_protect(:) ! mort_protect added by Grigoratou, Dec2018 as a benefit for foram's calcification
+
+    !----------------------------------------
+    !More symbionts mean higher mortal and biosynthesis cost, for both auto/heter parts Rui May 2021
+    do jp=1,npmax
+       if ( pft(jp).eq.'sym_foram' ) then
+          mort(jp) = (mort_a * volume(jp) ** mort_b + (sym_number(jp) * mort_a * sym_volume(jp) ** mort_b)) * mort_protect(jp) !* 0.4 !the original paper value is 0.5
+          ! respir(jp) = respir_a * volume(jp) ** respir_b + sym_number(jp) * respir_a * sym_volume(jp) ** respir_b
+          ! print *, "mortality of symbiotic foram is: ", mort(jp)
+          ! print *, "respiration of symbiotic foram is:", respir(jp)
+          ! print *, "Vmax(DIC) of symbiotic foram is:", vmax(iDIC,jp)
+          ! print *, "Gmax(DIC) of symbiotic foram is:", graz(jp)
+       end if
+    end do
+    
     do jp=1,npmax ! grazing kernel (npred,nprey)
        ! pad predator dependent pp_opt and pp_sig so that they vary along matrix columns
        ! (they should be constant within each row)

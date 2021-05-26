@@ -49,7 +49,6 @@ CONTAINS
        ! check for outside quota min or max
        quota(io,:) = merge(qmax(io,:),quota(io,:),quota(io,:).gt.qmax(io,:)) ! Qmax if Q>Qmax
        quota(io,:) = merge(qmin(io,:),quota(io,:),quota(io,:).lt.qmin(io,:)) ! Qmin if Q<Qmin
-
     enddo
 
   END SUBROUTINE quota_status
@@ -155,8 +154,7 @@ CONTAINS
     do ii=2,iimax ! not carbon...
        ! resource and temperature limited uptake
        if (nuts(ii).gt.0.0) then
-          up_inorg(ii,:) = gamma_T * vmax(ii,:) * affinity(ii,:) * nuts(ii) & !times symbionts' number * s_number(:)
-               & / (vmax(ii,:) + affinity(ii,:) * nuts(ii))
+          up_inorg(ii,:) = sym_number(:) * gamma_T * vmax(ii,:) * affinity(ii,:) * nuts(ii) / (vmax(ii,:) + affinity(ii,:) * nuts(ii))
           ! Equivalent to classic Michaelis-Menten form ...
           !     up_inorg(ii,:) = gamma_T * vmax(ii,:) * nuts(ii) / (nuts(ii) +kn(ii,:))
           if (fundamental) up_inorg(ii,:) = gamma_T * vmax(ii,:)
@@ -168,13 +166,13 @@ CONTAINS
     ! quota satiation
     do ii=2,iimax
        io=nut2quota(ii)
-       up_inorg(ii ,:) = up_inorg(ii ,:) * qreg(io,:)
+       up_inorg(ii ,:) = up_inorg(ii,:) * qreg(io,:)
     enddo
 
     ! ammonium inhibition to NO3 and NO2
     if (useNH4) then
-       if (useNO3) up_inorg(iNO3,:) = up_inorg(iNO3,:) * exp(-amminhib*nuts(iNH4))
-       if (useNO2) up_inorg(iNO2,:) = up_inorg(iNO2,:) * exp(-amminhib*nuts(iNH4))
+       if (useNO3) up_inorg(iNO3,:) = up_inorg(iNO3,:) * exp(-amminhib*nuts(iNH4)) * sym_number(:)
+       if (useNO2) up_inorg(iNO2,:) = up_inorg(iNO2,:) * exp(-amminhib*nuts(iNH4)) * sym_number(:)
     endif
     ! check > 0.0
     up_inorg(:,:) = MERGE(up_inorg(:,:),0.0,up_inorg(:,:).gt.0.0)
@@ -307,7 +305,7 @@ CONTAINS
           ! theoretical light replete photosynthesis given current temperature and nutrient limitation: (s^-1)
           PCmax(:) = vmax(iDIC,:) * VLlimit(:) * gamma_T
           ! light-limited photosynthesis: (s^-1)
-          PCPhot(:) = PCmax(:) * (1.0 - exp(-alpha(:)*Chl2C(:)*E0/PCmax)) !* s_number(:) !times the number of symbionts
+          PCPhot(:) = PCmax(:) * (1.0 - exp(-alpha(:)*Chl2C(:)*E0/PCmax))
           PCPhot(:) = MERGE(PCPhot(:),0.0,PCmax.gt.0.0) ! Check for divide by zero
           ! Chlorophyll Synthesis Calculations
           ! Chlorophyll synthesis per mole N uptake: (mg chl (mmol N)^-1)

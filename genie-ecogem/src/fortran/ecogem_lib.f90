@@ -139,6 +139,8 @@ MODULE ecogem_lib
   ! Symbionts parameters
   real :: sym_size_ratio
   namelist/ini_ecogem_nml/sym_size_ratio
+  real :: sym_num_scale
+  namelist/ini_ecogem_nml/sym_num_scale
   ! Temperature dependence
   real ::  temp_A,temp_T0   !
   namelist/ini_ecogem_nml/temp_A,temp_T0
@@ -281,7 +283,7 @@ MODULE ecogem_lib
   character(len=5) ,ALLOCATABLE,DIMENSION(:)    ::rsrcstrng                                ! Inorganic resource labels
   INTEGER          ,ALLOCATABLE,DIMENSION(:)    ::random_n                                 ! n population replicates
   INTEGER          ,ALLOCATABLE,DIMENSION(:)    ::nut2quota                                ! match nutrients to quotas
-  REAL             ,ALLOCATABLE,DIMENSION(:)    ::volume,diameter,s_volume,s_number,logvol,logesd ! Size parameters
+  REAL             ,ALLOCATABLE,DIMENSION(:)    ::volume,diameter,sym_volume,sym_number, sym_respir_ratio, logvol,logesd ! Size parameters
   REAL             ,ALLOCATABLE,DIMENSION(:)    ::autotrophy,heterotrophy                  ! Trophic strategy
   LOGICAL          ,ALLOCATABLE,DIMENSION(:)    ::herbivory,carnivory                      ! Feeding behavior - Added by Grigoratou, Nov18
   real             ,ALLOCATABLE,DIMENSION(:)    ::pp_opt_a_array,pp_sig_a_array,ns_array   ! grazing parameters as arrays
