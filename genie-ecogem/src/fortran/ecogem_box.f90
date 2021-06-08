@@ -171,8 +171,8 @@ CONTAINS
 
     ! ammonium inhibition to NO3 and NO2
     if (useNH4) then
-       if (useNO3) up_inorg(iNO3,:) = up_inorg(iNO3,:) * exp(-amminhib*nuts(iNH4)) * sym_number(:)
-       if (useNO2) up_inorg(iNO2,:) = up_inorg(iNO2,:) * exp(-amminhib*nuts(iNH4)) * sym_number(:)
+       if (useNO3) up_inorg(iNO3,:) = up_inorg(iNO3,:) * exp(-amminhib*nuts(iNH4))
+       if (useNO2) up_inorg(iNO2,:) = up_inorg(iNO2,:) * exp(-amminhib*nuts(iNH4))
     endif
     ! check > 0.0
     up_inorg(:,:) = MERGE(up_inorg(:,:),0.0,up_inorg(:,:).gt.0.0)
