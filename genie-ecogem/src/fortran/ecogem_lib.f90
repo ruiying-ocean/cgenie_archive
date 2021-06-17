@@ -125,11 +125,11 @@ MODULE ecogem_lib
   ! Other loss parameters
   real ::    respir_a,   respir_b   ! a/b: carbon respiration rate
   real ::   biosink_a,  biosink_b   ! a/b: biomass sinking rate
-  real ::      mort_a,     mort_b   ! a/b: basal mortality
+  real ::      mort_a,     mort_b,   mort_sym   ! a/b: basal mortality
   real :: beta_graz_a,beta_graz_b,beta_graz_c   ! a/b/c: fraction messy feeding to dissolved
   real :: beta_mort_a,beta_mort_b,beta_mort_c   ! a/b/c: fraction mortality to dissolved
   real :: par_bio_remin_POC_frac2,par_bio_remin_CaCO3_frac2
-  namelist/ini_ecogem_nml/respir_a,biosink_a,mort_a
+  namelist/ini_ecogem_nml/respir_a,biosink_a,mort_a, mort_sym
   namelist/ini_ecogem_nml/respir_b,biosink_b,mort_b
   namelist/ini_ecogem_nml/beta_graz_a,beta_graz_b,beta_graz_c,beta_mort_a,beta_mort_b,beta_mort_c
   namelist/ini_ecogem_nml/par_bio_remin_POC_frac2,par_bio_remin_CaCO3_frac2

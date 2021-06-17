@@ -401,7 +401,7 @@ CONTAINS
           calcify(jp)         = 1.0
           silicify(jp)        = 0.0
           autotrophy(jp)      = trophic_tradeoff
-          heterotrophy(jp)    = 1.0 - trophic_tradeoff
+          heterotrophy(jp)    = trophic_tradeoff
        else
           print*," "
           print*,"! ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
@@ -446,11 +446,11 @@ CONTAINS
 
 
     !------------------------------------------------------------------------
-    !smaller size for symbiotic foram's autotroph part, Rui May 2021
+    !smaller size for symbiotic foram's autotroph part, RY May 2021
     do jp=1,npmax
        if (pft(jp).eq.'sym_foram') then
           sym_volume(jp) = (sym_size_ratio ** 3) * volume(jp) !size of symbionts in benthic foram is about 10 μm
-          sym_number(jp) = floor(10 ** (6.237E-3*diameter(jp)+1.3422)) * sym_num_scale !the linear relationship comes from Spero 1985
+          sym_number(jp) =  sym_num_scale !the linear relationship comes from Spero and Barker 1985, floor(10 ** (6.237E-3*diameter(jp)+1.3422)) *
           sym_respir_ratio(jp) = 0.7
        else
           sym_volume(jp) = volume(jp)
@@ -526,11 +526,11 @@ CONTAINS
     mort(:)     =       (mort_a * volume(:) ** mort_b) * mort_protect(:) ! mort_protect added by Grigoratou, Dec2018 as a benefit for foram's calcification
 
     !----------------------------------------
-    !More symbionts mean higher mortal and biosynthesis cost, for both auto/heter parts Rui May 2021
+    !More symbionts mean higher mortal and biosynthesis cost, for both auto/heter parts RY May 2021
     do jp=1,npmax
        if ( pft(jp).eq.'sym_foram' ) then
-          mort(jp) = (mort_a * volume(jp) ** mort_b + (sym_number(jp) * mort_a * sym_volume(jp) ** mort_b)) * mort_protect(jp) !* 0.4 !the original paper value is 0.5
-          ! respir(jp) = respir_a * volume(jp) ** respir_b + sym_number(jp) * respir_a * sym_volume(jp) ** respir_b
+          mort(jp) = (mort_a * volume(jp) ** mort_b + (sym_number(jp) * mort_sym * sym_volume(jp) ** mort_b)) * mort_protect(jp) !mort_b = mort_sym_b = 0
+          respir(jp) = 0.05 !zero for non-spinose foram, change it back as definition.xml. RY May 2021
        end if
     end do
     

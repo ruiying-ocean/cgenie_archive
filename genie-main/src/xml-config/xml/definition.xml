@@ -8731,6 +8731,10 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
 			<value datatype="real">0.05</value>
 	                  <description>Basal mortality - intercept</description>
                     </param>
+		    <param name="mort_sym">
+			<value datatype="real">0.05</value>
+	                  <description>Basal mortality for symbionts</description>
+                    </param>
                     <param name="mort_b">
 			<value datatype="real">0.0</value>
 	                  <description>Basal mortality - exponent</description>
