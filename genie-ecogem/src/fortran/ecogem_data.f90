@@ -531,10 +531,6 @@ CONTAINS
        if ( pft(jp).eq.'sym_foram' ) then
           mort(jp) = (mort_a * volume(jp) ** mort_b + (sym_number(jp) * mort_a * sym_volume(jp) ** mort_b)) * mort_protect(jp) !* 0.4 !the original paper value is 0.5
           ! respir(jp) = respir_a * volume(jp) ** respir_b + sym_number(jp) * respir_a * sym_volume(jp) ** respir_b
-          ! print *, "mortality of symbiotic foram is: ", mort(jp)
-          ! print *, "respiration of symbiotic foram is:", respir(jp)
-          ! print *, "Vmax(DIC) of symbiotic foram is:", vmax(iDIC,jp)
-          ! print *, "Gmax(DIC) of symbiotic foram is:", graz(jp)
        end if
     end do
     
