@@ -8719,6 +8719,10 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
 			<value datatype="real">0.0</value>
 	                  <description>Carbon respiration rate - exponent</description>
                     </param>
+		    <param name="sym_respir_fac">
+			<value datatype="real">0.05</value>
+	                  <description>Respiration factor of symbionts</description>
+                    </param>
                     <param name="biosink_a">
 			<value datatype="real">0.0</value>
 	                  <description>Biomass sinking rate - intercept</description>
@@ -8731,7 +8735,7 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
 			<value datatype="real">0.05</value>
 	                  <description>Basal mortality - intercept</description>
                     </param>
-		    <param name="mort_sym">
+		    <param name="sym_mort">
 			<value datatype="real">0.05</value>
 	                  <description>Basal mortality for symbionts</description>
                     </param>

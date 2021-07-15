@@ -449,9 +449,9 @@ CONTAINS
     !smaller size for symbiotic foram's autotroph part, RY May 2021
     do jp=1,npmax
        if (pft(jp).eq.'sym_foram') then
-          sym_volume(jp) = (sym_size_ratio ** 3) * volume(jp) !size of symbionts in benthic foram is about 10 μm
+          sym_volume(jp) = (sym_size_ratio ** 3) * volume(jp)
           sym_number(jp) =  sym_num_scale !the linear relationship comes from Spero and Barker 1985, floor(10 ** (6.237E-3*diameter(jp)+1.3422)) *
-          sym_respir_ratio(jp) = 0.7
+          sym_respir_ratio(jp) = sym_respir_fac
        else
           sym_volume(jp) = volume(jp)
           sym_number(jp) = 1.0
@@ -526,11 +526,11 @@ CONTAINS
     mort(:)     =       (mort_a * volume(:) ** mort_b) * mort_protect(:) ! mort_protect added by Grigoratou, Dec2018 as a benefit for foram's calcification
 
     !----------------------------------------
-    !More symbionts mean higher mortal and biosynthesis cost, for both auto/heter parts RY May 2021
+    !More symbionts mean higher mortality and biosynthesis loss, RY May 2021
     do jp=1,npmax
        if ( pft(jp).eq.'sym_foram' ) then
-          mort(jp) = (mort_a * volume(jp) ** mort_b + (sym_number(jp) * mort_sym * sym_volume(jp) ** mort_b)) * mort_protect(jp) !mort_b = mort_sym_b = 0
-          respir(jp) = 0.05 !zero for non-spinose foram, change it back as definition.xml. RY May 2021
+          mort(jp) = (mort_a * volume(jp) ** mort_b + (sym_number(jp) * sym_mort * sym_volume(jp) ** mort_b)) * mort_protect(jp) !mort_b = sym_mort_b = 0
+          respir(jp) = 0.05 !This was zero for non-spinose foram, here enable it RY May 2021
        end if
     end do
     
