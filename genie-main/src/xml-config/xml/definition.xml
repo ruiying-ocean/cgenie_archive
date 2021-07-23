@@ -8581,11 +8581,11 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
                     </param>
 		    <!-- Carbon quota and Photosynthesis parameters -->
 		    <param name="sym_size_ratio">
-		      <value datatype="real">0.1</value>
+		      <value datatype="real">0.05</value>
 		      <description>The size ratio between symbionts and foraminifera</description>
 		    </param>
 		    <param name="sym_num_scale">
-		      <value datatype="real">0.1</value>
+		      <value datatype="real">1.0</value>
 		      <description>The scale factor of symbiont's number effect</description>
 		    </param>
                     <param name="vmaxDIC_a">
@@ -8719,9 +8719,9 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
 			<value datatype="real">0.0</value>
 	                  <description>Carbon respiration rate - exponent</description>
                     </param>
-		    <param name="sym_respir_fac">
-			<value datatype="real">0.05</value>
-	                  <description>Respiration factor of symbionts</description>
+		    <param name="sym_netphoto_factor">
+			<value datatype="real">1.0</value>
+	                  <description>ratio of net/gross photosynthesis for symbionts</description>
                     </param>
                     <param name="biosink_a">
 			<value datatype="real">0.0</value>

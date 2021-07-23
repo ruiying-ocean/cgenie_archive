@@ -197,7 +197,7 @@ SUBROUTINE initialise_ecogem(    &
   call check_iostat(alloc_error,__LINE__,__FILE__)
   ALLOCATE(sym_number(npmax),STAT=alloc_error)
   call check_iostat(alloc_error,__LINE__,__FILE__)
-  ALLOCATE(sym_respir_ratio(npmax),STAT=alloc_error)
+  ALLOCATE(sym_netphoto_ratio(npmax),STAT=alloc_error)
   call check_iostat(alloc_error,__LINE__,__FILE__)
   ALLOCATE(logvol(npmax),STAT=alloc_error)
   call check_iostat(alloc_error,__LINE__,__FILE__)

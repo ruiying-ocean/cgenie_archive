@@ -428,7 +428,7 @@ CONTAINS
     respir(:)     = 0.0
     biosink(:)    = 0.0
     mort(:)       = 0.0
-    
+
     !-----------------------------------------------------------------------------------------
     ! populate array like in wardetal.2018
     if(ctrl_grazing_explicit.eqv..false.)then
@@ -451,18 +451,18 @@ CONTAINS
        if (pft(jp).eq.'sym_foram') then
           sym_volume(jp) = (sym_size_ratio ** 3) * volume(jp)
           sym_number(jp) =  sym_num_scale !the linear relationship comes from Spero and Barker 1985, floor(10 ** (6.237E-3*diameter(jp)+1.3422)) *
-          sym_respir_ratio(jp) = sym_respir_fac
+          sym_netphoto_ratio(jp) = sym_netphoto_factor
        else
           sym_volume(jp) = volume(jp)
           sym_number(jp) = 1.0
-          sym_respir_ratio(jp) = 1.0
+          sym_netphoto_ratio(jp) = 1.0
        endif
     enddo
     !-----------------------------------------------------------------------------------------
     ! maximum photosynthetic rate
     !    vmax(iDIC,:)    = vmaxDIC_a * volume(:) ** vmaxDIC_b * autotrophy(:)
     vmax(iDIC,:)    = (vmaxDIC_a  + log10(sym_volume(:))) / (vmaxDIC_b + vmaxDIC_c * log10(sym_volume(:)) + log10(sym_volume(:))**2) &
-         & * autotrophy(:) * sym_number(:) * sym_respir_ratio(:)
+         & * autotrophy(:) * sym_number(:)
     !-----------------------------------------------------------------------------------------
     if (nquota) then ! nitrogen parameters
        qmin(iNitr,:)      =    qminN_a * sym_volume(:) **    qminN_b
@@ -531,9 +531,15 @@ CONTAINS
        if ( pft(jp).eq.'sym_foram' ) then
           mort(jp) = (mort_a * volume(jp) ** mort_b + (sym_number(jp) * sym_mort * sym_volume(jp) ** mort_b)) * mort_protect(jp) !mort_b = sym_mort_b = 0
           respir(jp) = 0.05 !This was zero for non-spinose foram, here enable it RY May 2021
+          print*, "mortality rate of symbiotic foram is:", mort(jp)
+          print*, "Vmax of group symbiotic foram:", vmax(iDIC,jp)
        end if
     end do
-    
+
+    print*, "mortality rate of 01 is:", mort(1)
+    print*, "Vmax of group 01:", vmax(iDIC,1)
+
+
     do jp=1,npmax ! grazing kernel (npred,nprey)
        ! pad predator dependent pp_opt and pp_sig so that they vary along matrix columns
        ! (they should be constant within each row)
