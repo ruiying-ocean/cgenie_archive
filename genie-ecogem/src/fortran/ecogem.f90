@@ -359,13 +359,14 @@ subroutine ecogem(          &
                  !ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
                  ! additional rate and efficiency calculations
                  ! calculate mortality rates
-                     do jp=1,npmax
-                        if ( pft(jp).eq.'sym_foram' ) then
-                           mortality(jp)   = mort(jp)   * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) * gamma_T
-                        else
-                           mortality(jp)   = mort(jp)   * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) ! reduce mortality at very low biomass
-                        end if
-                     end do
+
+                 do jp=1,npmax
+                    if ( pft(jp).eq.'sym_foram' ) then
+                       mortality(jp)   = mort(jp)   * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) * gamma_T * (0.5*sum(BioC(:)) + 0.31)!* (exp((PAR_layer/0.2174 - 400)/50) + 1)
+                    else
+                       mortality(jp)   = mort(jp)   * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) ! reduce mortality at very low biomass
+                    end if
+                 end do
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                  ! Stoopid calcification related moratlity
                  !mortality(:)   = mortality(:) + mortality(:) * calcify(:) / omega(i,j,k) ! Coccolithophores and Forams only

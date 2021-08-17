@@ -74,7 +74,7 @@ MODEXT=mod
 # (http://www.unidata.ucar.edu/packages/netcdf/index.html)
 
 ### DEFAULT ###
-NETCDF_DIR=/usr/local
+#NETCDF_DIR=/usr/local
 ### domino ###
 #NETCDF_DIR=/share/apps
 ### eevee ###
@@ -82,7 +82,7 @@ NETCDF_DIR=/usr/local
 ### iwan ###
 #NETCDF_DIR=/share/apps/netcdf/4.0/gnu_fc_4.4.4
 ### sprout ###
-#NETCDF_DIR=/share/apps/netcdf/4.0/gnu_fc_4.4.6
+NETCDF_DIR=/share/apps/netcdf/4.0/gnu_fc_4.4.6
 ### almond ###
 #NETCDF_DIR=/share/apps/netcdf-4.0/gcc-4.4.7
 ### VM ###
