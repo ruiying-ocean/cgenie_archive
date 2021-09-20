@@ -360,7 +360,7 @@ subroutine ecogem(          &
                  ! additional rate and efficiency calculations
                  ! calculate mortality rates and respiration
                  do jp=1,npmax
-                    if ( pft(jp).eq.'sym_foram' ) then
+                    if ( pft(jp).eq.'ss_foram' ) then
                        !-- A linear closure term: ax+b
                        mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) * gamma_T &
                             * (sym_a * sum(BioC(:)) + sym_b)

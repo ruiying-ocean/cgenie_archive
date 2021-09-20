@@ -466,7 +466,7 @@ CONTAINS
     !------------------------------------------------------------------------
     !smaller size for symbiotic foram's autotroph part, RY May 2021
     do jp=1,npmax
-       if (pft(jp).eq.'sym_foram') then
+       if (pft(jp).eq.'ss_foram') then
           sym_volume(jp) = (sym_size_ratio ** 3) * volume(jp)
           sym_number(jp) =  sym_num_scale !the linear relationship comes from Spero and Barker 1985, floor(10 ** (6.237E-3*diameter(jp)+1.3422)) *
           sym_netphoto_ratio(jp) = sym_netphoto_factor
@@ -546,7 +546,7 @@ CONTAINS
     !----------------------------------------
     !More symbionts mean higher mortality and biosynthesis loss, RY May 2021
     do jp=1,npmax
-       if ( pft(jp).eq.'sym_foram' ) then
+       if ( pft(jp).eq.'ss_foram' ) then
           mort(jp) = (mort_a * volume(jp) ** mort_b + (sym_number(jp) * sym_mort * sym_volume(jp) ** mort_b)) * mort_protect(jp) !mort_b = sym_mort_b = 0
           respir(jp) = 0.05 !This was zero for non-spinose foram, here re-enable it RY May 2021
        end if
@@ -564,7 +564,7 @@ CONTAINS
     gkernel(:,:)  =exp(-log(prdpry(:,:)/ppopt_mat(:,:))**2 / (2*ppsig_mat(:,:)**2)) ! [jpred,jprey] populate whole array at once, then find exceptions to set to 0.0 based on type
     do jpred=1,npmax
     select case(pft(jpred))
-      case('foram','sym_foram')
+      case('bn_foram','ss_foram')
         do jprey=1,npmax
           if(autotrophy(jprey).gt.0.0 .AND. carnivory(jpred)) gkernel(jpred,jprey)=0.0 ! if predator is carnivorous and prey is phytoplankton, - no grazing
           if(heterotrophy(jprey).gt.0.0 .AND. herbivory(jpred)) gkernel(jpred,jprey)=0.0
