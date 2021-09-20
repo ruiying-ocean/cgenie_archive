@@ -388,20 +388,38 @@ CONTAINS
           silicify(jp)        = 0.0
           autotrophy(jp)      = trophic_tradeoff
           heterotrophy(jp)    = trophic_tradeoff
-       elseif (pft(jp).eq.'foram') then
+       elseif (pft(jp).eq.'bn_foram') then
+          !symbiont-barren non-spinose foram
           NO3up(jp)           = 0.0
           Nfix(jp)            = 0.0
           calcify(jp)         = 1.0
           silicify(jp)        = 0.0
           autotrophy(jp)      = 0.0
           heterotrophy(jp)    = 1.0
-       elseif (pft(jp).eq.'sym_foram') then
+       elseif (pft(jp).eq.'ss_foram') then
+          !symbiotic spinose foram
           NO3up(jp)           = 0.0
           Nfix(jp)            = 0.0
           calcify(jp)         = 1.0
           silicify(jp)        = 0.0
           autotrophy(jp)      = trophic_tradeoff
           heterotrophy(jp)    = trophic_tradeoff
+       elseif (pft(jp).eq.'sn_foram') then
+          ! symbiont-facultative non-spinose foram
+          NO3up(jp)           = 0.0
+          Nfix(jp)            = 0.0
+          calcify(jp)         = 1.0
+          silicify(jp)        = 0.0
+          autotrophy(jp)      = trophic_tradeoff
+          heterotrophy(jp)    = trophic_tradeoff
+       elseif (pft(jp).eq.'bs_foram') then
+          ! symbint-barren spinose foram
+          NO3up(jp)           = 0.0
+          Nfix(jp)            = 0.0
+          calcify(jp)         = 1.0
+          silicify(jp)        = 0.0
+          autotrophy(jp)      = 0.0
+          heterotrophy(jp)    = 1.0
        else
           print*," "
           print*,"! ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
