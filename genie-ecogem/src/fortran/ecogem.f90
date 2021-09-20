@@ -358,29 +358,28 @@ subroutine ecogem(          &
                  !call sinking
                  !ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
                  ! additional rate and efficiency calculations
-                 ! calculate mortality rates
-
+                 ! calculate mortality rates and respiration
                  do jp=1,npmax
                     if ( pft(jp).eq.'sym_foram' ) then
-                       mortality(jp)   = mort(jp)   * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) * gamma_T * (0.5*sum(BioC(:)) + 0.31)!* (exp((PAR_layer/0.2174 - 400)/50) + 1)
+                       !-- A linear closure term: ax+b
+                       mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) * gamma_T &
+                            * (sym_a * sum(BioC(:)) + sym_b)
+                       !-- A quadratic closure term: ax^2+bx+c
+                       ! mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) * gamma_T &
+                       !      * (sym_a * (sum(BioC(:)) ** 2) + sym_b * sum(BioC(:)) + sym_c)
+                        ! mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) * gamma_T &
+                        !      * (sym_a * sum(BioC(:)) ** 3 / (sym_b**2 + sum(BioC(:))**2) + sym_c)
+
+                       respiration(jp) = respir(jp) * gamma_T
                     else
-                       mortality(jp)   = mort(jp)   * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) ! reduce mortality at very low biomass
+                       mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) ! reduce mortality at very low biomass
+                       respiration(jp) = respir(jp)
                     end if
                  end do
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                  ! Stoopid calcification related moratlity
                  !mortality(:)   = mortality(:) + mortality(:) * calcify(:) / omega(i,j,k) ! Coccolithophores and Forams only
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                 ! mortality(:) = mortality(:)  * gamma_T ! temp adjusted?
-
-                 ! calculate respiration
-                 do jp=1,npmax
-                    if ( pft(jp).eq.'sym_foram' ) then
-                       respiration(jp) = respir(jp) * gamma_T
-                    else
-                       respiration(jp) = respir(jp)
-                    end if
-                 end do
                  ! calculate assimilation efficiency based on quota status
                  Totzoolimit(:) = 0.0  !total food limitation - Maria May 2019 !!! Need to check if consistent!!!
                  do io=1,iomax+iChl

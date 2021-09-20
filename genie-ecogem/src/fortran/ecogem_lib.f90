@@ -145,6 +145,12 @@ MODULE ecogem_lib
   namelist/ini_ecogem_nml/sym_netphoto_factor
   real :: sym_mort
   namelist/ini_ecogem_nml/sym_mort
+  real :: sym_a
+  namelist/ini_ecogem_nml/sym_a
+  real :: sym_b
+  namelist/ini_ecogem_nml/sym_b
+  real :: sym_c
+  namelist/ini_ecogem_nml/sym_c
   ! Temperature dependence
   real ::  temp_A,temp_T0   !
   namelist/ini_ecogem_nml/temp_A,temp_T0

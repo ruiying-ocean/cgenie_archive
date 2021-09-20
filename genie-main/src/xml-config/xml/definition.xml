@@ -8723,6 +8723,18 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
 			<value datatype="real">1.0</value>
 	                  <description>ratio of net/gross photosynthesis for symbionts</description>
                     </param>
+		    <param name="sym_a">
+		      <value datatype="real">0.5</value>
+	              <description>Parameter 1 of symbiotic foram's closure term</description>
+		    </param>
+		    <param name="sym_b">
+		      <value datatype="real">0.3</value>
+	              <description>Parameter 2 of symbiotic foram's closure term</description>
+                    </param>
+		    <param name="sym_c">
+		      <value datatype="real">0.3</value>
+	              <description>Parameter 3 of symbiotic foram's closure term</description>
+                    </param>
                     <param name="biosink_a">
 			<value datatype="real">0.0</value>
 	                  <description>Biomass sinking rate - intercept</description>

@@ -530,15 +530,9 @@ CONTAINS
     do jp=1,npmax
        if ( pft(jp).eq.'sym_foram' ) then
           mort(jp) = (mort_a * volume(jp) ** mort_b + (sym_number(jp) * sym_mort * sym_volume(jp) ** mort_b)) * mort_protect(jp) !mort_b = sym_mort_b = 0
-          respir(jp) = 0.05 !This was zero for non-spinose foram, here enable it RY May 2021
-          print*, "mortality rate of symbiotic foram is:", mort(jp)
-          print*, "Vmax of group symbiotic foram:", vmax(iDIC,jp)
+          respir(jp) = 0.05 !This was zero for non-spinose foram, here re-enable it RY May 2021
        end if
     end do
-
-    print*, "mortality rate of 01 is:", mort(1)
-    print*, "Vmax of group 01:", vmax(iDIC,1)
-
 
     do jp=1,npmax ! grazing kernel (npred,nprey)
        ! pad predator dependent pp_opt and pp_sig so that they vary along matrix columns
@@ -554,8 +548,8 @@ CONTAINS
     select case(pft(jpred))
       case('foram','sym_foram')
         do jprey=1,npmax
-          if(autotrophy(jprey).gt.0.0 .AND. carnivory(jpred))gkernel(jpred,jprey)=0.0 ! if predator is carnivorous and prey is phytoplankton, - no grazing
-          if(heterotrophy(jprey).gt.0.0 .AND. herbivory(jpred))gkernel(jpred,jprey)=0.0 ! if predator is carnivorous and prey is phytoplankton, - no grazing
+          if(autotrophy(jprey).gt.0.0 .AND. carnivory(jpred)) gkernel(jpred,jprey)=0.0 ! if predator is carnivorous and prey is phytoplankton, - no grazing
+          if(heterotrophy(jprey).gt.0.0 .AND. herbivory(jpred)) gkernel(jpred,jprey)=0.0
         end do
     end select
     end do
