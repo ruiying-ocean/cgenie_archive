@@ -363,13 +363,14 @@ subroutine ecogem(          &
                     if ( pft(jp).eq.'ss_foram' ) then
                        !-- A linear closure term: ax+b
                        mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) * gamma_T &
-                            * (sym_a * sum(BioC(:)) + sym_b)
+                            * (closure_a * sum(BioC(:)) + closure_b)
                        !-- A quadratic closure term: ax^2+bx+c
                        ! mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) * gamma_T &
-                       !      * (sym_a * (sum(BioC(:)) ** 2) + sym_b * sum(BioC(:)) + sym_c)
-                        ! mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) * gamma_T &
-                        !      * (sym_a * sum(BioC(:)) ** 3 / (sym_b**2 + sum(BioC(:))**2) + sym_c)
-
+                       !      * (closure_a * (sum(BioC(:)) ** 2) + closure_b * sum(BioC(:)) + closure_c)
+                       !-- A sigmoid closure term
+                       ! mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) * gamma_T &
+                       !      * (closure_a * sum(BioC(:)) ** 3 / (closure_b**2 + sum(BioC(:))**2) + closure_c)
+                       !----------------------------------------
                        respiration(jp) = respir(jp) * gamma_T
                     else
                        mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) ! reduce mortality at very low biomass

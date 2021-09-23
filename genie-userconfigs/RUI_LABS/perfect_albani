@@ -81,10 +81,10 @@ eg_ctrl_debug_eco_init      =.false.
 eg_ctrl_grazing_explicit=.true.
 eg_gkernel_cap = .false.
 
-eg_sym_size_ratio=0.01
-eg_sym_num_scale=2.0
-eg_sym_netphoto_factor=0.25
-eg_sym_mort=0.02
+eg_auto_size_ratio=0.01
+eg_auto_num_scale=2.0
+eg_auto_netphoto_ratio=0.25
+eg_auto_mort=0.02
 eg_trophic_tradeoff=0.15
 eg_par_ecogem_plankton_file ='8P7Z1F1S.eco'
 eg_par_ecogem_grazing_file  ='8P7Z1F1S-64.zoo'

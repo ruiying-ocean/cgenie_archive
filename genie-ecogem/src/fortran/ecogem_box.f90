@@ -154,7 +154,7 @@ CONTAINS
     do ii=2,iimax ! not carbon...
        ! resource and temperature limited uptake
        if (nuts(ii).gt.0.0) then
-          up_inorg(ii,:) = sym_number(:) * gamma_T * vmax(ii,:) * affinity(ii,:) * nuts(ii) / (vmax(ii,:) + affinity(ii,:) * nuts(ii))
+          up_inorg(ii,:) = auto_number(:) * gamma_T * vmax(ii,:) * affinity(ii,:) * nuts(ii) / (vmax(ii,:) + affinity(ii,:) * nuts(ii))
           ! Equivalent to classic Michaelis-Menten form ...
           !     up_inorg(ii,:) = gamma_T * vmax(ii,:) * nuts(ii) / (nuts(ii) +kn(ii,:))
           if (fundamental) up_inorg(ii,:) = gamma_T * vmax(ii,:)
@@ -304,8 +304,7 @@ CONTAINS
           Chl2C(:) = MERGE(Chl2C(:),0.0,Cbiomass(:).gt.0.0) ! Check for divide by zero
           ! theoretical light replete photosynthesis given current temperature and nutrient limitation: (s^-1)
 
-          !sym_netphoto_ratio(17) = sym_netphoto_factor * (E0/800 + 0.5)
-          PCmax(:) = vmax(iDIC,:) * VLlimit(:) * gamma_T * sym_netphoto_ratio(:)
+          PCmax(:) = vmax(iDIC,:) * VLlimit(:) * gamma_T * auto_netphoto(:)
           ! light-limited photosynthesis: (s^-1)
           PCPhot(:) = PCmax(:) * (1.0 - exp(-alpha(:)*Chl2C(:)*E0/PCmax))
           PCPhot(:) = MERGE(PCPhot(:),0.0,PCmax.gt.0.0) ! Check for divide by zero

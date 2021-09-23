@@ -8580,11 +8580,11 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
 	                  <description>Silicon excretion rate - exponent</description>
                     </param>
 		    <!-- Carbon quota and Photosynthesis parameters -->
-		    <param name="sym_size_ratio">
+		    <param name="auto_size_ratio">
 		      <value datatype="real">0.05</value>
 		      <description>The size ratio between symbionts and foraminifera</description>
 		    </param>
-		    <param name="sym_num_scale">
+		    <param name="auto_num_scale">
 		      <value datatype="real">1.0</value>
 		      <description>The scale factor of symbiont's number effect</description>
 		    </param>
@@ -8719,19 +8719,19 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
 			<value datatype="real">0.0</value>
 	                  <description>Carbon respiration rate - exponent</description>
                     </param>
-		    <param name="sym_netphoto_factor">
+		    <param name="auto_netphoto_ratio">
 			<value datatype="real">1.0</value>
 	                  <description>ratio of net/gross photosynthesis for symbionts</description>
                     </param>
-		    <param name="sym_a">
+		    <param name="closure_a">
 		      <value datatype="real">0.5</value>
 	              <description>Parameter 1 of symbiotic foram's closure term</description>
 		    </param>
-		    <param name="sym_b">
+		    <param name="closure_b">
 		      <value datatype="real">0.3</value>
 	              <description>Parameter 2 of symbiotic foram's closure term</description>
                     </param>
-		    <param name="sym_c">
+		    <param name="closure_c">
 		      <value datatype="real">0.3</value>
 	              <description>Parameter 3 of symbiotic foram's closure term</description>
                     </param>
@@ -8747,7 +8747,7 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
 			<value datatype="real">0.05</value>
 	                  <description>Basal mortality - intercept</description>
                     </param>
-		    <param name="sym_mort">
+		    <param name="auto_mort">
 			<value datatype="real">0.05</value>
 	                  <description>Basal mortality for symbionts</description>
                     </param>

@@ -137,20 +137,20 @@ MODULE ecogem_lib
   real :: trophic_tradeoff
   namelist/ini_ecogem_nml/trophic_tradeoff
   ! Symbionts parameters
-  real :: sym_size_ratio
-  namelist/ini_ecogem_nml/sym_size_ratio
-  real :: sym_num_scale
-  namelist/ini_ecogem_nml/sym_num_scale
-  real :: sym_netphoto_factor
-  namelist/ini_ecogem_nml/sym_netphoto_factor
-  real :: sym_mort
-  namelist/ini_ecogem_nml/sym_mort
-  real :: sym_a
-  namelist/ini_ecogem_nml/sym_a
-  real :: sym_b
-  namelist/ini_ecogem_nml/sym_b
-  real :: sym_c
-  namelist/ini_ecogem_nml/sym_c
+  real :: auto_size_ratio
+  namelist/ini_ecogem_nml/auto_size_ratio
+  real :: auto_num_scale
+  namelist/ini_ecogem_nml/auto_num_scale
+  real :: auto_netphoto_ratio
+  namelist/ini_ecogem_nml/auto_netphoto_ratio
+  real :: auto_mort
+  namelist/ini_ecogem_nml/auto_mort
+  real :: closure_a
+  namelist/ini_ecogem_nml/closure_a
+  real :: closure_b
+  namelist/ini_ecogem_nml/closure_b
+  real :: closure_c
+  namelist/ini_ecogem_nml/closure_c
   ! Temperature dependence
   real ::  temp_A,temp_T0   !
   namelist/ini_ecogem_nml/temp_A,temp_T0
@@ -293,7 +293,7 @@ MODULE ecogem_lib
   character(len=5) ,ALLOCATABLE,DIMENSION(:)    ::rsrcstrng                                ! Inorganic resource labels
   INTEGER          ,ALLOCATABLE,DIMENSION(:)    ::random_n                                 ! n population replicates
   INTEGER          ,ALLOCATABLE,DIMENSION(:)    ::nut2quota                                ! match nutrients to quotas
-  REAL             ,ALLOCATABLE,DIMENSION(:)    ::volume,diameter,sym_volume,sym_number, sym_netphoto_ratio, logvol,logesd ! Size parameters
+  REAL             ,ALLOCATABLE,DIMENSION(:)    ::volume,diameter,auto_volume,auto_number, auto_netphoto, logvol,logesd ! Size parameters
   REAL             ,ALLOCATABLE,DIMENSION(:)    ::autotrophy,heterotrophy                  ! Trophic strategy
   LOGICAL          ,ALLOCATABLE,DIMENSION(:)    ::herbivory,carnivory                      ! Feeding behavior - Added by Grigoratou, Nov18
   real             ,ALLOCATABLE,DIMENSION(:)    ::pp_opt_a_array,pp_sig_a_array,ns_array   ! grazing parameters as arrays
