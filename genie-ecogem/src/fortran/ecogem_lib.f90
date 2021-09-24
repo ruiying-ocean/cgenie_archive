@@ -145,6 +145,8 @@ MODULE ecogem_lib
   namelist/ini_ecogem_nml/auto_netphoto_ratio
   real :: auto_mort
   namelist/ini_ecogem_nml/auto_mort
+  real :: auto_spine
+  namelist/ini_ecogem_nml/auto_spine
   real :: closure_a
   namelist/ini_ecogem_nml/closure_a
   real :: closure_b

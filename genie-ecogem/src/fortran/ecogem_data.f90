@@ -471,8 +471,8 @@ CONTAINS
           auto_netphoto(jp) = auto_netphoto_ratio
        else if (pft(jp) .eq. 'sn_foram') then
           auto_volume(jp) = (auto_size_ratio ** 3) * volume(jp)
-          auto_number(jp) =  auto_num_scale * 0.8
-          auto_netphoto_ratio(jp) = auto_netphoto_factor
+          auto_number(jp) =  auto_num_scale
+          auto_netphoto(jp) = auto_netphoto_ratio
        else
           auto_volume(jp) = volume(jp)
           auto_number(jp) = 1.0
@@ -552,12 +552,12 @@ CONTAINS
        if ( pft(jp).eq.'ss_foram' ) then
           mort(jp) = (mort_a * volume(jp) ** mort_b + (auto_number(jp) * auto_mort * auto_volume(jp) ** mort_b)) * mort_protect(jp) !mort_b = auto_mort_b = 0
           respir(jp) = 0.05 !This was zero for non-spinose foram, here re-enable it RY May 2021
-          kg(jp) = kg(jp)*0.9
+          kg(jp) = kg(jp) * auto_spine
     !spine means higher grazing rate
        else if ( pft(jp).eq.'bs_foram' ) then
-          kg(jp) = kg(jp)*0.9
+          kg(jp) = kg(jp) * auto_spine
        else if (pft(jp) .eq. 'sn_foram') then
-          mort(jp) = (mort_a * volume(jp) ** mort_b + (sym_number(jp) * sym_mort * sym_volume(jp) ** mort_b)) * mort_protect(jp)
+          mort(jp) = (mort_a * volume(jp) ** mort_b + (auto_number(jp) * auto_mort * auto_volume(jp) ** mort_b)) * mort_protect(jp)
           respir(jp) = 0.05
        end if
     end do

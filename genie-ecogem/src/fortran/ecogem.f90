@@ -378,7 +378,6 @@ subroutine ecogem(          &
                  ! if ( pft(jp).eq.'bn_foram' .or. (pft(jp).eq.'bs_foram') .or. (pft(jp).eq.'ss_foram') .or. (pft(jp).eq.'sn_foram'))  then
                  do jp=1,npmax
                     if (index(pft(jp), "foram") .ne. 0) then
-                       write(*,*) pft(jp)
                        respiration(jp) = respir(jp) * gamma_T
                     else
                        respiration(jp) = respir(jp)
