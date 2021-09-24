@@ -360,7 +360,7 @@ subroutine ecogem(          &
                  ! additional rate and efficiency calculations
                  ! calculate mortality rates and respiration
                  do jp=1,npmax
-                    if ( pft(jp).eq.'ss_foram' ) then
+                    if (pft(jp).eq.'ss_foram') then
                        !-- A linear closure term: ax+b
                        mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) * gamma_T &
                             * (closure_a * sum(BioC(:)) + closure_b)
@@ -371,12 +371,20 @@ subroutine ecogem(          &
                        ! mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) * gamma_T &
                        !      * (closure_a * sum(BioC(:)) ** 3 / (closure_b**2 + sum(BioC(:))**2) + closure_c)
                        !----------------------------------------
-                       respiration(jp) = respir(jp) * gamma_T
                     else
                        mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) ! reduce mortality at very low biomass
+                    end if
+                 end do
+                 ! if ( pft(jp).eq.'bn_foram' .or. (pft(jp).eq.'bs_foram') .or. (pft(jp).eq.'ss_foram') .or. (pft(jp).eq.'sn_foram'))  then
+                 do jp=1,npmax
+                    if (index(pft(jp), "foram") .ne. 0) then
+                       write(*,*) pft(jp)
+                       respiration(jp) = respir(jp) * gamma_T
+                    else
                        respiration(jp) = respir(jp)
                     end if
                  end do
+
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                  ! Stoopid calcification related moratlity
                  !mortality(:)   = mortality(:) + mortality(:) * calcify(:) / omega(i,j,k) ! Coccolithophores and Forams only

@@ -405,7 +405,7 @@ CONTAINS
           autotrophy(jp)      = trophic_tradeoff
           heterotrophy(jp)    = trophic_tradeoff
        elseif (pft(jp).eq.'sn_foram') then
-          ! symbiont-facultative non-spinose foram
+          !symbiont-facultative non-spinose foram
           NO3up(jp)           = 0.0
           Nfix(jp)            = 0.0
           calcify(jp)         = 1.0
@@ -413,7 +413,7 @@ CONTAINS
           autotrophy(jp)      = trophic_tradeoff
           heterotrophy(jp)    = trophic_tradeoff
        elseif (pft(jp).eq.'bs_foram') then
-          ! symbint-barren spinose foram
+          !symbint-barren spinose foram
           NO3up(jp)           = 0.0
           Nfix(jp)            = 0.0
           calcify(jp)         = 1.0
@@ -469,6 +469,10 @@ CONTAINS
           auto_volume(jp) = (auto_size_ratio ** 3) * volume(jp)
           auto_number(jp) =  auto_num_scale !the linear relationship comes from Spero and Barker 1985, floor(10 ** (6.237E-3*diameter(jp)+1.3422)) *
           auto_netphoto(jp) = auto_netphoto_ratio
+       else if (pft(jp) .eq. 'sn_foram') then
+          auto_volume(jp) = (auto_size_ratio ** 3) * volume(jp)
+          auto_number(jp) =  auto_num_scale * 0.8
+          auto_netphoto_ratio(jp) = auto_netphoto_factor
        else
           auto_volume(jp) = volume(jp)
           auto_number(jp) = 1.0
@@ -548,6 +552,13 @@ CONTAINS
        if ( pft(jp).eq.'ss_foram' ) then
           mort(jp) = (mort_a * volume(jp) ** mort_b + (auto_number(jp) * auto_mort * auto_volume(jp) ** mort_b)) * mort_protect(jp) !mort_b = auto_mort_b = 0
           respir(jp) = 0.05 !This was zero for non-spinose foram, here re-enable it RY May 2021
+          kg(jp) = kg(jp)*0.9
+    !spine means higher grazing rate
+       else if ( pft(jp).eq.'bs_foram' ) then
+          kg(jp) = kg(jp)*0.9
+       else if (pft(jp) .eq. 'sn_foram') then
+          mort(jp) = (mort_a * volume(jp) ** mort_b + (sym_number(jp) * sym_mort * sym_volume(jp) ** mort_b)) * mort_protect(jp)
+          respir(jp) = 0.05
        end if
     end do
 
@@ -563,7 +574,7 @@ CONTAINS
     gkernel(:,:)  =exp(-log(prdpry(:,:)/ppopt_mat(:,:))**2 / (2*ppsig_mat(:,:)**2)) ! [jpred,jprey] populate whole array at once, then find exceptions to set to 0.0 based on type
     do jpred=1,npmax
     select case(pft(jpred))
-      case('bn_foram','ss_foram')
+      case('bn_foram','ss_foram','bs_foram','sn_foram')
         do jprey=1,npmax
           if(autotrophy(jprey).gt.0.0 .AND. carnivory(jpred)) gkernel(jpred,jprey)=0.0 ! if predator is carnivorous and prey is phytoplankton, - no grazing
           if(heterotrophy(jprey).gt.0.0 .AND. herbivory(jpred)) gkernel(jpred,jprey)=0.0
