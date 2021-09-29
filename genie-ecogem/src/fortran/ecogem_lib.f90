@@ -139,8 +139,8 @@ MODULE ecogem_lib
   ! Symbionts parameters
   real :: auto_size_ratio
   namelist/ini_ecogem_nml/auto_size_ratio
-  real :: auto_num_scale
-  namelist/ini_ecogem_nml/auto_num_scale
+  real :: foram_respir
+  namelist/ini_ecogem_nml/foram_respir
   real :: auto_netphoto_ratio
   namelist/ini_ecogem_nml/auto_netphoto_ratio
   real :: auto_mort
@@ -295,7 +295,7 @@ MODULE ecogem_lib
   character(len=5) ,ALLOCATABLE,DIMENSION(:)    ::rsrcstrng                                ! Inorganic resource labels
   INTEGER          ,ALLOCATABLE,DIMENSION(:)    ::random_n                                 ! n population replicates
   INTEGER          ,ALLOCATABLE,DIMENSION(:)    ::nut2quota                                ! match nutrients to quotas
-  REAL             ,ALLOCATABLE,DIMENSION(:)    ::volume,diameter,auto_volume,auto_number, auto_netphoto, logvol,logesd ! Size parameters
+  REAL             ,ALLOCATABLE,DIMENSION(:)    ::volume,diameter,auto_volume, auto_netphoto, logvol,logesd ! Size parameters
   REAL             ,ALLOCATABLE,DIMENSION(:)    ::autotrophy,heterotrophy                  ! Trophic strategy
   LOGICAL          ,ALLOCATABLE,DIMENSION(:)    ::herbivory,carnivory                      ! Feeding behavior - Added by Grigoratou, Nov18
   real             ,ALLOCATABLE,DIMENSION(:)    ::pp_opt_a_array,pp_sig_a_array,ns_array   ! grazing parameters as arrays

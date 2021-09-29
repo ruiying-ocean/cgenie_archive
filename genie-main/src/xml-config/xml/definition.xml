@@ -8584,9 +8584,9 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
 		      <value datatype="real">0.05</value>
 		      <description>The size ratio between symbionts and foraminifera</description>
 		    </param>
-		    <param name="auto_num_scale">
-		      <value datatype="real">1.0</value>
-		      <description>The scale factor of symbiont's number effect</description>
+		    <param name="foram_respir">
+		      <value datatype="real">0.05</value>
+		      <description>Respiration rate for all foram groups</description>
 		    </param>
                     <param name="vmaxDIC_a">
 			<value datatype="real">3.08</value>

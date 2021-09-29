@@ -82,7 +82,6 @@ eg_ctrl_grazing_explicit=.true.
 eg_gkernel_cap = .false.
 
 eg_auto_size_ratio=0.01
-eg_auto_num_scale=2.0
 eg_auto_netphoto_ratio=0.25
 eg_auto_mort=0.02
 eg_trophic_tradeoff=0.15

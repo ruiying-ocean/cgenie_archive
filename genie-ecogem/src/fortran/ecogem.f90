@@ -112,7 +112,7 @@ subroutine ecogem(          &
 
   ! JDW Overwrite surface temperature with input
   if(ctrl_force_T)then
-      loc_ocn(io_T,:,:,n_k)  = T_input ! JDW: currently running with only 1 surface layer?
+     loc_ocn(io_T,:,:,n_k)  = T_input ! JDW: currently running with only 1 surface layer?
   end if
 
   ! zero output arrays
@@ -281,14 +281,14 @@ subroutine ecogem(          &
                  templocal = MERGE(templocal,(temp_max+273.15),templocal.lt.(temp_max+273.15))
 
                  IF(ctrl_limit_neg_biomass)THEN
-                        !IF(ANY(plankton(:,:,i,j,k).lt.0.0)) print*,'\/',i,j
-                        loc_nuts(:)      = merge(  nutrient(:,i,j,k),0.0,  nutrient(:,i,j,k).gt.0.0) ! -ve nutrients to zero
-                        loc_biomass(:,:) = merge(plankton(:,:,i,j,k),1.0e-4,plankton(:,:,i,j,k).gt.0.0) ! -ve biomass to small
-                        BioC(:) = loc_biomass(iCarb,:)
+                    !IF(ANY(plankton(:,:,i,j,k).lt.0.0)) print*,'\/',i,j
+                    loc_nuts(:)      = merge(  nutrient(:,i,j,k),0.0,  nutrient(:,i,j,k).gt.0.0) ! -ve nutrients to zero
+                    loc_biomass(:,:) = merge(plankton(:,:,i,j,k),1.0e-4,plankton(:,:,i,j,k).gt.0.0) ! -ve biomass to small
+                    BioC(:) = loc_biomass(iCarb,:)
                  else
-                        loc_nuts(:)      = merge(  nutrient(:,i,j,k),0.0,  nutrient(:,i,j,k).gt.0.0) ! -ve nutrients to zero
-                        loc_biomass(:,:) = merge(plankton(:,:,i,j,k),0.0,plankton(:,:,i,j,k).gt.0.0) ! -ve biomass to small
-                        BioC(:) = loc_biomass(iCarb,:)
+                    loc_nuts(:)      = merge(  nutrient(:,i,j,k),0.0,  nutrient(:,i,j,k).gt.0.0) ! -ve nutrients to zero
+                    loc_biomass(:,:) = merge(plankton(:,:,i,j,k),0.0,plankton(:,:,i,j,k).gt.0.0) ! -ve biomass to small
+                    BioC(:) = loc_biomass(iCarb,:)
                  endif
 
                  if (c13trace) then
@@ -362,7 +362,7 @@ subroutine ecogem(          &
                  do jp=1,npmax
                     if (pft(jp).eq.'ss_foram') then
                        !-- A linear closure term: ax+b
-                       mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) * gamma_T &
+                       mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) &
                             * (closure_a * sum(BioC(:)) + closure_b)
                        !-- A quadratic closure term: ax^2+bx+c
                        ! mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) * gamma_T &
@@ -371,13 +371,20 @@ subroutine ecogem(          &
                        ! mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) * gamma_T &
                        !      * (closure_a * sum(BioC(:)) ** 3 / (closure_b**2 + sum(BioC(:))**2) + closure_c)
                        !----------------------------------------
+                       ! else if (pft(jp) .eq. 'bn_foram') then
+                       ! !else if ( index(pft(jp), "foram") .ne. 0 ) then
+                       !    mortality(jp)   = mort(jp) * gamma_T * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) ! r
+                       !reduce mortality at very low biomass
                     else
-                       mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) ! reduce mortality at very low biomass
+                       !add bs_foram & sn_foram or not ?
+                       mortality(jp) = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb, jp)))
                     end if
+                    respiration(jp) = respir(jp)
                  end do
                  ! if ( pft(jp).eq.'bn_foram' .or. (pft(jp).eq.'bs_foram') .or. (pft(jp).eq.'ss_foram') .or. (pft(jp).eq.'sn_foram'))  then
                  do jp=1,npmax
                     if (index(pft(jp), "foram") .ne. 0) then
+                    ! if (pft(jp).eq.'sn_foram' .or. pft(jp).eq.'ss_foram') then
                        respiration(jp) = respir(jp) * gamma_T
                     else
                        respiration(jp) = respir(jp)
@@ -497,7 +504,7 @@ subroutine ecogem(          &
                     ! chl inventory from pervious time-step
                     loc_chl(:) = loc_biomass(iChlo,:)
                     ! chl inventory based on (end of) current time-step
-                    !!!loc_chl(:) = loc_biomass(iChlo,:) + dbiomassdt(iChlo,:) * dum_dts/real(nsubtime)
+!!!loc_chl(:) = loc_biomass(iChlo,:) + dbiomassdt(iChlo,:) * dum_dts/real(nsubtime)
                     If (sum(loc_chl(:)) > const_real_nullsmall) then
                        loc_rPOC  = 0.426 + 0.0668*log(sum(loc_chl(:))) - 0.0081*(templocal-const_zeroC)
                        ! cap loc_rPOC range
@@ -589,23 +596,23 @@ subroutine ecogem(          &
 		 ! if(autotrophy) loop calculates weights for phytoplankton only. Comment out if(autotrophy) loop to calculate weights for all types!
                  if (sed_select(is_POC_size)) then
 
-                        loc_weighted_mean_size=0.0
-                        loc_total_weights=0.0
+                    loc_weighted_mean_size=0.0
+                    loc_total_weights=0.0
 
-                        do jp=1,npmax
-                                if(autotrophy(jp).gt.0.0)then
+                    do jp=1,npmax
+                       if(autotrophy(jp).gt.0.0)then
 
-				! Biomass weighted
-                                loc_weighted_mean_size=loc_weighted_mean_size+loc_biomass(iCarb,jp)*logesd(jp) ! sum of weights * size
-                                loc_total_weights=loc_total_weights+loc_biomass(iCarb,jp) ! sum of weights
+                          ! Biomass weighted
+                          loc_weighted_mean_size=loc_weighted_mean_size+loc_biomass(iCarb,jp)*logesd(jp) ! sum of weights * size
+                          loc_total_weights=loc_total_weights+loc_biomass(iCarb,jp) ! sum of weights
 
-				! POC weighted
-                 		!loc_weighted_mean_size=loc_weighted_mean_size+((loc_biomass(iCarb,jp) * mortality(jp) * beta_mort_1(jp))+(GrazPredEat(iCarb,jp) * unassimilated(iCarb,jp) * beta_graz_1(jp)))*logesd(jp) ! sum of weights * size
-                 		!loc_total_weights=loc_total_weights+((loc_biomass(iCarb,jp) * mortality(jp) * beta_mort_1(jp))+(GrazPredEat(iCarb,jp) * unassimilated(iCarb,jp) * beta_graz_1(jp))) ! sum of weights
-                                endIF
-                        enddo
+                          ! POC weighted
+                          !loc_weighted_mean_size=loc_weighted_mean_size+((loc_biomass(iCarb,jp) * mortality(jp) * beta_mort_1(jp))+(GrazPredEat(iCarb,jp) * unassimilated(iCarb,jp) * beta_graz_1(jp)))*logesd(jp) ! sum of weights * size
+                          !loc_total_weights=loc_total_weights+((loc_biomass(iCarb,jp) * mortality(jp) * beta_mort_1(jp))+(GrazPredEat(iCarb,jp) * unassimilated(iCarb,jp) * beta_graz_1(jp))) ! sum of weights
+                       endIF
+                    enddo
 
-                        dum_egbg_sfcpart(is_POC_size,i,j,k)=10**(loc_weighted_mean_size / loc_total_weights) ! to biogem
+                    dum_egbg_sfcpart(is_POC_size,i,j,k)=10**(loc_weighted_mean_size / loc_total_weights) ! to biogem
                  endif
                  ! ***************************************************
 
