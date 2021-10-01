@@ -359,35 +359,21 @@ subroutine ecogem(          &
                  !ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
                  ! additional rate and efficiency calculations
                  ! calculate mortality rates and respiration
+
                  do jp=1,npmax
                     if (pft(jp).eq.'ss_foram') then
-                       !-- A linear closure term: ax+b
-                       mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) &
-                            * (closure_a * sum(BioC(:)) + closure_b)
-                       !-- A quadratic closure term: ax^2+bx+c
-                       ! mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) * gamma_T &
-                       !      * (closure_a * (sum(BioC(:)) ** 2) + closure_b * sum(BioC(:)) + closure_c)
-                       !-- A sigmoid closure term
-                       ! mortality(jp)   = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) * gamma_T &
-                       !      * (closure_a * sum(BioC(:)) ** 3 / (closure_b**2 + sum(BioC(:))**2) + closure_c)
-                       !----------------------------------------
-                       ! else if (pft(jp) .eq. 'bn_foram') then
-                       ! !else if ( index(pft(jp), "foram") .ne. 0 ) then
-                       !    mortality(jp)   = mort(jp) * gamma_T * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) ! r
-                       !reduce mortality at very low biomass
-                    else
-                       !add bs_foram & sn_foram or not ?
-                       mortality(jp) = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb, jp)))
-                    end if
-                    respiration(jp) = respir(jp)
-                 end do
-                 ! if ( pft(jp).eq.'bn_foram' .or. (pft(jp).eq.'bs_foram') .or. (pft(jp).eq.'ss_foram') .or. (pft(jp).eq.'sn_foram'))  then
-                 do jp=1,npmax
-                    if (index(pft(jp), "foram") .ne. 0) then
-                    ! if (pft(jp).eq.'sn_foram' .or. pft(jp).eq.'ss_foram') then
                        respiration(jp) = respir(jp) * gamma_T
+                       mortality(jp)   = mort(jp) * gamma_T * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) &
+                            * (closure_a * sum(BioC(:)) + closure_b)
+                    else if (pft(jp).eq.'sn_foram') then
+                       respiration(jp) = respir(jp) * gamma_T
+                       mortality(jp) = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb, jp)))
+                    else if (index(pft(jp), "foram") .ne. 0) then
+                       respiration(jp) = respir(jp) * gamma_T
+                       mortality(jp) = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb, jp)))
                     else
                        respiration(jp) = respir(jp)
+                       mortality(jp) = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb, jp)))
                     end if
                  end do
 

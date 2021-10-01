@@ -304,7 +304,7 @@ CONTAINS
           Chl2C(:) = MERGE(Chl2C(:),0.0,Cbiomass(:).gt.0.0) ! Check for divide by zero
           ! theoretical light replete photosynthesis given current temperature and nutrient limitation: (s^-1)
 
-          PCmax(:) = vmax(iDIC,:) * VLlimit(:) * gamma_T * auto_netphoto(:)
+          PCmax(:) = vmax(iDIC,:) * VLlimit(:) * gamma_T
           ! light-limited photosynthesis: (s^-1)
           PCPhot(:) = PCmax(:) * (1.0 - exp(-alpha(:)*Chl2C(:)*E0/PCmax))
           PCPhot(:) = MERGE(PCPhot(:),0.0,PCmax.gt.0.0) ! Check for divide by zero

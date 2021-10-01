@@ -19,9 +19,9 @@
  Zooplankton        f   f       10.0    2.0     2.0     1.0     1.0     1.0
  Zooplankton        f   f       10.0    2.0     2.0     1.0     1.0     1.0
  bn_foram           t   f       10.0    2.0     1.0     0.7     0.8     0.9
- bs_foram           f   t       10.0    2.0     1.0     0.7     0.7     0.7
+ bs_foram           f   t       10.0    2.0     1.0     0.7     0.7     0.8
  sn_foram           t   f       10.0    2.0     1.0     0.7     0.8     0.9
- ss_foram           f   t       10.0    2.0     1.0     0.7     0.7     0.7
+ ss_foram           f   t       10.0    2.0     1.0     0.7     0.7     0.8
 -END-OF-DATA-
 
  /\                 /\ /\	/\	/\	/\	/\	/\	/\

@@ -78,14 +78,15 @@ eg_ctrl_grazing_explicit=.true.
 eg_gkernel_cap = .false.
 eg_par_ecogem_grazing_file  ='8P7Z4F.zoo'
 
-eg_foram_respir = 0.02
-eg_auto_size_ratio=0.01
-eg_auto_netphoto_ratio=0.3
-eg_auto_mort=0.03
-eg_auto_spine=0.95
+eg_foram_respir = 0.05
+eg_auto_spine=0.9
 eg_trophic_tradeoff=0.3
-eg_closure_a=0.4
-eg_closure_b=0.4
+
+eg_auto_netphoto_ratio=0.3
+eg_auto_size_ratio=0.01
+eg_auto_mort=0.045
+eg_closure_a=0.3
+eg_closure_b=0.2
 
 #################### Nitrogen ############################
 eg_useNO3                   =.false.

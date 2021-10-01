@@ -396,24 +396,6 @@ CONTAINS
           silicify(jp)        = 0.0
           autotrophy(jp)      = 0.0
           heterotrophy(jp)    = 1.0
-       elseif (pft(jp).eq.'ss_foram') then
-          !symbiotic spinose foram
-          NO3up(jp)           = 0.0
-          Nfix(jp)            = 0.0
-          calcify(jp)         = 1.0
-          silicify(jp)        = 0.0
-          autotrophy(jp)      = trophic_tradeoff
-          heterotrophy(jp)    = trophic_tradeoff
-       elseif (pft(jp).eq.'sn_foram') then
-          !symbiont-facultative non-spinose foram
-          !the total foram biogeography is very sensitive to trophic_tradeoff combination here
-          ! 1 - lambda, or lambda, or lambda*1.2
-          NO3up(jp)           = 0.0
-          Nfix(jp)            = 0.0
-          calcify(jp)         = 1.0
-          silicify(jp)        = 0.0
-          autotrophy(jp)      = trophic_tradeoff
-          heterotrophy(jp)    = trophic_tradeoff
        elseif (pft(jp).eq.'bs_foram') then
           !symbint-barren spinose foram
           NO3up(jp)           = 0.0
@@ -422,6 +404,21 @@ CONTAINS
           silicify(jp)        = 0.0
           autotrophy(jp)      = 0.0
           heterotrophy(jp)    = 1.0
+       elseif (pft(jp).eq.'ss_foram') then
+          !symbiotic spinose foram
+          NO3up(jp)           = 0.0
+          Nfix(jp)            = 0.0
+          calcify(jp)         = 1.0
+          silicify(jp)        = 0.0
+          autotrophy(jp)      = trophic_tradeoff * 0.3
+          heterotrophy(jp)    = trophic_tradeoff
+       elseif (pft(jp).eq.'sn_foram') then
+          NO3up(jp)           = 0.0
+          Nfix(jp)            = 0.0
+          calcify(jp)         = 1.0
+          silicify(jp)        = 0.0
+          autotrophy(jp)      = trophic_tradeoff * 0.3
+          heterotrophy(jp)    = trophic_tradeoff
        else
           print*," "
           print*,"! ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
@@ -469,13 +466,10 @@ CONTAINS
     do jp=1,npmax
        if (pft(jp).eq.'ss_foram') then
           auto_volume(jp) = (auto_size_ratio ** 3) * volume(jp)
-          auto_netphoto(jp) = auto_netphoto_ratio
        else if (pft(jp) .eq. 'sn_foram') then
           auto_volume(jp) = (auto_size_ratio ** 3) * volume(jp)
-          auto_netphoto(jp) = auto_netphoto_ratio
        else
           auto_volume(jp) = volume(jp)
-          auto_netphoto(jp) = 1.0
        endif
     enddo
     !-----------------------------------------------------------------------------------------

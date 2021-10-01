@@ -8719,10 +8719,6 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
 			<value datatype="real">0.0</value>
 	                  <description>Carbon respiration rate - exponent</description>
                     </param>
-		    <param name="auto_netphoto_ratio">
-			<value datatype="real">1.0</value>
-	                  <description>ratio of net/gross photosynthesis for symbionts</description>
-                    </param>
 		    <param name="auto_spine">
 		      <value datatype="real">1.0</value>
 	              <description>spine effect: faster grazing rate (by lowering half-saturation constant)</description>
