@@ -28,6 +28,7 @@ CONTAINS
        print*,'ERROR: could not open ECOGEM initialisation namelist file'
        stop
     end if
+
     ! read in namelist and close data_ECOGEM file
     read(UNIT=in,NML=ini_ecogem_nml,IOSTAT=ios)
     if (ios /= 0) then
@@ -146,6 +147,8 @@ CONTAINS
           write(*,67),'  - carnivory                                     :    plankton specific values set in:',par_ecogem_grazing_file
           write(*,69),'  - palatability                                  :    plankton specific values set in:',par_ecogem_grazing_file
           write(*,69),'  - growth cost factor                            :    plankton specific values set in:',par_ecogem_grazing_file
+          write(*,69),'  - total respiration rate                        :    plankton specific values set in:',par_ecogem_grazing_file
+          write(*,69),'  - grazing half-saturation constant              :    plankton specific values set in:',par_ecogem_grazing_file
        else
           write(*,69),'  - optimal predator:prey length ratio   (pp_opt) : a=',   pp_opt_a,', b=',   pp_opt_b
           write(*,69),'  - width of grazing kernel              (pp_sig) : a=',   pp_sig_a,', b=',   pp_sig_b
@@ -457,6 +460,8 @@ CONTAINS
        carnivory(:)=.false.
        palatability(:)=1.0
        growthcost_factor(:)=1.0
+       total_respir(:)=0.0
+       kg_factor(:)=1.0
     endif
     ! set growth costs (could do the same for autotrophy in coccolithophores) - Fanny Mar21
     heterotrophy(:) = heterotrophy(:)*growthcost_factor(:)
@@ -464,9 +469,7 @@ CONTAINS
     !------------------------------------------------------------------------
     !smaller size for symbiotic foram's autotroph part, RY May 2021
     do jp=1,npmax
-       if (pft(jp).eq.'ss_foram') then
-          auto_volume(jp) = (auto_size_ratio ** 3) * volume(jp)
-       else if (pft(jp) .eq. 'sn_foram') then
+       if (pft(jp).eq.'ss_foram' .or. pft(jp) .eq. 'sn_foram') then
           auto_volume(jp) = (auto_size_ratio ** 3) * volume(jp)
        else
           auto_volume(jp) = volume(jp)
@@ -532,31 +535,12 @@ CONTAINS
     qcarbon(:)  =     qcarbon_a * auto_volume(:) ** qcarbon_b
     alphachl(:) =    alphachl_a * auto_volume(:) ** alphachl_b
     graz(:)     =        graz_a * volume(:) ** graz_b     * heterotrophy(:)
-    kg(:)       =          kg_a * volume(:) ** kg_b
+    kg(:)       =          kg_a * volume(:) ** kg_b * kg_factor(:)
     pp_opt(:)   =pp_opt_a_array * volume(:) ** pp_opt_b
     pp_sig(:)   =pp_sig_a_array * volume(:) ** pp_sig_b
-    respir(:)   =      respir_a * volume(:) ** respir_b
+    respir(:)   =      total_respir(:)
     biosink(:)  =     biosink_a * volume(:) ** biosink_b
     mort(:)     =       (mort_a * volume(:) ** mort_b) * mort_protect(:) ! mort_protect added by Grigoratou, Dec2018 as a benefit for foram's calcification
-
-    !----------------------------------------
-    !More symbionts mean higher mortality and biosynthesis loss, RY May 2021
-    do jp=1,npmax
-       if ( pft(jp).eq.'ss_foram' ) then
-          mort(jp) = (mort_a * volume(jp) ** mort_b + (auto_mort * auto_volume(jp) ** mort_b)) * mort_protect(jp) !mort_b = auto_mort_b = 0
-          kg(jp) = kg(jp) * auto_spine
-          respir(jp) = foram_respir
-          !spine means higher grazing rate
-       else if ( pft(jp).eq.'bs_foram' ) then
-          kg(jp) = kg(jp) * auto_spine
-          respir(jp) = foram_respir
-       else if (pft(jp) .eq. 'sn_foram') then
-          mort(jp) = (mort_a * volume(jp) ** mort_b + (auto_mort * auto_volume(jp) ** mort_b)) * mort_protect(jp)
-          respir(jp) = foram_respir
-       else if (pft(jp) .eq. 'bn_foram') then
-          respir(jp) = foram_respir
-       end if
-    end do
 
     do jp=1,npmax ! grazing kernel (npred,nprey)
        ! pad predator dependent pp_opt and pp_sig so that they vary along matrix columns
@@ -781,8 +765,8 @@ CONTAINS
 
     ! local variables
     INTEGER::n
-    INTEGER           :: loc_n_elements,loc_n_start
-    CHARACTER(len=16) :: loc_plnktn_pft
+    INTEGER           ::loc_n_elements,loc_n_start
+    CHARACTER(len=16) ::loc_plnktn_pft
     CHARACTER(len=255)::loc_filename
     logical           ::loc_herbivory
     logical           ::loc_carnivory
@@ -792,12 +776,13 @@ CONTAINS
     real              ::loc_mort_protect
     real              ::loc_palatability
     real              ::loc_growthcost_factor
+    real              :: loc_respir
+    real              :: loc_kg
 
     ! if setting plankton specific parameters
     ! check file format and determine number of lines of data
     loc_filename = TRIM(par_indir_name)//"/"//TRIM(par_ecogem_grazing_file)
     CALL sub_check_fileformat(loc_filename,loc_n_elements,loc_n_start)
-
 
     if (loc_n_elements.eq.0) then
        print*," "
@@ -837,7 +822,10 @@ CONTAINS
             & loc_ns,                 & ! COLUMN #06: ns (prey switching)
             & loc_mort_protect,       & ! COLUMN #07: mortality_protection
             & loc_palatability,       & ! COLUMN #08: palatability - in development - Fanny Mar21
-            & loc_growthcost_factor     ! COLUMN #09: growth-cost factor - in development - Fanny Mar21
+            & loc_growthcost_factor,  & ! COLUMN #09: growth-cost factor - in development - Fanny Mar21
+            & loc_respir,             & ! COLUMN #10: respiration Rui Oct21
+            & loc_kg                    ! COLUMN #11: spine-derived kg modification Rui Oct21
+
        herbivory(n)         = loc_herbivory
        carnivory(n)         = loc_carnivory
        pp_opt_a_array(n)    = loc_pp_opt_a
@@ -846,6 +834,8 @@ CONTAINS
        mort_protect(n)      = loc_mort_protect
        palatability(n)      = loc_palatability
        growthcost_factor(n) = loc_growthcost_factor
+       total_respir(n)      = loc_respir
+       kg_factor(n)         = loc_kg
 
     END DO
     !close file pipe

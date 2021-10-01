@@ -8580,14 +8580,6 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
 	                  <description>Silicon excretion rate - exponent</description>
                     </param>
 		    <!-- Carbon quota and Photosynthesis parameters -->
-		    <param name="auto_size_ratio">
-		      <value datatype="real">0.05</value>
-		      <description>The size ratio between symbionts and foraminifera</description>
-		    </param>
-		    <param name="foram_respir">
-		      <value datatype="real">0.05</value>
-		      <description>Respiration rate for all foram groups</description>
-		    </param>
                     <param name="vmaxDIC_a">
 			<value datatype="real">3.08</value>
 	                  <description>maximum photosynthetic rate - a</description>
@@ -8645,9 +8637,17 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
 	                  <description>PAR attenutation by sea-ice cover?</description>
                     </param>
 		    <!-- Grazing parameters -->
-		   <param name="trophic_tradeoff">
+		    <param name="trophic_tradeoff">
 		      <value datatype="real">1.0</value>
 		      <description>Auto/Hetero trade-off parameter</description>
+		    </param>
+		    <param name="auto_size_ratio">
+		      <value datatype="real">0.01</value>
+		      <description>The size ratio between symbionts and foraminifera</description>
+		    </param>
+		    <param name="foram_closure">
+		      <value datatype="real">1.0</value>
+	              <description>symbiotic foram's closure term</description>
 		    </param>
                     <param name="ass_eff">
 			<value datatype="real">0.7</value>
@@ -8719,22 +8719,6 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
 			<value datatype="real">0.0</value>
 	                  <description>Carbon respiration rate - exponent</description>
                     </param>
-		    <param name="auto_spine">
-		      <value datatype="real">1.0</value>
-	              <description>spine effect: faster grazing rate (by lowering half-saturation constant)</description>
-                    </param>
-		    <param name="closure_a">
-		      <value datatype="real">0.5</value>
-	              <description>Parameter 1 of symbiotic foram's closure term</description>
-		    </param>
-		    <param name="closure_b">
-		      <value datatype="real">0.3</value>
-	              <description>Parameter 2 of symbiotic foram's closure term</description>
-                    </param>
-		    <param name="closure_c">
-		      <value datatype="real">0.3</value>
-	              <description>Parameter 3 of symbiotic foram's closure term</description>
-                    </param>
                     <param name="biosink_a">
 			<value datatype="real">0.0</value>
 	                  <description>Biomass sinking rate - intercept</description>
@@ -8746,10 +8730,6 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
                     <param name="mort_a">
 			<value datatype="real">0.05</value>
 	                  <description>Basal mortality - intercept</description>
-                    </param>
-		    <param name="auto_mort">
-			<value datatype="real">0.05</value>
-	                  <description>Basal mortality for symbionts</description>
                     </param>
                     <param name="mort_b">
 			<value datatype="real">0.0</value>

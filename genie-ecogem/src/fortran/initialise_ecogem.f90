@@ -231,6 +231,10 @@ SUBROUTINE initialise_ecogem(    &
   call check_iostat(alloc_error,__LINE__,__FILE__)
   ALLOCATE(growthcost_factor(npmax),STAT=alloc_error)
   call check_iostat(alloc_error,__LINE__,__FILE__)
+  ALLOCATE(total_respir(npmax),STAT=alloc_error)
+  call check_iostat(alloc_error,__LINE__,__FILE__)
+  ALLOCATE(kg_factor(npmax),STAT=alloc_error)
+  call check_iostat(alloc_error,__LINE__,__FILE__)
   ! Nutrient and nutrient quota parameters
   ALLOCATE(qmin(iomax,npmax),STAT=alloc_error)
   call check_iostat(alloc_error,__LINE__,__FILE__)

@@ -360,20 +360,12 @@ subroutine ecogem(          &
                  ! additional rate and efficiency calculations
                  ! calculate mortality rates and respiration
 
+                 respiration(:) = respir(:) * gamma_T
+                 mortality(:)   = mort(:) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp)))
+
                  do jp=1,npmax
                     if (pft(jp).eq.'ss_foram') then
-                       respiration(jp) = respir(jp) * gamma_T
-                       mortality(jp)   = mort(jp) * gamma_T * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,jp))) &
-                            * (closure_a * sum(BioC(:)) + closure_b)
-                    else if (pft(jp).eq.'sn_foram') then
-                       respiration(jp) = respir(jp) * gamma_T
-                       mortality(jp) = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb, jp)))
-                    else if (index(pft(jp), "foram") .ne. 0) then
-                       respiration(jp) = respir(jp) * gamma_T
-                       mortality(jp) = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb, jp)))
-                    else
-                       respiration(jp) = respir(jp)
-                       mortality(jp) = mort(jp) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb, jp)))
+                       mortality(jp) = mort(jp) + foram_closure * sum(BioC(:)) * gamma_T
                     end if
                  end do
 
