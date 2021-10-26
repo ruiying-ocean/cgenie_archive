@@ -134,8 +134,8 @@ MODULE ecogem_lib
   namelist/ini_ecogem_nml/beta_graz_a,beta_graz_b,beta_graz_c,beta_mort_a,beta_mort_b,beta_mort_c
   namelist/ini_ecogem_nml/par_bio_remin_POC_frac2,par_bio_remin_CaCO3_frac2
   ! Mixotrophy parameters
-  real :: trophic_tradeoff,auto_size_ratio,foram_closure
-  namelist/ini_ecogem_nml/trophic_tradeoff,auto_size_ratio,foram_closure
+  real :: trophic_tradeoff, ss_tradeoff_a, ss_tradeoff_h, sn_tradeoff_a, sn_tradeoff_h
+  namelist/ini_ecogem_nml/trophic_tradeoff, ss_tradeoff_a, ss_tradeoff_h, sn_tradeoff_a, sn_tradeoff_h
   ! Temperature dependence
   real ::  temp_A,temp_T0   !
   namelist/ini_ecogem_nml/temp_A,temp_T0
@@ -285,7 +285,7 @@ MODULE ecogem_lib
   REAL             ,ALLOCATABLE,DIMENSION(:)    ::prey_refuge                              ! PFT dependent traits - Added by Grigoratou, Dec18
   REAL             ,ALLOCATABLE,DIMENSION(:)    ::mort_protect                             ! PFT dependent traits - Added by Grigoratou, Dec18
   REAL             ,ALLOCATABLE,DIMENSION(:)    ::growthcost_factor                        ! PFT dependent traits - Added by Grigoratou, Dec18
-  REAL             ,ALLOCATABLE,DIMENSION(:)    ::total_respir, kg_factor                  ! RY Oct 2021
+  REAL             ,ALLOCATABLE,DIMENSION(:)    ::auto_size_ratio, kg_factor                  ! RY Oct 2021
   REAL             ,ALLOCATABLE,DIMENSION(:)    ::palatability                             ! Lower value for defence strategy
   REAL             ,ALLOCATABLE,DIMENSION(:)    ::NO3up,Nfix,calcify,silicify              ! PFT dependent traits
   REAL             ,ALLOCATABLE,DIMENSION(:,:)  ::qmin,qmax,vmax,affinity,kexc             ! Nutrient quota parameters

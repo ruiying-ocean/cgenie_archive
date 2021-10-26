@@ -3,25 +3,25 @@
  \/                 \/  \/	\/	\/	\/ 	\/	\/	\/	\/	\/	
 
 -START-OF-DATA-
- Phytoplankton      f   f       10.0    2.0     2.0     1.0     1.0     1.0    0.0    1.0
- Phytoplankton      f   f       10.0    2.0     2.0     1.0     1.0     1.0    0.0    1.0
- Phytoplankton      f   f       10.0    2.0     2.0     1.0     1.0     1.0    0.0    1.0
- Phytoplankton      f   f       10.0    2.0     2.0     1.0     1.0     1.0    0.0    1.0
- Phytoplankton      f   f       10.0    2.0     2.0     1.0     1.0     1.0    0.0    1.0
- Phytoplankton      f   f       10.0    2.0     2.0     1.0     1.0     1.0    0.0    1.0
- Phytoplankton      f   f       10.0    2.0     2.0     1.0     1.0     1.0    0.0    1.0
- Phytoplankton      f   f       10.0    2.0     2.0     1.0     1.0     1.0    0.0    1.0
- Zooplankton        f   f       10.0    2.0     2.0     1.0     1.0     1.0    0.0    1.0
- Zooplankton        f   f       10.0    2.0     2.0     1.0     1.0     1.0    0.0    1.0
- Zooplankton        f   f       10.0    2.0     2.0     1.0     1.0     1.0    0.0    1.0
- Zooplankton        f   f       10.0    2.0     2.0     1.0     1.0     1.0    0.0    1.0
- Zooplankton        f   f       10.0    2.0     2.0     1.0     1.0     1.0    0.0    1.0
- Zooplankton        f   f       10.0    2.0     2.0     1.0     1.0     1.0    0.0    1.0
- Zooplankton        f   f       10.0    2.0     2.0     1.0     1.0     1.0    0.0    1.0
- bn_foram           t   f       10.0    2.0     1.0     0.7     0.8     0.9    0.02   1.0
- bs_foram           f   t       10.0    2.0     1.0     0.7     0.7     0.8    0.02   0.9
- sn_foram           t   f       10.0    2.0     1.0     0.4     0.8     0.9    0.06   1.0
- ss_foram           f   t       10.0    2.0     1.0     0.1     0.7     0.8    0.06   0.9
+ Phytoplankton      f   f       10.0    2.0     2.0     1.0     1.0     1.0    1.0    1.0
+ Phytoplankton      f   f       10.0    2.0     2.0     1.0     1.0     1.0    1.0    1.0
+ Phytoplankton      f   f       10.0    2.0     2.0     1.0     1.0     1.0    1.0    1.0
+ Phytoplankton      f   f       10.0    2.0     2.0     1.0     1.0     1.0    1.0    1.0
+ Phytoplankton      f   f       10.0    2.0     2.0     1.0     1.0     1.0    1.0    1.0
+ Phytoplankton      f   f       10.0    2.0     2.0     1.0     1.0     1.0    1.0    1.0
+ Phytoplankton      f   f       10.0    2.0     2.0     1.0     1.0     1.0    1.0    1.0
+ Phytoplankton      f   f       10.0    2.0     2.0     1.0     1.0     1.0    1.0    1.0
+ Zooplankton        f   f       10.0    2.0     2.0     1.0     1.0     1.0    1.0    1.0
+ Zooplankton        f   f       10.0    2.0     2.0     1.0     1.0     1.0    1.0    1.0
+ Zooplankton        f   f       10.0    2.0     2.0     1.0     1.0     1.0    1.0    1.0
+ Zooplankton        f   f       10.0    2.0     2.0     1.0     1.0     1.0    1.0    1.0
+ Zooplankton        f   f       10.0    2.0     2.0     1.0     1.0     1.0    1.0    1.0
+ Zooplankton        f   f       10.0    2.0     2.0     1.0     1.0     1.0    1.0    1.0
+ Zooplankton        f   f       10.0    2.0     2.0     1.0     1.0     1.0    1.0    1.0
+ bn_foram           t   f       10.0    2.0     1.0     0.7     0.8     0.9    1.0    1.0
+ ss_foram           f   t       10.0    2.0     1.0     0.7     0.7     0.7    0.05   0.9
+ sn_foram           t   f       10.0    2.0     1.0     0.7     0.8     0.9    0.05   1.0
+ bs_foram           f   t       10.0    2.0     1.0     0.7     0.7     0.7    1.0    0.9
 -END-OF-DATA-
 
  /\                 /\ /\    /\    /\    /\    /\    /\    /\    /\    /\
@@ -29,16 +29,16 @@
 
 DATA FORMAT AND ORDER
 ---------------------
-COLUMN #01: functional type (dummy argument same as .eco file)
+COLUMN #01: functional type (dummy argument, the order MUST same as .eco file)
 COLUMN #02: herbivory (graze on phytoplankton only - if heterotrophy > 0.0)
 COLUMN #03: carnivory (graze on zooplankton only - if heterotrophy > 0.0)
 COLUMN #04: pp_opt_a  (optimal predator:prey ratio)
 COLUMN #05: pp_sig_a  (width of grazing kernel)
 COLUMN #06: ns (prey-switching - 2.0 = active, 1.0 = passive)
-COLUMN #07: mortality protection
+COLUMN #07: mortality protection (temprature-independent but related to POC export), higher value, less protection.
 COLUMN #08: palatability
 COLUMN #09: growth-cost factor (e.g., a 10% cost is equivalent to a 0.9 growth-cost factor)
-COLUMN #10: respiration rate (temprature-dependent)
+COLUMN #10: symbiont size ratio
 COLUMN #11: half-saturation constant of grazing rate
 
 INFO: TRACER ASSIGNMENT RULES

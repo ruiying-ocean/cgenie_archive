@@ -413,21 +413,21 @@ CONTAINS
           Nfix(jp)            = 0.0
           calcify(jp)         = 1.0
           silicify(jp)        = 0.0
-          autotrophy(jp)      = trophic_tradeoff * 0.3
-          heterotrophy(jp)    = trophic_tradeoff
+          autotrophy(jp)      = ss_tradeoff_a
+          heterotrophy(jp)    = ss_tradeoff_h
        elseif (pft(jp).eq.'sn_foram') then
           NO3up(jp)           = 0.0
           Nfix(jp)            = 0.0
           calcify(jp)         = 1.0
           silicify(jp)        = 0.0
-          autotrophy(jp)      = trophic_tradeoff * 0.3
-          heterotrophy(jp)    = trophic_tradeoff
+          autotrophy(jp)      = sn_tradeoff_a
+          heterotrophy(jp)    = sn_tradeoff_h
        else
           print*," "
           print*,"! ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
           print*,"! Unknown plankton functional type '"//trim(pft(jp))//"'"
           print*,"! Specified in input file "//TRIM(par_indir_name)//TRIM(par_ecogem_plankton_file)
-          print*,"Choose from Prochlorococcus, Synechococcus, Picoeukaryote, Diatom, Coccolithophore, Diazotroph, Phytoplankton, Zooplankton or Mixotroph"
+          print*,"Choose from Prochlorococcus, Synechococcus, Picoeukaryote, Diatom, Coccolithophore, Diazotroph, Phytoplankton, Zooplankton, Mixotroph or Foram"
           print*,"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
           stop
        endif
@@ -460,7 +460,7 @@ CONTAINS
        carnivory(:)=.false.
        palatability(:)=1.0
        growthcost_factor(:)=1.0
-       total_respir(:)=0.0
+       auto_size_ratio(:)=1.0
        kg_factor(:)=1.0
     endif
     ! set growth costs (could do the same for autotrophy in coccolithophores) - Fanny Mar21
@@ -468,13 +468,8 @@ CONTAINS
 
     !------------------------------------------------------------------------
     !smaller size for symbiotic foram's autotroph part, RY May 2021
-    do jp=1,npmax
-       if (pft(jp).eq.'ss_foram' .or. pft(jp) .eq. 'sn_foram') then
-          auto_volume(jp) = (auto_size_ratio ** 3) * volume(jp)
-       else
-          auto_volume(jp) = volume(jp)
-       endif
-    enddo
+    auto_volume(:) = auto_size_ratio(:) ** 3 * volume(:)
+
     !-----------------------------------------------------------------------------------------
     ! maximum photosynthetic rate
     !    vmax(iDIC,:)    = vmaxDIC_a * volume(:) ** vmaxDIC_b * autotrophy(:)
@@ -534,11 +529,11 @@ CONTAINS
     ! other parameters
     qcarbon(:)  =     qcarbon_a * auto_volume(:) ** qcarbon_b
     alphachl(:) =    alphachl_a * auto_volume(:) ** alphachl_b
-    graz(:)     =        graz_a * volume(:) ** graz_b     * heterotrophy(:)
+    graz(:)     =        graz_a * volume(:) ** graz_b * heterotrophy(:)
     kg(:)       =          kg_a * volume(:) ** kg_b * kg_factor(:)
     pp_opt(:)   =pp_opt_a_array * volume(:) ** pp_opt_b
     pp_sig(:)   =pp_sig_a_array * volume(:) ** pp_sig_b
-    respir(:)   =      total_respir(:)
+    respir(:)   =      respir_a * volume(:) ** respir_b
     biosink(:)  =     biosink_a * volume(:) ** biosink_b
     mort(:)     =       (mort_a * volume(:) ** mort_b) * mort_protect(:) ! mort_protect added by Grigoratou, Dec2018 as a benefit for foram's calcification
 
@@ -776,7 +771,7 @@ CONTAINS
     real              ::loc_mort_protect
     real              ::loc_palatability
     real              ::loc_growthcost_factor
-    real              :: loc_respir
+    real              :: loc_auto_size
     real              :: loc_kg
 
     ! if setting plankton specific parameters
@@ -823,7 +818,7 @@ CONTAINS
             & loc_mort_protect,       & ! COLUMN #07: mortality_protection
             & loc_palatability,       & ! COLUMN #08: palatability - in development - Fanny Mar21
             & loc_growthcost_factor,  & ! COLUMN #09: growth-cost factor - in development - Fanny Mar21
-            & loc_respir,             & ! COLUMN #10: respiration Rui Oct21
+            & loc_auto_size,          & ! COLUMN #10: symbiont size Rui Oct21
             & loc_kg                    ! COLUMN #11: spine-derived kg modification Rui Oct21
 
        herbivory(n)         = loc_herbivory
@@ -834,7 +829,7 @@ CONTAINS
        mort_protect(n)      = loc_mort_protect
        palatability(n)      = loc_palatability
        growthcost_factor(n) = loc_growthcost_factor
-       total_respir(n)      = loc_respir
+       auto_size_ratio(n)   = loc_auto_size
        kg_factor(n)         = loc_kg
 
     END DO

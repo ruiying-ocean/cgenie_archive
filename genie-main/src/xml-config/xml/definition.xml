@@ -8641,13 +8641,21 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
 		      <value datatype="real">1.0</value>
 		      <description>Auto/Hetero trade-off parameter</description>
 		    </param>
-		    <param name="auto_size_ratio">
-		      <value datatype="real">0.01</value>
-		      <description>The size ratio between symbionts and foraminifera</description>
-		    </param>
-		    <param name="foram_closure">
+		    <param name="ss_tradeoff_a">
 		      <value datatype="real">1.0</value>
-	              <description>symbiotic foram's closure term</description>
+		      <description>Auto/Hetero trade-off parameter</description>
+		    </param>
+		    <param name="sn_tradeoff_a">
+		      <value datatype="real">1.0</value>
+		      <description>Auto/Hetero trade-off parameter</description>
+		    </param>
+		    <param name="ss_tradeoff_h">
+		      <value datatype="real">1.0</value>
+		      <description>Auto/Hetero trade-off parameter</description>
+		    </param>
+		    <param name="sn_tradeoff_h">
+		      <value datatype="real">1.0</value>
+		      <description>Auto/Hetero trade-off parameter</description>
 		    </param>
                     <param name="ass_eff">
 			<value datatype="real">0.7</value>

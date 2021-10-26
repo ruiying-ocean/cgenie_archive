@@ -231,7 +231,7 @@ SUBROUTINE initialise_ecogem(    &
   call check_iostat(alloc_error,__LINE__,__FILE__)
   ALLOCATE(growthcost_factor(npmax),STAT=alloc_error)
   call check_iostat(alloc_error,__LINE__,__FILE__)
-  ALLOCATE(total_respir(npmax),STAT=alloc_error)
+  ALLOCATE(auto_size_ratio(npmax),STAT=alloc_error)
   call check_iostat(alloc_error,__LINE__,__FILE__)
   ALLOCATE(kg_factor(npmax),STAT=alloc_error)
   call check_iostat(alloc_error,__LINE__,__FILE__)
