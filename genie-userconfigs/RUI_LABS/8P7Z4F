@@ -80,12 +80,13 @@ eg_par_ecogem_grazing_file  ='8P7Z4F.zoo'
 
 # --- Foraminifera ----------------------------------------------------
 
-# efficiency for symbiotic foraminifera
-eg_ss_tradeoff_a=0.1
+eg_ss_tradeoff_a=0.15
 eg_ss_tradeoff_h=0.2
 
-eg_sn_tradeoff_a=0.08
-eg_sn_tradeoff_h=0.4
+eg_sn_tradeoff_a=0.1
+eg_sn_tradeoff_h=0.5
+
+eg_foram_po4 = 0.1
 
 # --- End of Foraminifera --------------------------------------------
 

@@ -77,8 +77,9 @@ MODULE ecogem_lib
   real :: vmaxPO4_a, vmaxPO4_b      ! a/b: maximum uptake rate       (Michaelis-Menten)
   real ::affinPO4_a,affinPO4_b      ! a/b: half-saturation uptake    (Michaelis-Menten)
   real ::   kexcP_a,   kexcP_b      ! a/b: excretion rate
+  real :: foram_po4 !discounted foram symbiont uptake rate
   namelist/ini_ecogem_nml/qminP_a,qmaxP_a,vmaxPO4_a,affinPO4_a,kexcP_a
-  namelist/ini_ecogem_nml/qminP_b,qmaxP_b,vmaxPO4_b,affinPO4_b,kexcP_b
+  namelist/ini_ecogem_nml/qminP_b,qmaxP_b,vmaxPO4_b,affinPO4_b,kexcP_b, foram_po4
   ! Iron parameters
   real :: qminFe_a,qminFe_b         ! a/b: minimum quota
   real :: qmaxFe_a,qmaxFe_b         ! a/b: maximum quota

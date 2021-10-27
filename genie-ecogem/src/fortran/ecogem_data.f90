@@ -507,6 +507,12 @@ CONTAINS
        affinity(iPO4,:) = affinPO4_a * auto_volume(:) ** affinPO4_b * autotrophy(:)
        kexc(iPhos,:)    =   kexcP_a  * volume(:) **    kexcP_b
     endif
+
+    do jp=1,npmax
+       if (index(pft(jp), "foram") .ne. 0) then
+          vmax(iPO4, jp) = vmax(iPO4, jp) * foram_po4
+       end if
+    enddo
     !-----------------------------------------------------------------------------------------
     if (fquota) then ! iron parameters
        qmin(iIron,:)   =  qminFe_a * auto_volume(:) **  qminFe_b
@@ -527,7 +533,7 @@ CONTAINS
     endif
     !-----------------------------------------------------------------------------------------
     ! other parameters
-    qcarbon(:)  =     qcarbon_a * auto_volume(:) ** qcarbon_b
+    qcarbon(:)  =     qcarbon_a * auto_volume(:) ** qcarbon_b !seems not used
     alphachl(:) =    alphachl_a * auto_volume(:) ** alphachl_b
     graz(:)     =        graz_a * volume(:) ** graz_b * heterotrophy(:)
     kg(:)       =          kg_a * volume(:) ** kg_b * kg_factor(:)
