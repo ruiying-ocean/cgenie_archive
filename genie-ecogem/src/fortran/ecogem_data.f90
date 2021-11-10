@@ -335,6 +335,7 @@ CONTAINS
           silicify(jp)        = 0.0
           autotrophy(jp)      = 1.0
           heterotrophy(jp)    = 0.0
+          symbiont_size(jp)   = 1.0
        elseif (pft(jp).eq.'synechococcus') then
           NO3up(jp)           = 0.0
           Nfix(jp)            = 0.0
@@ -342,6 +343,7 @@ CONTAINS
           silicify(jp)        = 0.0
           autotrophy(jp)      = 1.0
           heterotrophy(jp)    = 0.0
+          symbiont_size(jp)   = 1.0
        elseif (pft(jp).eq.'picoeukaryote') then
           NO3up(jp)           = 0.0
           Nfix(jp)            = 0.0
@@ -349,6 +351,7 @@ CONTAINS
           silicify(jp)        = 0.0
           autotrophy(jp)      = 1.0
           heterotrophy(jp)    = 0.0
+          symbiont_size(jp)   = 1.0
        elseif (pft(jp).eq.'diatom') then
           NO3up(jp)           = 0.0
           Nfix(jp)            = 0.0
@@ -356,6 +359,7 @@ CONTAINS
           silicify(jp)        = 0.0
           autotrophy(jp)      = 1.0
           heterotrophy(jp)    = 0.0
+          symbiont_size(jp)   = 1.0
        elseif (pft(jp).eq.'coccolithophore') then
           NO3up(jp)           = 0.0
           Nfix(jp)            = 0.0
@@ -363,6 +367,7 @@ CONTAINS
           silicify(jp)        = 0.0
           autotrophy(jp)      = 1.0
           heterotrophy(jp)    = 0.0
+          symbiont_size(jp)   = 1.0
        elseif (pft(jp).eq.'diazotroph') then
           NO3up(jp)           = 0.0
           Nfix(jp)            = 0.0
@@ -370,6 +375,7 @@ CONTAINS
           silicify(jp)        = 0.0
           autotrophy(jp)      = 1.0
           heterotrophy(jp)    = 0.0
+          symbiont_size(jp)   = 1.0
        elseif (pft(jp).eq.'phytoplankton') then
           NO3up(jp)           = 0.0
           Nfix(jp)            = 0.0
@@ -377,6 +383,7 @@ CONTAINS
           silicify(jp)        = 0.0
           autotrophy(jp)      = 1.0
           heterotrophy(jp)    = 0.0
+          symbiont_size(jp)   = 1.0
        elseif (pft(jp).eq.'zooplankton') then
           NO3up(jp)           = 0.0
           Nfix(jp)            = 0.0
@@ -384,6 +391,7 @@ CONTAINS
           silicify(jp)        = 0.0
           autotrophy(jp)      = 0.0
           heterotrophy(jp)    = 1.0
+          symbiont_size(jp)   = 1.0
        elseif (pft(jp).eq.'mixotroph') then
           NO3up(jp)           = 0.0
           Nfix(jp)            = 0.0
@@ -391,6 +399,7 @@ CONTAINS
           silicify(jp)        = 0.0
           autotrophy(jp)      = trophic_tradeoff
           heterotrophy(jp)    = trophic_tradeoff
+          symbiont_size(jp)   = 1.0
        elseif (pft(jp).eq.'bn_foram') then
           !symbiont-barren non-spinose foram
           NO3up(jp)           = 0.0
@@ -399,6 +408,7 @@ CONTAINS
           silicify(jp)        = 0.0
           autotrophy(jp)      = 0.0
           heterotrophy(jp)    = 1.0
+          symbiont_size(jp)   = 1.0
        elseif (pft(jp).eq.'bs_foram') then
           !symbint-barren spinose foram
           NO3up(jp)           = 0.0
@@ -407,6 +417,15 @@ CONTAINS
           silicify(jp)        = 0.0
           autotrophy(jp)      = 0.0
           heterotrophy(jp)    = 1.0
+          symbiont_size(jp)   = 1.0
+       elseif (pft(jp).eq.'sn_foram') then
+          NO3up(jp)           = 0.0
+          Nfix(jp)            = 0.0
+          calcify(jp)         = 1.0
+          silicify(jp)        = 0.0
+          autotrophy(jp)      = sn_tradeoff_a
+          heterotrophy(jp)    = sn_tradeoff_h
+          symbiont_size(jp)   = ah_size_ratio
        elseif (pft(jp).eq.'ss_foram') then
           !symbiotic spinose foram
           NO3up(jp)           = 0.0
@@ -415,13 +434,7 @@ CONTAINS
           silicify(jp)        = 0.0
           autotrophy(jp)      = ss_tradeoff_a
           heterotrophy(jp)    = ss_tradeoff_h
-       elseif (pft(jp).eq.'sn_foram') then
-          NO3up(jp)           = 0.0
-          Nfix(jp)            = 0.0
-          calcify(jp)         = 1.0
-          silicify(jp)        = 0.0
-          autotrophy(jp)      = sn_tradeoff_a
-          heterotrophy(jp)    = sn_tradeoff_h
+          symbiont_size(jp)   = ah_size_ratio
        else
           print*," "
           print*,"! ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
@@ -460,7 +473,6 @@ CONTAINS
        carnivory(:)=.false.
        palatability(:)=1.0
        growthcost_factor(:)=1.0
-       auto_size_ratio(:)=1.0
        kg_factor(:)=1.0
     endif
     ! set growth costs (could do the same for autotrophy in coccolithophores) - Fanny Mar21
@@ -468,7 +480,7 @@ CONTAINS
 
     !------------------------------------------------------------------------
     !smaller size for symbiotic foram's autotroph part, RY May 2021
-    auto_volume(:) = auto_size_ratio(:) ** 3 * volume(:)
+    auto_volume(:) = symbiont_size(:) ** 3 * volume(:)
 
     !-----------------------------------------------------------------------------------------
     ! maximum photosynthetic rate
@@ -507,12 +519,6 @@ CONTAINS
        affinity(iPO4,:) = affinPO4_a * auto_volume(:) ** affinPO4_b * autotrophy(:)
        kexc(iPhos,:)    =   kexcP_a  * volume(:) **    kexcP_b
     endif
-
-    do jp=1,npmax
-       if (index(pft(jp), "foram") .ne. 0) then
-          vmax(iPO4, jp) = vmax(iPO4, jp) * foram_po4
-       end if
-    enddo
     !-----------------------------------------------------------------------------------------
     if (fquota) then ! iron parameters
        qmin(iIron,:)   =  qminFe_a * auto_volume(:) **  qminFe_b
@@ -539,7 +545,7 @@ CONTAINS
     kg(:)       =          kg_a * volume(:) ** kg_b * kg_factor(:)
     pp_opt(:)   =pp_opt_a_array * volume(:) ** pp_opt_b
     pp_sig(:)   =pp_sig_a_array * volume(:) ** pp_sig_b
-    respir(:)   =      respir_a * volume(:) ** respir_b
+    respir(:)   =      respir_a * volume(:) ** respir_b + extra_respir(:)
     biosink(:)  =     biosink_a * volume(:) ** biosink_b
     mort(:)     =       (mort_a * volume(:) ** mort_b) * mort_protect(:) ! mort_protect added by Grigoratou, Dec2018 as a benefit for foram's calcification
 
@@ -777,8 +783,8 @@ CONTAINS
     real              ::loc_mort_protect
     real              ::loc_palatability
     real              ::loc_growthcost_factor
-    real              :: loc_auto_size
-    real              :: loc_kg
+    real              ::loc_kg
+    real              ::loc_respir
 
     ! if setting plankton specific parameters
     ! check file format and determine number of lines of data
@@ -824,8 +830,8 @@ CONTAINS
             & loc_mort_protect,       & ! COLUMN #07: mortality_protection
             & loc_palatability,       & ! COLUMN #08: palatability - in development - Fanny Mar21
             & loc_growthcost_factor,  & ! COLUMN #09: growth-cost factor - in development - Fanny Mar21
-            & loc_auto_size,          & ! COLUMN #10: symbiont size Rui Oct21
-            & loc_kg                    ! COLUMN #11: spine-derived kg modification Rui Oct21
+            & loc_kg,                 & ! COLUMN #10: spine-derived kg modification Rui Oct21
+            & loc_respir                ! COLUMN #11:
 
        herbivory(n)         = loc_herbivory
        carnivory(n)         = loc_carnivory
@@ -835,8 +841,8 @@ CONTAINS
        mort_protect(n)      = loc_mort_protect
        palatability(n)      = loc_palatability
        growthcost_factor(n) = loc_growthcost_factor
-       auto_size_ratio(n)   = loc_auto_size
        kg_factor(n)         = loc_kg
+       extra_respir(n)      = loc_respir
 
     END DO
     !close file pipe

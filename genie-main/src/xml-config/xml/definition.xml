@@ -8473,10 +8473,6 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
 			<value datatype="real">0.00</value>
 	                  <description>Phosphorus maximum quota - exponent</description>
                     </param>
-		    <param name="foram_po4">
-		      <value datatype="real">0.10</value>
-	              <description>vmax discounted ratio of foram's symbiont</description>
-                    </param>
                     <param name="vmaxPO4_a">
 			<value datatype="real">4.4e-2</value>
 	                  <description>Maximum phosphate uptake rate - intercept</description>
@@ -8644,6 +8640,10 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
 		    <param name="trophic_tradeoff">
 		      <value datatype="real">1.0</value>
 		      <description>Auto/Hetero trade-off parameter</description>
+		    </param>
+		    <param name="ah_size_ratio">
+		      <value datatype="real">1.0</value>
+		      <description>Auto/Hetero size ratio</description>
 		    </param>
 		    <param name="ss_tradeoff_a">
 		      <value datatype="real">1.0</value>

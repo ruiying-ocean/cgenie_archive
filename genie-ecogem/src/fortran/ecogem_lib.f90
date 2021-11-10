@@ -77,9 +77,8 @@ MODULE ecogem_lib
   real :: vmaxPO4_a, vmaxPO4_b      ! a/b: maximum uptake rate       (Michaelis-Menten)
   real ::affinPO4_a,affinPO4_b      ! a/b: half-saturation uptake    (Michaelis-Menten)
   real ::   kexcP_a,   kexcP_b      ! a/b: excretion rate
-  real :: foram_po4 !discounted foram symbiont uptake rate
   namelist/ini_ecogem_nml/qminP_a,qmaxP_a,vmaxPO4_a,affinPO4_a,kexcP_a
-  namelist/ini_ecogem_nml/qminP_b,qmaxP_b,vmaxPO4_b,affinPO4_b,kexcP_b, foram_po4
+  namelist/ini_ecogem_nml/qminP_b,qmaxP_b,vmaxPO4_b,affinPO4_b,kexcP_b
   ! Iron parameters
   real :: qminFe_a,qminFe_b         ! a/b: minimum quota
   real :: qmaxFe_a,qmaxFe_b         ! a/b: maximum quota
@@ -135,8 +134,8 @@ MODULE ecogem_lib
   namelist/ini_ecogem_nml/beta_graz_a,beta_graz_b,beta_graz_c,beta_mort_a,beta_mort_b,beta_mort_c
   namelist/ini_ecogem_nml/par_bio_remin_POC_frac2,par_bio_remin_CaCO3_frac2
   ! Mixotrophy parameters
-  real :: trophic_tradeoff, ss_tradeoff_a, ss_tradeoff_h, sn_tradeoff_a, sn_tradeoff_h
-  namelist/ini_ecogem_nml/trophic_tradeoff, ss_tradeoff_a, ss_tradeoff_h, sn_tradeoff_a, sn_tradeoff_h
+  real :: trophic_tradeoff, ss_tradeoff_a, ss_tradeoff_h, sn_tradeoff_a, sn_tradeoff_h, ah_size_ratio
+  namelist/ini_ecogem_nml/trophic_tradeoff, ss_tradeoff_a, ss_tradeoff_h, sn_tradeoff_a, sn_tradeoff_h, ah_size_ratio
   ! Temperature dependence
   real ::  temp_A,temp_T0   !
   namelist/ini_ecogem_nml/temp_A,temp_T0
@@ -286,7 +285,7 @@ MODULE ecogem_lib
   REAL             ,ALLOCATABLE,DIMENSION(:)    ::prey_refuge                              ! PFT dependent traits - Added by Grigoratou, Dec18
   REAL             ,ALLOCATABLE,DIMENSION(:)    ::mort_protect                             ! PFT dependent traits - Added by Grigoratou, Dec18
   REAL             ,ALLOCATABLE,DIMENSION(:)    ::growthcost_factor                        ! PFT dependent traits - Added by Grigoratou, Dec18
-  REAL             ,ALLOCATABLE,DIMENSION(:)    ::auto_size_ratio, kg_factor                  ! RY Oct 2021
+  REAL             ,ALLOCATABLE,DIMENSION(:)    ::kg_factor, symbiont_size, extra_respir   ! RY Oct 2021
   REAL             ,ALLOCATABLE,DIMENSION(:)    ::palatability                             ! Lower value for defence strategy
   REAL             ,ALLOCATABLE,DIMENSION(:)    ::NO3up,Nfix,calcify,silicify              ! PFT dependent traits
   REAL             ,ALLOCATABLE,DIMENSION(:,:)  ::qmin,qmax,vmax,affinity,kexc             ! Nutrient quota parameters

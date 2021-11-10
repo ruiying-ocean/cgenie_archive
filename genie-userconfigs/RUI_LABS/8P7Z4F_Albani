@@ -72,32 +72,32 @@ bg_par_bio_FetoC_C=0.0
 #
 gm_ctrl_debug_init          =0
 eg_ctrl_debug_eco_init      =.false.
-eg_gkernel_cap = .false.
-eg_ctrl_grazing_explicit=.true.
+
 eg_par_ecogem_plankton_file ='8P7Z4F.eco'
+eg_ctrl_grazing_explicit=.true.
+eg_gkernel_cap = .false.
 eg_par_ecogem_grazing_file  ='8P7Z4F.zoo'
 
-# --- Foraminifera ----------------------------------
-eg_ss_tradeoff_a=0.55
-eg_ss_tradeoff_h=0.15
+eg_ss_tradeoff_a=1.0
+eg_ss_tradeoff_h=0.3
 
 eg_sn_tradeoff_a=0.2
-eg_sn_tradeoff_h=0.8
+eg_sn_tradeoff_h=1.0
 
 eg_ah_size_ratio = 0.0015
 
-#----------------- Nitrogen -------------------------
+#################### Nitrogen ############################
 eg_useNO3                   =.false.
 eg_nquota                   =.false.
-#----------------  Phosphorus -----------------------
+################## Phosphorus ############################
 eg_usePO4                   =.true.
 eg_pquota                   =.true.
-#----------------  Iron -----------------------------
+######################## Iron ############################
 eg_useFe                    =.true.
 eg_fquota                   =.true.
-#---------------- Chlorophyll -----------------------
+################# Chlorophyll ############################
 eg_chlquota                 =.true.
-#---------------- d13C ------------------------------
+################# d13C ###################################
 eg_useDIC_13C               =.true.
 
 # Tuned
