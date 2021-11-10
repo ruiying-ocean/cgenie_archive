@@ -2,5 +2,4 @@
 *.mod
 *.dep
 *.a
-*.zoo
 genie-main/tmp*
