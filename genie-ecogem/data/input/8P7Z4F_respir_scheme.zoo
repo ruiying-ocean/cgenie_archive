@@ -38,8 +38,8 @@ COLUMN #06: ns (prey-switching - 2.0 = active, 1.0 = passive)
 COLUMN #07: mortality protection (e.g., 0.7 is equivalent to 30% reduced mortality rate)
 COLUMN #08: palatability (grazing protection)
 COLUMN #09: growth-cost factor (e.g., a 10% cost is equivalent to a 0.9 growth-cost factor)
-COLUMN #10: half-saturation constant of grazing rate
-COLUMN #11: extra respiration rate for building calcite spine
+COLUMN #10: half-saturation constant (affinity) of grazing rate
+COLUMN #11: extra respiration rate for building calcite spine and test
 
 INFO: TRACER ASSIGNMENT RULES
 -----------------------------
