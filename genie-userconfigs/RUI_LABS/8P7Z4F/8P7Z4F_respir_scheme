@@ -73,8 +73,6 @@ bg_par_bio_FetoC_C=0.0
 gm_ctrl_debug_init          =0
 eg_ctrl_debug_eco_init      =.false.
 
-# ===============Planktic Foraminifer===============
-
 eg_gkernel_cap = .false.
 eg_ctrl_grazing_explicit=.true.
 
@@ -87,7 +85,6 @@ eg_ss_tradeoff_h=0.45
 
 eg_sn_tradeoff_a=0.2
 eg_sn_tradeoff_h=0.8
-# ==================================================
 
 #----------------- Nitrogen -------------------------
 eg_useNO3                   =.false.
