@@ -417,7 +417,7 @@ CONTAINS
           do jprey=1,npmax ! sum all the prey carbon of predator, weighted by availability (preference)
 
              !no cannibalism among forams
-             if (index(pft(jpred), "foram") /= 0 .AND. index(pft(jpery), "foram") /= 0) then
+             if (index(pft(jpred), "foram") /= 0 .AND. index(pft(jprey), "foram") /= 0) then
                 food1 = 0
                 food2 = 0
              endif
