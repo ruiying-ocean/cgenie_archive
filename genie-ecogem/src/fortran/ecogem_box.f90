@@ -415,6 +415,13 @@ CONTAINS
           food1 = 0.0 ! available food
           food2 = 0.0 ! available food ^ ns
           do jprey=1,npmax ! sum all the prey carbon of predator, weighted by availability (preference)
+
+             !no cannibalism among forams
+             if (index(pft(jpred), "foram") /= 0 .AND. index(pft(jpery), "foram") /= 0) then
+                food1 = 0
+                food2 = 0
+             endif
+
              if (gkernel(jpred,jprey).gt.0.0) then
                 food1 = food1 + gkernel(jpred,jprey)*palatability(jprey)*biomass(iCarb,jprey)      ! available food
                 food2 = food2 + (gkernel(jpred,jprey)*palatability(jprey) * biomass(iCarb,jprey))**ns_array(jpred) ! available food ^ ns
