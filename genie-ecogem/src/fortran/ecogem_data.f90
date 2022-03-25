@@ -469,8 +469,8 @@ CONTAINS
        pp_sig_a_array(:)=pp_sig_a
        ns_array(:)=ns
        mort_protect(:)=1.0
-       herbivory(:)=.false.
-       carnivory(:)=.false.
+       herbivory(:)=0.0
+       carnivory(:)=0.0
        palatability(:)=1.0
        growthcost_factor(:)=1.0
        kg_factor(:)=1.0
@@ -563,8 +563,8 @@ CONTAINS
        select case(pft(jpred))
        case('bn_foram','ss_foram','bs_foram','sn_foram')
           do jprey=1,npmax
-             if(autotrophy(jprey).gt.0.0 .AND. .NOT. herbivory(jpred)) gkernel(jpred,jprey)=0.0 ! if predator is carnivorous and prey is phytoplankton, - no grazing
-             if(heterotrophy(jprey).gt.0.0 .AND. .NOT. carnivory(jpred)) gkernel(jpred,jprey)=0.0
+             if(autotrophy(jprey).gt.0.0) gkernel(jpred,jprey)=gkernel(jpred,jprey) * herbivory(jpred)
+             if(heterotrophy(jprey).gt.0.0) gkernel(jpred,jprey)=gkernel(jpred,jprey) * carnivory(jpred)
              !no cannibalism among forams
              if (index(pft(jprey), "foram") /= 0) gkernel(jpred, jprey)=0.0
           end do
@@ -777,8 +777,8 @@ CONTAINS
     INTEGER           ::loc_n_elements,loc_n_start
     CHARACTER(len=16) ::loc_plnktn_pft
     CHARACTER(len=255)::loc_filename
-    logical           ::loc_herbivory
-    logical           ::loc_carnivory
+    real           ::loc_herbivory
+    real           ::loc_carnivory
     real              ::loc_pp_opt_a
     real              ::loc_pp_sig_a
     real              ::loc_ns
