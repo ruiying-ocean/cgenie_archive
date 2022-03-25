@@ -565,7 +565,7 @@ CONTAINS
           do jprey=1,npmax
              if(autotrophy(jprey).gt.0.0) gkernel(jpred,jprey)=gkernel(jpred,jprey) * herbivory(jpred)
              if(heterotrophy(jprey).gt.0.0) gkernel(jpred,jprey)=gkernel(jpred,jprey) * carnivory(jpred)
-             !no cannibalism among forams
+             !no cannibalism among forams, RY Mar 2022
              if (index(pft(jprey), "foram") /= 0) gkernel(jpred, jprey)=0.0
           end do
        end select
