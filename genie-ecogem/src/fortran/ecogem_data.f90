@@ -565,6 +565,8 @@ CONTAINS
           do jprey=1,npmax
              if(autotrophy(jprey).gt.0.0 .AND. .NOT. herbivory(jpred)) gkernel(jpred,jprey)=0.0 ! if predator is carnivorous and prey is phytoplankton, - no grazing
              if(heterotrophy(jprey).gt.0.0 .AND. .NOT. carnivory(jpred)) gkernel(jpred,jprey)=0.0
+             !no cannibalism among forams
+             if (index(pft(jprey), "foram") /= 0) gkernel(jpred, jprey)=0.0
           end do
        end select
     end do
