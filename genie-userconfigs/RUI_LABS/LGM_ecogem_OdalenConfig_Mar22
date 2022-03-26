@@ -38,6 +38,10 @@ bg_par_bio_remin_CaCO3_frac2=0.45
 bg_par_bio_remin_CaCO3_eL1=1.8905e+003
 # remineralization length #2 for CaCO3
 bg_par_bio_remin_CaCO3_eL2=1000000.0
+# *** optional changes to align with PALEO recommendations **********
+# set 'instantaneous' water column remineralziation
+bg_par_bio_remin_sinkingrate_physical=9.9E9
+bg_par_bio_remin_sinkingrate_reaction=125.0
 #
 # --- IRON ----------------------------------------------------------
 #
@@ -77,14 +81,14 @@ eg_gkernel_cap = .false.
 eg_ctrl_grazing_explicit=.true.
 
 eg_par_ecogem_plankton_file ='8P7Z4F.eco'
-eg_par_ecogem_grazing_file  ='8P7Z4F_respir_scheme.zoo'
+eg_par_ecogem_grazing_file  ='8P7Z4F_feeding_scheme'
 
 eg_ah_size_ratio = 0.0015
-eg_ss_tradeoff_a=0.7
-eg_ss_tradeoff_h=0.45
+eg_ss_tradeoff_a=0.8
+eg_ss_tradeoff_h=0.3
 
-eg_sn_tradeoff_a=0.2
-eg_sn_tradeoff_h=0.8
+eg_sn_tradeoff_a=0.4
+eg_sn_tradeoff_h=0.6
 
 #----------------- Nitrogen -------------------------
 eg_useNO3                   =.false.
@@ -109,12 +113,12 @@ eg_ns          =   2
 
 eg_respir_a    = 0
 
-eg_beta_mort_a =   0.8 # Maximum fraction to DOM as ESD --> zero
-eg_beta_mort_b =   0.4 # Minimum fraction to DOM as ESD --> infinity 
-eg_beta_mort_c = 100.0 # Size at 50:50 partition (default = 100 µm^3)
-eg_beta_graz_a =   0.8 # Maximum fraction to DOM as ESD --> zero
-eg_beta_graz_b =   0.4 # Minimum fraction to DOM as ESD --> infinity
-eg_beta_graz_c = 100.0 # Size at 50:50 partition (default = 100 µm^3)
+eg_beta_mort_a =   1.0 # Maximum fraction to DOM as ESD --> zero
+eg_beta_mort_b =   0.0 # Minimum fraction to DOM as ESD --> infinity 
+eg_beta_mort_c =   7.0 # Size at 50:50 partition (default = 100 µm^3)
+eg_beta_graz_a =   1.0 # Maximum fraction to DOM as ESD --> zero
+eg_beta_graz_b =   0.0 # Minimum fraction to DOM as ESD --> infinity
+eg_beta_graz_c =   7.0 # Size at 50:50 partition (default = 100 µm^3)
 
 eg_par_bio_red_POC_CaCO3     = 0.0285 # underlying export CaCO3 as a proportion of particulate organic matter (i.e., CaCO3/POC)
 eg_par_bio_red_POC_CaCO3_pP  = 0.7440 # exponent for modifier of CaCO3:POC export ratio
@@ -157,6 +161,22 @@ bg_par_misc_brinerejection_jmax=19
 # wind-stress
 go_13=1.3
 ea_11=1.3
+
+# *** optional changes to align with PALEO recommendations **********
+# set mixed layer to be only diagnosed (for ECOGEM)
+go_ctrl_diagmld=.true.
+# add seaice attenuation of PAR
+eg_ctrl_PARseaicelimit=.true.
+# relative partitioning of C into DOM
+eg_par_beta_POCtoDOC=0.75
+# maximum time-scale to geochemical reaction completion (days)
+bg_par_bio_geochem_tau=90.0
+# extend solubility and geochem constant T range (leave S range as default)
+gm_par_geochem_Tmin  = -2.0
+gm_par_geochem_Tmax  = 45.0
+gm_par_carbchem_Tmin = -2.0
+gm_par_carbchem_Tmax = 45.0
+
 #
 #
 # *** TUNING ********************************************************
