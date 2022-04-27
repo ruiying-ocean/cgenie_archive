@@ -1,26 +1,27 @@
 # *******************************************************************
-#		USERCONFIG.MODERN.ECOGEM.PO4Fe.SPIN
+# *** USERCONFIG.MODERN.ECOGEM.PO4Fe.SPIN ***************************
 # *******************************************************************
 #
-# --- CLIMATE -------------------------------------------------------
+# *** CLIMATE *******************************************************
+#
 # set climate feedback (climate responding to changing pCO2)
 ea_36=y
 #
-# --- BIOLOGICAL NEW PRODUCTION -------------------------------------
+# *** BIOLOGICAL NEW PRODUCTION *************************************
 #
 # biological scheme ID string
 # NOTE: with ECOGEM, no BIOGEM biological scheme must be selected
 bg_par_bio_prodopt="NONE"
 #
-# --- ORGANIC MATTER EXPORT RATIOS ----------------------------------
+# *** ORGANIC MATTER EXPORT RATIOS **********************************
 #
 # [dealt with by ECOGEM]
 #
-# --- INORGANIC MATTER EXPORT RATIOS --------------------------------
+# *** INORGANIC MATTER EXPORT RATIOS ********************************
 #
 # [dealt with by ECOGEM]
 #
-# --- REMINERALIZATION ----------------------------------------------
+# *** REMINERALIZATION **********************************************
 #
 # DOC lifetime (yrs)
 bg_par_bio_remin_DOMlifetime=1.0
@@ -41,7 +42,7 @@ bg_par_bio_remin_CaCO3_eL2=1000000.0
 bg_par_bio_remin_sinkingrate_physical=9.9E9
 bg_par_bio_remin_sinkingrate_reaction=125.0
 #
-# --- IRON ----------------------------------------------------------
+# *** IRON CYCLING **************************************************
 #
 # iron tracer scheme
 bg_opt_geochem_Fe='hybrid'
@@ -68,14 +69,14 @@ bg_par_bio_FetoC_K=103684.0
 #[FeT] dependent Fe:C ratio [Ridgwell, 2001] -- constant
 bg_par_bio_FetoC_C=0.0
 #
-# --- ECOGEM ----------------------------------------------------------
+# *** ECOGEM ********************************************************
 #
 # Planktic Foraminifer and Ecosystem
 eg_gkernel_cap = .false.
 eg_ctrl_grazing_explicit=.true.
 
 eg_par_ecogem_plankton_file ='8P7Z4F.eco'
-eg_par_ecogem_grazing_file  ='8P7Z4F_feeding_scheme'
+eg_par_ecogem_grazing_file  ='tf_55'
 
 eg_ah_size_ratio = 0.0015
 eg_ss_tradeoff_a=0.6
@@ -86,32 +87,31 @@ eg_sn_tradeoff_h=0.6
 #----------------- Nitrogen -------------------------
 eg_useNO3                   =.false.
 eg_nquota                   =.false.
-#----------------  Phosphorus -----------------------
+################## Phosphorus ############################
 eg_usePO4                   =.true.
 eg_pquota                   =.true.
-#----------------  Iron -----------------------------
+######################## Iron ############################
 eg_useFe                    =.true.
 eg_fquota                   =.true.
-#---------------- Chlorophyll -----------------------
+################# Chlorophyll ############################
 eg_chlquota                 =.true.
-#---------------- d13C ------------------------------
+################# d13C ###################################
 eg_useDIC_13C               =.true.
-
 # Tuned parameters
 eg_qminP_a     =   3.33e-3
 eg_qminFe_a    =   1.00e-6
 eg_qmaxFe_a    =   4.00e-6
-				   
+# ???
 eg_ns=2
+# ???
 eg_respir_a=0
-
 # DOM parameters
-eg_beta_mort_a =   1.0 # Maximum fraction to DOM as ESD --> zero
-eg_beta_mort_b =   0.0 # Minimum fraction to DOM as ESD --> infinity 
-eg_beta_mort_c =   7.0 # Size at 50:50 partition (default = 100 µm^3)
-eg_beta_graz_a =   1.0 # Maximum fraction to DOM as ESD --> zero
-eg_beta_graz_b =   0.0 # Minimum fraction to DOM as ESD --> infinity
-eg_beta_graz_c =   7.0 # Size at 50:50 partition (default = 100 µm^3)
+eg_beta_mort_a =   0.8 # Maximum fraction to DOM as ESD --> zero
+eg_beta_mort_b =   0.4 # Minimum fraction to DOM as ESD --> infinity 
+eg_beta_mort_c =   100.0 # Size at 50:50 partition (default = 100 µm^3)
+eg_beta_graz_a =   0.8 # Maximum fraction to DOM as ESD --> zero
+eg_beta_graz_b =   0.4 # Minimum fraction to DOM as ESD --> infinity
+eg_beta_graz_c =   100.0 # Size at 50:50 partition (default = 100 µm^3)
 # ???
 eg_nsubtime=25
 eg_n_keco=1
@@ -120,7 +120,7 @@ eg_par_bio_red_POC_CaCO3_pP  = 0.7440 # exponent for modifier of CaCO3:POC expor
 # underlying export CaCO3 as a proportion of particulate organic matter (i.e., CaCO3/POC)
 eg_par_bio_red_POC_CaCO3     = 0.0285 # underlying export CaCO3 as a proportion of particulate organic matter (i.e., CaCO3/POC)
 #
-# --- SAVING --------------------------------------------------
+# *** DATA SAVING ***************************************************
 #
 # Basic + biology diagnostics save option
 bg_par_data_save_level=3
@@ -128,14 +128,14 @@ bg_par_data_save_level=3
 eg_ctrl_ncrst      = .false.
 eg_ctrl_continuing = .false.
 #
-# --- FORCINGS --------------------------------------------------
+# *** FORCINGS ******************************************************
 #
 # specify forcings -- dust field and restoring of atmopsheric pCO2 and d13C
 bg_par_forcing_name="worlg4.RpCO2_Rp13CO2.FeMahowald2006"
 bg_par_atm_force_scale_val_3=278.0E-06
 bg_par_atm_force_scale_val_4=-6.5
 #
-# --- MISC --------------------------------------------------
+# *** MISC **********************************************************
 #
 # kraus-turner mixed layer scheme on (1) or off (0)
 go_imld = 1
@@ -155,5 +155,6 @@ gm_par_carbchem_Tmin = -2.0
 gm_par_carbchem_Tmax = 45.0
 #
 # *******************************************************************
-#				END	
+# *** END ***********************************************************
 # *******************************************************************
+#

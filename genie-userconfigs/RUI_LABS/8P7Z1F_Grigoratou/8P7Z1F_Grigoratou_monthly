@@ -73,10 +73,10 @@ bg_par_bio_FetoC_C=0.0
 gm_ctrl_debug_init          =0
 eg_ctrl_debug_eco_init      =.false.
 
-eg_par_ecogem_plankton_file ='8P7Z.eco'
+eg_par_ecogem_plankton_file ='8P7Z1F.eco'
 eg_ctrl_grazing_explicit=.true.
 eg_gkernel_cap = .false.
-eg_par_ecogem_grazing_file  ='8P7Z.zoo'
+eg_par_ecogem_grazing_file  ='8P7Z1F.zoo'
 
 #################### Nitrogen ############################
 eg_useNO3                   =.false.
@@ -124,6 +124,8 @@ eg_ctrl_continuing          =.false.
 bg_par_data_save_level=10
 bg_ctrl_debug_lvl0=.true.
 ma_debug_loop=1
+bg_par_infile_slice_name='save_timeslice_foramecogem.dat' 
+bg_par_data_save_slice_n=4 !4 for monthly average, 12 for seasonality
 #
 # --- FORCINGS ------------------------------------------------------
 #
