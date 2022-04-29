@@ -76,14 +76,14 @@ eg_gkernel_cap = .false.
 eg_ctrl_grazing_explicit=.true.
 
 eg_par_ecogem_plankton_file ='8P7Z4F.eco'
-eg_par_ecogem_grazing_file  ='8P7Z4F_biomass.zoo'
+eg_par_ecogem_grazing_file  ='8P7Z4F_carn_ineq.zoo'
 
 eg_ah_size_ratio = 0.0015
-eg_ss_tradeoff_a=0.6
-eg_ss_tradeoff_h=0.4
+eg_ss_tradeoff_a=0.7
+eg_ss_tradeoff_h=0.45
 
-eg_sn_tradeoff_a=0.4
-eg_sn_tradeoff_h=0.6
+eg_sn_tradeoff_a=0.2
+eg_sn_tradeoff_h=0.8
 #----------------- Nitrogen -------------------------
 eg_useNO3                   =.false.
 eg_nquota                   =.false.
@@ -101,9 +101,8 @@ eg_useDIC_13C               =.true.
 eg_qminP_a     =   3.33e-3
 eg_qminFe_a    =   1.00e-6
 eg_qmaxFe_a    =   4.00e-6
-# ???
+				   
 eg_ns=2
-# ???
 eg_respir_a=0
 # DOM parameters
 eg_beta_mort_a =   0.8 # Maximum fraction to DOM as ESD --> zero

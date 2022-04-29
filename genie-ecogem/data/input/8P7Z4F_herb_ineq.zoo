@@ -18,10 +18,10 @@ Zooplankton        0.0   0.0   10.0    2.0     2.0     1.0     1.0     1.0    1.
 Zooplankton        0.0   0.0   10.0    2.0     2.0     1.0     1.0     1.0    1.0    0.0
 Zooplankton        0.0   0.0   10.0    2.0     2.0     1.0     1.0     1.0    1.0    0.0
 Zooplankton        0.0   0.0   10.0    2.0     2.0     1.0     1.0     1.0    1.0    0.0
-bn_foram           1.0   0.0   10.0    2.0     1.0     0.5     0.8     1.0    1.0    0.02
-bs_foram           0.1   0.9   10.0    2.0     1.0     0.5     0.7     1.0    0.85   0.04
-sn_foram           1.0   0.0   10.0    2.0     1.0     0.5     0.8     1.0    1.0    0.02
-ss_foram           0.1   0.9   10.0    2.0     1.0     0.5     0.7     1.0    0.95   0.03
+bn_foram           1.0   0.0   10.0    2.0     1.0     0.6     0.8     1.0    1.0    0.02
+bs_foram           1.0   0.0   10.0    2.0     1.0     0.6     0.7     1.0    0.85   0.04
+sn_foram           1.0   0.0   10.0    2.0     1.0     0.6     0.8     1.0    1.0    0.02
+ss_foram           1.0   0.0   10.0    2.0     1.0     0.6     0.7     1.0    0.95   0.03
 -END-OF-DATA-
 
 /\                 /\ /\        /\     /\      /\	/\	/\	/\	/\    /\
@@ -36,7 +36,6 @@ COLUMN #04: pp_opt_a  (optimal predator:prey ratio)
 COLUMN #05: pp_sig_a  (width of grazing kernel)
 COLUMN #06: ns (prey-switching - 2.0 = active, 1.0 = passive)
 COLUMN #07: mortality protection (e.g., 0.7 is equivalent to 30% reduced mortality rate)
-       	    [choose 0.7 for better biomass magnitude; 0.5 for better POC flux]
 COLUMN #08: palatability (grazing protection)
 COLUMN #09: growth-cost factor (e.g., a 10% cost is equivalent to a 0.9 growth-cost factor)
 COLUMN #10: half-saturation constant (affinity) of grazing rate
