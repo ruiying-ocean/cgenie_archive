@@ -4,23 +4,21 @@ qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CBE.worlg4.BASESFeTD
 ```
 
 # Holocene
-* basic
+
+## ECOGEM
 ```
-qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CB.GIteiiaa.BASESFeTDTL_rb PUBS/manuscript/odalenetal.CP.2022 muffin.CB.GIteiiaa.BASESFeTDTL_rb.SPIN 10000
+qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CB.GIteiiaa.BASESFeTDTL_rb_ecogem RUI_LABS/Ying_etal_LGM muffin.CB.GIteiiaa.BASESFeTDTL_rb.SPIN 10000
 ```
 
-* complete
-```sh
-qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CB.GIteiiaa.BASESFeTDTL_14Crbcol0137 PUBS/manuscript/odalenetal.CP.2022 muffin.CB.GIteiiaa.BASESFeTDTL_14Crbcol0137.SPIN 10000
+## BIOGEM
 ```
+qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CB.GIteiiaa.BASESFeTDTL_rb_biogem RUI_LABS/Ying_etal_LGM muffin.CB.GIteiiaa.BASESFeTDTL_rb.SPIN 10000
+```
+
 
 # LGM
-* basic
-```
-qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CB.GIteiiva.BASESFeTDTL_rb PUBS/manuscript/odalenetal.CP.2022 muffin.CB.GIteiiva.BASESFeTDTL_rb.SPIN 10000
-```
 
-* complete
+## ECOGEM
 ```
-qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CB.GIteiiva.BASESFeTDTL_14Crbcol0137 PUBS/manuscript/odalenetal.CP.2022 muffin.CB.GIteiiva.BASESFeTDTL_14Crbcol0137.SPIN 10000
+qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CB.GIteiiva.BASESFeTDTL_rb_(ecogem/biogem) RUI_LABS/Ying_etal_LGM muffin.CB.GIteiiva.BASESFeTDTL_rb.SPIN 10000
 ```
