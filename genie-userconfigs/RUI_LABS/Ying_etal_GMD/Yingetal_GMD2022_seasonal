@@ -73,18 +73,21 @@ bg_par_bio_FetoC_C=0.0
 gm_ctrl_debug_init          =0
 eg_ctrl_debug_eco_init      =.false.
 
+# do not set grazing kernel to 0 if it is < 0.01, following Grigoratou et al. (2021)
 eg_gkernel_cap = .false.
-eg_ctrl_grazing_explicit=.true.
 
+eg_ctrl_grazing_explicit=.true.
 eg_par_ecogem_plankton_file ='8P7Z4F.eco'
 eg_par_ecogem_grazing_file  ='8P7Z4F.zoo'
 
-eg_ah_size_ratio = 0.0015
+# --- Foraminifera ----------------------------------
 eg_ss_tradeoff_a=0.7
-eg_ss_tradeoff_h=0.5
+eg_ss_tradeoff_h=0.45
 
 eg_sn_tradeoff_a=0.2
-eg_sn_tradeoff_h=0.7
+eg_sn_tradeoff_h=0.8
+
+eg_ah_size_ratio = 0.0015
 
 #----------------- Nitrogen -------------------------
 eg_useNO3                   =.false.
@@ -128,11 +131,20 @@ eg_ctrl_continuing          =.false.
 
 #
 # --- DATA SAVING -----------------------------------------------------
-#
-bg_par_data_save_level=10
+
+bg_ctrl_data_save_3d_sig=.false.
+bg_par_data_save_level=3
 bg_ctrl_debug_lvl0=.true.
 ma_debug_loop=1
-#
+
+# time slice data of last year (10th)
+# enable this if use timeseries_LOCATION.nc
+bg_par_infile_slice_name='save_timeslice_foramecogem.dat' 
+
+# Monthly time slice (4/48 steps)
+# enable this to get monthly 2D time slice data, but for all years
+bg_par_data_save_slice_n=4
+
 # --- FORCINGS ------------------------------------------------------
 #
 # specify forcings
