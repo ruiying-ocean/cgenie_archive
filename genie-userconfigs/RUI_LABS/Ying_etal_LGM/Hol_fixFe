@@ -99,8 +99,8 @@ eg_chlquota                 =.true.
 eg_useDIC_13C               =.true.
 # Tuned parameters
 eg_qminP_a     =   3.33e-3
-eg_qminFe_a    =   2.50e-6
-eg_qmaxFe_a    =   2.51e-6
+eg_qminFe_a    =   2.0e-6
+eg_qmaxFe_a    =   3.0e-6
 				   
 eg_ns=2
 eg_respir_a=0
