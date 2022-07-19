@@ -100,7 +100,7 @@ eg_useDIC_13C               =.true.
 eg_qminP_a     =   5.0e-3
 eg_qmaxP_a     =   6.0e-3
 eg_qminFe_a    =   2.0e-6
-eg_qmaxFe_a    =   3.0e-6
+eg_qmaxFe_a    =   2.5e-6
 				   
 eg_ns=2
 eg_respir_a=0
