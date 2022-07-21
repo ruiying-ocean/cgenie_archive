@@ -100,9 +100,6 @@ bg_par_data_save_level=7
 # reduce output
 bg_ctrl_data_save_2d=.true.
 bg_ctrl_data_save_3d=.true. # JDW - set to true
-# save frequency # JDW - normal saving but every year in last 10 to catch oscillations
-bg_par_infile_slice_name='save_timeslice_last10_every1.dat'
-bg_par_infile_sig_name='save_timeseries_last10_every1.dat'
 #
 # --- FORCINGS -------------------------------------------------
 #
