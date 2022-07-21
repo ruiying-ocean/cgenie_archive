@@ -44,8 +44,19 @@ bg_par_bio_remin_sinkingrate_reaction=125.0
 #
 # *** ECOGEM ********************************************************
 #
-# ecosystem configuration
-eg_par_ecogem_plankton_file='8P8Z.eco'
+# Planktic Foraminifer and Ecosystem
+eg_gkernel_cap = .false.
+eg_ctrl_grazing_explicit=.true.
+
+eg_par_ecogem_plankton_file ='8P7Z4F.eco'
+eg_par_ecogem_grazing_file  ='8P7Z4F.zoo'
+
+eg_ah_size_ratio = 0.0015
+eg_ss_tradeoff_a=0.7
+eg_ss_tradeoff_h=0.5
+
+eg_sn_tradeoff_a=0.2
+eg_sn_tradeoff_h=0.7
 #################### Nitrogen ############################
 eg_useNO3                   =.false.
 eg_nquota                   =.false.
