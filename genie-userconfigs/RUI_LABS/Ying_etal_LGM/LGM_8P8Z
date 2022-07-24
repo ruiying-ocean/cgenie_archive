@@ -73,10 +73,9 @@ bg_par_bio_FetoC_C=0.0
 #
 # Planktic Foraminifer and Ecosystem
 eg_gkernel_cap = .false.
-eg_ctrl_grazing_explicit=.true.
+eg_ctrl_grazing_explicit=.false.
 
 eg_par_ecogem_plankton_file ='8P8Z.eco'
-eg_par_ecogem_grazing_file  ='8P8Z.zoo'
 
 eg_ah_size_ratio = 0.0015
 eg_ss_tradeoff_a=0.7
