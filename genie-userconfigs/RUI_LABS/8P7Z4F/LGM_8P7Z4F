@@ -79,7 +79,6 @@ eg_par_ecogem_plankton_file ='8P7Z4F.eco'
 eg_par_ecogem_grazing_file  ='8P7Z4F.zoo'
 
 eg_ah_size_ratio = 0.0015
-# GMD version
 eg_ss_tradeoff_a=0.7
 eg_ss_tradeoff_h=0.45
 
