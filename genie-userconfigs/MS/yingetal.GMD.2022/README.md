@@ -6,9 +6,9 @@ ForCenS, https://www.nature.com/articles/sdata2017109
 plankton net, plankton_tow_grouped.csv
 sediment trap, sediment_trap_grouped.csv
 
-# Code
-- 8P7Z4F, main output
-- 8P7Z4F, seasonal output
+# Configuration
+- muffin.CB.worlg4.BASESFeTDTL.FORAM.SPIN, main output
+- 8P7Z4F_monthly, seasonal output
 - 8P7Z4F.zoo the ecosystem grazing file defining foraminifer feeding/spine trait
 
 # Model experiments
