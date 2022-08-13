@@ -12,9 +12,11 @@ sediment trap, sediment_trap_grouped.csv
 - 8P7Z4F.zoo the ecosystem grazing file defining foraminifer feeding/spine trait
 
 # Model experiments
-```sh
+
+```bash
 # main experiment
-qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CBE.worlg4.BASESFeTDTL work_directory 8P7Z4F 10000
+qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CBE.worlg4.BASESFeTDTL MS/yingetal.GMD.2022 muffin.CB.worlg4.BASESFeTDTL.FORAM.SPIN 10000
+
 # monthly output
-qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CBE.worlg4.BASESFeTDTL work_directory 8P7Z4F_monthly 100 8P7Z4F
+qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CBE.worlg4.BASESFeTDTL MS/yingetal.GMD.2022 8P7Z4F_monthly 100 muffin.CB.worlg4.BASESFeTDTL.FORAM.SPIN
 ```
