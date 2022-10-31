@@ -77,11 +77,11 @@ eg_gkernel_cap = .false.
 eg_ctrl_grazing_explicit=.true.
 
 eg_par_ecogem_plankton_file ='8P7Z4F.eco'
-eg_par_ecogem_grazing_file  ='8P7Z4F.zoo'
+eg_par_ecogem_grazing_file  ='Yingetal_GMD2022.zoo'
 
 eg_ah_size_ratio = 0.0015
-eg_ss_tradeoff_a=0.7
-eg_ss_tradeoff_h=0.45
+eg_ss_tradeoff_a=0.8
+eg_ss_tradeoff_h=0.55
 
 eg_sn_tradeoff_a=0.2
 eg_sn_tradeoff_h=0.8
