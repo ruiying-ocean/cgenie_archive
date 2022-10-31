@@ -3,13 +3,13 @@ For "ForamEcoGENIE 2.0: Incorporating symbiosis and spine traits into a trait-ba
 
 # Observational dataset
 ForCenS, https://www.nature.com/articles/sdata2017109
-plankton net, plankton_tow_grouped.csv
-sediment trap, sediment_trap_grouped.csv
+plankton net, plankton_tow_monthly/yearly.csv
+sediment trap, sediment_trap_monthly/yearly.csv
 
 # Configuration
-- muffin.CB.worlg4.BASESFeTDTL.FORAM.SPIN, main output
-- 8P7Z4F_monthly, seasonal output
-- 8P7Z4F.zoo the ecosystem grazing file defining foraminifer feeding/spine trait
+- *muffin.CB.worlg4.BASESFeTDTL.FORAM.SPIN*, main output
+- *muffin.CB.worlg4.BASESFeTDTL.FORAM.monthly*, seasonal output
+- *Yingetal.GMD2022.zoo* the ecosystem grazing file defining foraminifer feeding/spine trait
 
 # Model experiments
 
@@ -18,5 +18,5 @@ sediment trap, sediment_trap_grouped.csv
 qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CBE.worlg4.BASESFeTDTL MS/yingetal.GMD.2022 muffin.CB.worlg4.BASESFeTDTL.FORAM.SPIN 10000
 
 # monthly output
-qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CBE.worlg4.BASESFeTDTL MS/yingetal.GMD.2022 8P7Z4F_monthly 100 muffin.CB.worlg4.BASESFeTDTL.FORAM.SPIN
+qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CBE.worlg4.BASESFeTDTL MS/yingetal.GMD.2022 muffin.CB.worlg4.BASESFeTDTL.FORAM.monthly 20 muffin.CB.worlg4.BASESFeTDTL.FORAM.SPIN
 ```
