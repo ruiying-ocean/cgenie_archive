@@ -84,7 +84,8 @@ eg_ss_tradeoff_a=0.8
 eg_ss_tradeoff_h=0.55
 
 eg_sn_tradeoff_a=0.2
-eg_sn_tradeoff_h=0.8
+# test, original: 0.8
+eg_sn_tradeoff_h=0.75
 
 #----------------- Nitrogen -------------------------
 eg_useNO3                   =.false.
