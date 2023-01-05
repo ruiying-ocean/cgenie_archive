@@ -1,5 +1,10 @@
-#
-#
+# ECOGEM with diverse Planktic Foraminifer
+# This is an updated version of Ying et al. (2022) GMD version
+# Additional changes:
+# (1) Sea-ice attenuation of PAR
+# (2) Reduce C:P ratio to appraoch Redfield ratio
+# (3) A diagnosed only mixed layer depth 
+
 # --- CLIMATE -------------------------------------------------------
 #
 # set climate feedback
@@ -12,15 +17,11 @@ bg_par_bio_prodopt="NONE"
 #
 # --- ORGANIC MATTER EXPORT RATIOS ----------------------------------
 #
-# production fraction of dissolved organic matter
-bg_par_bio_red_DOMfrac=0.66
+# [dealt with by ECOGEM]
 #
 # --- INORGANIC MATTER EXPORT RATIOS --------------------------------
 #
-# underlying export CaCO3 as a proportion of particulate organic matter (i.e., CaCO3/POC)
-bg_par_bio_red_POC_CaCO3=0.0485
-# exponent for modifier of CaCO3:POC export ratio
-bg_par_bio_red_POC_CaCO3_pP=0.7440
+# [dealt with by ECOGEM]
 #
 # --- REMINERALIZATION ----------------------------------------------
 #
@@ -86,9 +87,6 @@ eg_ss_tradeoff_h=0.55
 eg_sn_tradeoff_a=0.2
 eg_sn_tradeoff_h=0.75
 
-# Sea ice attenuation on PAR
-eg_ctrl_PARseaicelimit=.true.
-
 #----------------- Nitrogen -------------------------
 eg_useNO3                   =.false.
 eg_nquota                   =.false.
@@ -147,6 +145,16 @@ bg_par_atm_force_scale_val_4=-6.5
 #
 # kraus-turner mixed layer scheme on (1) or off (0)
 go_imld = 1
+
+# set mixed layer to be only diagnosed (for ECOGEM)
+go_ctrl_diagmld=.true.
+
+# add seaice attenuation of PAR
+eg_ctrl_PARseaicelimit=.true.
+
+# relative partitioning of C into DOM
+eg_par_beta_POCtoDOC=0.75
+
 #
 # --- END -----------------------------------------------------------
 #
