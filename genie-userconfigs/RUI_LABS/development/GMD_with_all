@@ -1,9 +1,11 @@
 # ECOGEM with diverse Planktic Foraminifer
-# This is an updated version of Ying et al. (2022) GMD version
+# This is an updated version of Ying et al. (2023) GMD version
 # Additional features:
-# (1) Sea-ice attenuation of PAR
-# (2) Reduce C:P ratio to appraoch Redfield ratio
-# (3) A diagnosed only mixed layer depth 
+# (0) Carnivory feeding of spinose foraminifera
+# (1) Tuned parameter of lambda_a/h for two symbiont functional types (sn_foram, ss_foram)
+# (2) Sea-ice attenuation of PAR
+# (3) Reduce C:P ratio to appraoch Redfield ratio
+# (4) A diagnosed only mixed layer depth 
 
 # --- CLIMATE -------------------------------------------------------
 #
@@ -78,14 +80,17 @@ eg_gkernel_cap = .false.
 eg_ctrl_grazing_explicit=.true.
 
 eg_par_ecogem_plankton_file ='8P7Z4F.eco'
-eg_par_ecogem_grazing_file  ='Yingetal_GMD2022.zoo'
+eg_par_ecogem_grazing_file  ='8P7Z4F_carnivory.zoo'
 
 eg_ah_size_ratio = 0.0015
-eg_ss_tradeoff_a=0.8
-eg_ss_tradeoff_h=0.55
+# method 1: reduce hetertroph 0.55 -> 0.45
+# method 2: reduce autotroph 0.8 -> 0.7
 
-eg_sn_tradeoff_a=0.2
-eg_sn_tradeoff_h=0.85
+eg_ss_tradeoff_a=0.8
+eg_ss_tradeoff_h=0.45 #method 2
+
+eg_sn_tradeoff_a=0.25 # higher biomass for sn
+eg_sn_tradeoff_h=0.75
 
 #----------------- Nitrogen -------------------------
 eg_useNO3                   =.false.
@@ -146,7 +151,7 @@ bg_par_atm_force_scale_val_4=-6.5
 # kraus-turner mixed layer scheme on (1) or off (0)
 go_imld = 1
 
-# set mixed layer to be only diagnosed (for ECOGEM)
+# diagnosed only mixed layer depth 
 go_ctrl_diagmld=.true.
 
 # add seaice attenuation of PAR
@@ -154,7 +159,6 @@ eg_ctrl_PARseaicelimit=.true.
 
 # relative partitioning of C into DOM
 eg_par_beta_POCtoDOC=0.75
-
 #
 # --- END -----------------------------------------------------------
 #
