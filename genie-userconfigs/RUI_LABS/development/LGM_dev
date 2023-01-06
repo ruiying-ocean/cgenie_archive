@@ -12,15 +12,11 @@ bg_par_bio_prodopt="NONE"
 #
 # --- ORGANIC MATTER EXPORT RATIOS ----------------------------------
 #
-# production fraction of dissolved organic matter
-bg_par_bio_red_DOMfrac=0.66
+# [Dealt with ECOGEM]
 #
 # --- INORGANIC MATTER EXPORT RATIOS --------------------------------
 #
-# underlying export CaCO3 as a proportion of particulate organic matter (i.e., CaCO3/POC)
-bg_par_bio_red_POC_CaCO3=0.0485
-# exponent for modifier of CaCO3:POC export ratio
-bg_par_bio_red_POC_CaCO3_pP=0.7440
+# [Dealt with ECOGEM]
 #
 # --- REMINERALIZATION ----------------------------------------------
 #

@@ -1,6 +1,6 @@
 # ECOGEM with diverse Planktic Foraminifer
 # This is an updated version of Ying et al. (2022) GMD version
-# Additional changes:
+# Additional features:
 # (1) Sea-ice attenuation of PAR
 # (2) Reduce C:P ratio to appraoch Redfield ratio
 # (3) A diagnosed only mixed layer depth 
