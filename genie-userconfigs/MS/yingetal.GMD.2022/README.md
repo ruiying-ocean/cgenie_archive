@@ -1,17 +1,14 @@
-# About
-For "ForamEcoGENIE 2.0: Incorporating symbiosis and spine traits into a trait-based global planktic foraminifera model", GMD, Rui Ying, Fanny M. Monteiro, Jamie D. Wilson, Daniela N. Schmidt
+# Related Article
+ForamEcoGEnIE 2.0: Incorporating symbiosis and spine traits into a trait-based global planktic foraminifera model, GMD, 2023, Rui Ying, Fanny M. Monteiro, Jamie D. Wilson, Daniela N. Schmidt
 
-# Observational dataset
-ForCenS, https://www.nature.com/articles/sdata2017109
-plankton net, plankton_tow_monthly/yearly.csv
-sediment trap, sediment_trap_monthly/yearly.csv
+# Files Structure
+- *muffin.CB.worlg4.BASESFeTDTL.FORAM.SPIN*, user configuration file
+- *muffin.CB.worlg4.BASESFeTDTL.FORAM.monthly*, same as the above, but storing seasonal data
+- *Yingetal.GMD2022.zoo*, the ecosystem grazing file defining foraminifer feeding/spine trait
+- *sediment_trap_monthly/yearly.csv*, collected sediment trap data
+- *plankton_tow_monthly/yearly.csv*, collected plankton net data
 
-# Configuration
-- *muffin.CB.worlg4.BASESFeTDTL.FORAM.SPIN*, main output
-- *muffin.CB.worlg4.BASESFeTDTL.FORAM.monthly*, seasonal output
-- *Yingetal.GMD2022.zoo* the ecosystem grazing file defining foraminifer feeding/spine trait
-
-# Model experiments
+# Command to repeat the model result
 
 ```bash
 # main experiment

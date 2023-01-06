@@ -1,6 +1,6 @@
 # Modern
 ```
-qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CBE.worlg4.BASESFeTDTL RUI_LABS/modern_foram 8P7Z4F 10000
+qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CBE.worlg4.BASESFeTDTL RUI_LABS/development GMD_dev 10000
 ```
 
 # Holocene
