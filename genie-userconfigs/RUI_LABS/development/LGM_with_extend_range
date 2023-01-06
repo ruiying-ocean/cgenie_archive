@@ -144,6 +144,26 @@ ea_par_orbit_osce=0.018994 # eccentricity
 ea_par_orbit_oscsob=0.389911 # sine of obliquity
 ea_par_orbit_oscgam=114.42 # longitude of perihelion (degrees)
 #
+# *** TUNING ********************************************************
+#
+# parameter: bg_par_misc_brinerejection_frac -- default value (1) modified by factor: 0.2
+bg_par_misc_brinerejection_frac=0.2
+# parameter: bg_par_ocn_force_scale_val_2 -- default value (1) modified by factor: 0.05
+bg_par_ocn_force_scale_val_2=0.05
+#
+# *** INITIAL CONDITIONS ********************************************
+#
+# modern DIC (2.244E-03) + 1%
+bg_ocn_init_3=0.002275818239634
+# modern 13C DIC
+bg_ocn_init_4=0.4
+# modern ALK (2.363E-03) + 1%
+bg_ocn_init_12=0.002396505570523
+# modern PO4 (2.159E-06) + 1%
+bg_ocn_init_8=2.189613003283920e-06
+# modern SAL + 0.33 PSU
+go_saln0=35.23
+#
 # --- MISC ----------------------------------------------------------
 #
 # kraus-turner mixed layer scheme on (1) or off (0)
@@ -165,26 +185,7 @@ gm_par_geochem_Tmin  = -2.0
 gm_par_geochem_Tmax  = 45.0
 gm_par_carbchem_Tmin = -2.0
 gm_par_carbchem_Tmax = 45.0
-#
-# *** TUNING ********************************************************
-#
-# parameter: bg_par_misc_brinerejection_frac -- default value (1) modified by factor: 0.2
-bg_par_misc_brinerejection_frac=0.2
-# parameter: bg_par_ocn_force_scale_val_2 -- default value (1) modified by factor: 0.05
-bg_par_ocn_force_scale_val_2=0.05
-#
-# *** INITIAL CONDITIONS ********************************************
-#
-# modern DIC (2.244E-03) + 1%
-bg_ocn_init_3=0.002275818239634
-# modern 13C DIC
-bg_ocn_init_4=0.4
-# modern ALK (2.363E-03) + 1%
-bg_ocn_init_12=0.002396505570523
-# modern PO4 (2.159E-06) + 1%
-bg_ocn_init_8=2.189613003283920e-06
-# modern SAL + 0.33 PSU
-go_saln0=35.23
+
 #
 # --- END -----------------------------------------------------------
 #

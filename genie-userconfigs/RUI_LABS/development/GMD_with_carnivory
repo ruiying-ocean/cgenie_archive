@@ -85,7 +85,7 @@ eg_ss_tradeoff_a=0.8
 eg_ss_tradeoff_h=0.55
 
 eg_sn_tradeoff_a=0.2
-eg_sn_tradeoff_h=0.85
+eg_sn_tradeoff_h=0.75
 
 #----------------- Nitrogen -------------------------
 eg_useNO3                   =.false.
@@ -145,16 +145,6 @@ bg_par_atm_force_scale_val_4=-6.5
 #
 # kraus-turner mixed layer scheme on (1) or off (0)
 go_imld = 1
-
-# set mixed layer to be only diagnosed (for ECOGEM)
-go_ctrl_diagmld=.true.
-
-# add seaice attenuation of PAR
-eg_ctrl_PARseaicelimit=.true.
-
-# relative partitioning of C into DOM
-eg_par_beta_POCtoDOC=0.75
-
 #
 # --- END -----------------------------------------------------------
 #
