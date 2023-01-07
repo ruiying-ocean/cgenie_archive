@@ -73,7 +73,7 @@ bg_par_bio_FetoC_C=0.0
 bg_par_data_save_level=10
 bg_ctrl_debug_lvl0=.true.
 ma_debug_loop=1
-bg_par_infile_slice_name='save_timeslice_historicalfuture_morehistory.dat'
+bg_par_infile_slice_name='save_timeslice_historicalfuture_fakeSSP.dat'
 #
 # --- FORCINGS ------------------------------------------------------
 #
@@ -86,6 +86,7 @@ bg_par_forcing_name="pyyyyz.RpCO2_Rp13CO2.1p5deg.Albani.2100yr"
 go_imld = 1
 # starting year
 bg_par_misc_t_start=1765.0
+bg_par_atm_force_scale_val_4=-27.0
 #
 # --- END -----------------------------------------------------------
 #
