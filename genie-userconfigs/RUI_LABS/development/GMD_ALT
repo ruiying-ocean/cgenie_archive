@@ -83,7 +83,7 @@ eg_ah_size_ratio = 0.0015
 eg_ss_tradeoff_a=0.4
 eg_ss_tradeoff_h=0.2
 
-eg_sn_tradeoff_a=0.1
+eg_sn_tradeoff_a=0.13
 eg_sn_tradeoff_h=0.7
 
 #----------------- Nitrogen -------------------------
@@ -137,7 +137,7 @@ ma_debug_loop=1
 #
 # specify forcings
 bg_par_forcing_name="worlg4.RpCO2_Rp13CO2.FeMahowald2006"
-bg_par_atm_force_scale_val_3=160.0E-06
+bg_par_atm_force_scale_val_3=278.0E-06
 bg_par_atm_force_scale_val_4=-6.5
 
 #
