@@ -81,14 +81,14 @@ eg_gkernel_cap = .false.
 eg_ctrl_grazing_explicit=.true.
 
 eg_par_ecogem_plankton_file ='8P7Z4F.eco'
-eg_par_ecogem_grazing_file  ='Yingetal_GMD2022.zoo'
+eg_par_ecogem_grazing_file  ='FORAMECOGEM.zoo'
 
 eg_ah_size_ratio = 0.01
 
-eg_ss_tradeoff_a=0.09
-eg_ss_tradeoff_h=0.2
+eg_ss_tradeoff_a=0.081
+eg_ss_tradeoff_h=0.23
 
-eg_sn_tradeoff_a=0.05
+eg_sn_tradeoff_a=0.045
 eg_sn_tradeoff_h=0.45
 
 #----------------- Nitrogen -------------------------
@@ -137,14 +137,10 @@ eg_ctrl_continuing          =.false.
 bg_par_data_save_level=10
 bg_ctrl_debug_lvl0=.true.
 ma_debug_loop=1
-# only final annual average
-bg_par_infile_slice_name='save_timeslice_NONE.dat'
 #
 # --- FORCINGS ------------------------------------------------------
 #
 # specify forcings
-## bg_par_forcing_name="worlg4.RpCO2_Rp13CO2.FeMahowald2006"
-
 bg_par_forcing_name="worjh2.RpCO2_Rp13CO2.Albani.0ka"
 bg_par_atm_force_scale_val_3=278.0E-06
 bg_par_atm_force_scale_val_4=-6.5
