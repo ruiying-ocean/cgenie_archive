@@ -85,8 +85,8 @@ eg_par_ecogem_grazing_file  ='FORAMECOGEM.zoo'
 
 eg_ah_size_ratio = 0.01
 
-eg_ss_tradeoff_a=0.081
-eg_ss_tradeoff_h=0.23
+eg_ss_tradeoff_a=0.08
+eg_ss_tradeoff_h=0.25
 
 eg_sn_tradeoff_a=0.045
 eg_sn_tradeoff_h=0.45

@@ -77,8 +77,8 @@ eg_par_ecogem_grazing_file  ='FORAMECOGEM.zoo'
 
 eg_ah_size_ratio = 0.01
 
-eg_ss_tradeoff_a=0.081
-eg_ss_tradeoff_h=0.23
+eg_ss_tradeoff_a=0.08
+eg_ss_tradeoff_h=0.25
 
 eg_sn_tradeoff_a=0.045
 eg_sn_tradeoff_h=0.45
@@ -129,8 +129,6 @@ eg_ctrl_continuing          =.false.
 bg_par_data_save_level=10
 bg_ctrl_debug_lvl0=.true.
 ma_debug_loop=1
-# only final annual average
-bg_par_infile_slice_name='save_timeslice_NONE.dat'
 #
 # --- FORCINGS ------------------------------------------------------
 #
