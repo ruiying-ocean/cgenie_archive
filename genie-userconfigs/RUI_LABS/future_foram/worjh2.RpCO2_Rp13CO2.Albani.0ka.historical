@@ -138,7 +138,7 @@ bg_par_infile_sig_name='save_sig_historical.dat'
 # --- FORCINGS ------------------------------------------------------
 #
 # specify forcings
-bg_par_forcing_name="pyyyyz.RpCO2_Rp13CO2.1p5deg.Albani.2100yr"
+bg_par_forcing_name="worjh2.historical2010"
 bg_par_atm_force_scale_val_4=-27.0
 #
 # --- MISC ----------------------------------------------------------
