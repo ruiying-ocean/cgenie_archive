@@ -49,14 +49,15 @@ eg_gkernel_cap = .false.
 eg_ctrl_grazing_explicit=.true.
 
 eg_par_ecogem_plankton_file ='8P7Z4F.eco'
-eg_par_ecogem_grazing_file  ='8P7Z4F.zoo'
+eg_par_ecogem_grazing_file  ='FORAMECOGEM.zoo'
 
-eg_ah_size_ratio = 0.0015
-eg_ss_tradeoff_a=0.7
-eg_ss_tradeoff_h=0.45
+eg_ah_size_ratio = 0.01
 
-eg_sn_tradeoff_a=0.2
-eg_sn_tradeoff_h=0.8
+eg_ss_tradeoff_a=0.08
+eg_ss_tradeoff_h=0.25
+
+eg_sn_tradeoff_a=0.045
+eg_sn_tradeoff_h=0.45
 #################### Nitrogen ############################
 eg_useNO3                   =.false.
 eg_nquota                   =.false.
@@ -104,11 +105,11 @@ bg_ctrl_data_save_3d=.true. # JDW - set to true
 #
 # specify forcings
 bg_par_forcing_name="Q_xxxxxx.RpCO2_Rp13CO2.Fsal_SUR"
-bg_par_atm_force_scale_val_4=-6.202
+bg_par_atm_force_scale_val_4=-6.265
 # parameter: bg_par_atm_force_scale_val_3 -- default value modified by factor: 400
 bg_par_atm_force_scale_val_3=0.000400
-# parameter: bg_par_ocn_force_scale_val_2 -- default value modified by factor: 0.5
-bg_par_ocn_force_scale_val_2=0.5
+# parameter: bg_par_ocn_force_scale_val_2 -- default value modified by factor: 0.2
+bg_par_ocn_force_scale_val_2=0.2
 #
 # *** MISC **********************************************************
 #

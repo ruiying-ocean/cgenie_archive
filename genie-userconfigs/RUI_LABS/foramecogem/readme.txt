@@ -10,3 +10,6 @@ qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CBE.worjh2.BASESFeTD
 
 qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CBE.worjh2.BASESFeTDTL.Albani  RUI_LABS/future_foram worjh2.RpCO2_Rp13CO2.Albani.2100.[XXX]deg worjh2.RpCO2_Rp13CO2.Albani.0ka.historical
 
+
+--------- Step a Run LGM spinup --------- 
+qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CB.GIteiiva.BASESFeTDTL_rb_ecogem RUI_LABS/future_foram muffin.CB.GIteiiva.BASESFeTDTL_rb_foramecogem2.1 10000

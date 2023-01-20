@@ -1,3 +1,12 @@
+# ECOGEM with diverse Planktic Foraminifer
+#
+# - Additional features:
+#   + Sea-ice attenuation of PAR
+#   + Reduce C:P ratio to appraoch Redfield ratio
+#   + A diagnosed only mixed layer depth
+#   + Extended solubility range
+#   + Albani forcing to be consistent with Future runs
+#   + Instant remin
 #
 #
 # --- CLIMATE -------------------------------------------------------
@@ -11,7 +20,6 @@ ea_36=y
 bg_par_bio_prodopt="NONE"
 #
 # --- ORGANIC MATTER EXPORT RATIOS ----------------------------------
-#
 # [Dealt with ECOGEM]
 #
 # --- INORGANIC MATTER EXPORT RATIOS --------------------------------
@@ -73,14 +81,17 @@ eg_gkernel_cap = .false.
 eg_ctrl_grazing_explicit=.true.
 
 eg_par_ecogem_plankton_file ='8P7Z4F.eco'
-eg_par_ecogem_grazing_file  ='Yingetal_GMD2022.zoo'
+eg_par_ecogem_grazing_file  ='FORAMECOGEM.zoo'
 
-eg_ah_size_ratio = 0.0015
-eg_ss_tradeoff_a=0.8
-eg_ss_tradeoff_h=0.55
+eg_ah_size_ratio = 0.01
 
-eg_sn_tradeoff_a=0.2
-eg_sn_tradeoff_h=0.75
+# eg_ss_tradeoff_a=0.09
+# eg_ss_tradeoff_h=0.2
+eg_ss_tradeoff_a=0.08
+eg_ss_tradeoff_h=0.25
+
+eg_sn_tradeoff_a=0.045
+eg_sn_tradeoff_h=0.45
 
 #----------------- Nitrogen -------------------------
 eg_useNO3                   =.false.
@@ -128,54 +139,40 @@ eg_ctrl_continuing          =.false.
 bg_par_data_save_level=10
 bg_ctrl_debug_lvl0=.true.
 ma_debug_loop=1
-# only final annual average
-bg_par_infile_slice_name='save_timeslice_NONE.dat'
 #
 # --- FORCINGS ------------------------------------------------------
 #
 # specify forcings
-bg_par_forcing_name="GIteiiva.RpCO2_Rp13CO2.Fsal_SUR.Albani.21ka"
-bg_par_atm_force_scale_val_3=193.0E-06
-bg_par_atm_force_scale_val_4=-6.46
-# Orbital parameters
-ea_par_orbit_osce=0.018994 # eccentricity
-ea_par_orbit_oscsob=0.389911 # sine of obliquity
-ea_par_orbit_oscgam=114.42 # longitude of perihelion (degrees)
-#
-#
-# *** TUNING ********************************************************
-#
-# parameter: bg_par_misc_brinerejection_frac -- default value (1) modified by factor: 0.2
-bg_par_misc_brinerejection_frac=0.2
-# parameter: bg_par_ocn_force_scale_val_2 -- default value (1) modified by factor: 0.05
-bg_par_ocn_force_scale_val_2=0.05
-#
-# *** INITIAL CONDITIONS ********************************************
-#
-# modern DIC (2.244E-03) + 1%
-bg_ocn_init_3=0.002275818239634
-# modern 13C DIC
-bg_ocn_init_4=0.4
-# modern ALK (2.363E-03) + 1%
-bg_ocn_init_12=0.002396505570523
-# modern PO4 (2.159E-06) + 1%
-bg_ocn_init_8=2.189613003283920e-06
-# modern SAL + 0.33 PSU
-go_saln0=35.23
+bg_par_forcing_name="worjh2.RpCO2_Rp13CO2.Albani.0ka"
+bg_par_atm_force_scale_val_3=278.0E-06
+bg_par_atm_force_scale_val_4=-6.5
 #
 # --- MISC ----------------------------------------------------------
 #
 # kraus-turner mixed layer scheme on (1) or off (0)
 go_imld = 1
-# (no preformed)
-bg_ctrl_bio_preformed=.false.
-# add ventillation tracers
-bg_ctrl_force_ocn_age1=.true.
-# add brine rejection SH limit
-bg_par_misc_brinerejection_jmax=19
-# wind-stress
-go_13=1.3
-ea_11=1.3
-#
+
+# diagnosed only mixed layer depth 
+go_ctrl_diagmld=.true.
+
+# add seaice attenuation of PAR
+eg_ctrl_PARseaicelimit=.true.
+
+# relative partitioning of C into DOM
+eg_par_beta_POCtoDOC=0.75
+
+# maximum time-scale to geochemical reaction completion (days)
+bg_par_bio_geochem_tau=90.0
+
+# extend solubility and geochem constant T range (leave S range as default)
+gm_par_geochem_Tmin  = -2.0
+gm_par_geochem_Tmax  = 45.0
+gm_par_carbchem_Tmin = -2.0
+gm_par_carbchem_Tmax = 45.0
+
+# set 'instantaneous' water column remineralziation
+bg_par_bio_remin_sinkingrate_physical=9.9E9
+bg_par_bio_remin_sinkingrate_reaction=125.0
+
 # --- END -----------------------------------------------------------
 #
