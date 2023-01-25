@@ -8,7 +8,7 @@ qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CBE.worjh2.BASESFeTD
 
 --------- 1.3 Run future (2022-2100) --------- 
 
-qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CBE.worjh2.BASESFeTDTL.Albani  RUI_LABS/foramecogem worjh2.RpCO2_Rp13CO2.Albani.2100.[XXX]deg worjh2.RpCO2_Rp13CO2.Albani.0ka.historical
+qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CBE.worjh2.BASESFeTDTL.Albani  RUI_LABS/foramecogem worjh2.RpCO2_Rp13CO2.Albani.2100.[XXX]deg 78 worjh2.RpCO2_Rp13CO2.Albani.0ka.historical
 
 --------- 2 Run LGM spinup --------- 
 qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CB.GIteiiva.BASESFeTDTL_rb_ecogem RUI_LABS/foramecogem muffin.CB.GIteiiva.BASESFeTDTL_rb_foramecogem2.1 10000
