@@ -34,7 +34,7 @@ def select_files(path):
     return filtered_paths
 
 
-def main(path, data):
+def main(path, data: dict):
     config_files = select_files(path)
 
     # convert data into list
@@ -48,14 +48,24 @@ def main(path, data):
         write_data(file, data)
 
 if __name__ == '__main__':
-    data = {
+    config = {
         'eg_par_ecogem_plankton_file': "'8P7Z4F.eco'",
         'eg_par_ecogem_grazing_file': "'FORAMECOGEM.zoo'",
-        'eg_ah_size_ratio': '0.01',
-        'eg_ss_tradeoff_a': '0.08',
-        'eg_ss_tradeoff_h': '0.25',
-        'eg_sn_tradeoff_a': '0.045',
+        'eg_ah_size_ratio': '0.002',
+        'eg_ss_tradeoff_a': '0.68',
+        'eg_ss_tradeoff_h': '0.1',
+        'eg_sn_tradeoff_a': '0.45',
         'eg_sn_tradeoff_h': '0.45'
     }
-    main('/Users/yingrui/cgenie.muffin.rui/genie-userconfigs/RUI_LABS/foramecogem', data)
+    
+    config2 = {
+        'eg_par_ecogem_plankton_file': "'8P7Z4F.eco'",
+        'eg_par_ecogem_grazing_file': "'FORAMECOGEM.zoo'", #use reduced growth rate
+        'eg_ah_size_ratio': '0.002',
+        'eg_ss_tradeoff_a': '0.35',
+        'eg_ss_tradeoff_h': '0.1',
+        'eg_sn_tradeoff_a': '0.3',
+        'eg_sn_tradeoff_h': '0.5'
+    }
+    main('/Users/yingrui/cgenie.muffin.rui/genie-userconfigs/RUI_LABS/foramecogem', data=config)
 
