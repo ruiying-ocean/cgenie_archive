@@ -345,10 +345,24 @@ subroutine ecogem(          &
                  call t_limitation(templocal,gamma_T)
 
                  call nutrient_uptake(qreg(:,:),loc_nuts(:),gamma_T,up_inorg(:,:))
-
+                          
                  call photosynthesis(PAR_layer,loc_biomass,limit,VLlimit,up_inorg,gamma_T,up_inorg(iDIC,:),chlsynth,totPP)
 
                  call grazing(loc_biomass,gamma_T,zoolimit(:,:),GrazMat(:,:,:))
+
+                 ! symbiont bleaching for foraminifera
+                 if (templocal .gt. (30 + 273.15)) then
+                     do jp=1,npmax
+                        if (pft(jp).eq.'sn_foram' .or. pft(jp).eq.'ss_foram') then
+                           PP(:)       = 0.0
+                           chlsynth(:) = 0.0
+                           totPP       = 0.0
+                        endif
+                     enddo
+                  endif
+
+
+                  print*, PP(:)
 
                  !ckc isotopes uptake, from nutrient uptake, nutrient concentration and fractionation
                  if (c13trace) then
