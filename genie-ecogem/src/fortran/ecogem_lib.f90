@@ -137,11 +137,11 @@ MODULE ecogem_lib
   real :: trophic_tradeoff, ss_tradeoff_a, ss_tradeoff_h, sn_tradeoff_a, sn_tradeoff_h, ah_size_ratio
   namelist/ini_ecogem_nml/trophic_tradeoff, ss_tradeoff_a, ss_tradeoff_h, sn_tradeoff_a, sn_tradeoff_h, ah_size_ratio
   ! Temperature dependence
-  real ::  temp_A,temp_T0   !
+  real ::  temp_A,temp_T0
   namelist/ini_ecogem_nml/temp_A,temp_T0
   ! maximum temperature
-  real ::  temp_max
-  namelist/ini_ecogem_nml/temp_max
+  real ::  temp_max, bleach_temp
+  namelist/ini_ecogem_nml/temp_max, bleach_temp
   ! CaCO3 production
   real ::  par_bio_red_POC_CaCO3,par_bio_red_POC_CaCO3_pP
   namelist/ini_ecogem_nml/par_bio_red_POC_CaCO3,par_bio_red_POC_CaCO3_pP
@@ -160,6 +160,9 @@ MODULE ecogem_lib
   ! JDW force T fields
   logical::ctrl_force_T
   namelist /ini_ecogem_nml/ctrl_force_T
+  ! RUI Foram bleaching
+  logical::ctrl_foram_bleach
+  namelist /ini_ecogem_nml/ctrl_foram_bleach
   character(LEN=127)::par_ecogem_force_T_file
   namelist /ini_ecogem_nml/par_ecogem_force_T_file
   ! explicit grazing parameters
