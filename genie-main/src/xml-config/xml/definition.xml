@@ -5114,7 +5114,7 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
                     </param>
                     <param name="par_bio_red_CaCO3_SrCO3_alpha">
 			<value datatype="real">0.176</value>
-                        <description>partition coefficient (alpha) [Stoll and Schrag [1998]</description>
+                        <description>partition coefficient (alpha) Stoll and Schrag [1998]</description>
                     </param>
                     <param name="par_bio_red_CaCO3_OsCO3">
 			<value datatype="real">0.0E-6</value>
@@ -5478,7 +5478,7 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
                     </param>
                     <param name="par_data_save_sig_dt">
 			<value datatype="real">1.0</value>
-                        <description>Integration interval (yr</description>
+                        <description>Integration interval yr</description>
                     </param>
                     <param name="par_infile_sig_name">
 			<value datatype="string">save_timeseries.dat</value>
@@ -6959,7 +6959,7 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
                     </param>
                     <param name="par_atm_FterrCO2exchange">
 			<value datatype="real">0.0</value>
-                        <description>CO2 exchange flux with terrestrial biosphere (mol yr-1) [120 PgC yr-1 == 1.0E16 mol yr-1</description>
+                        <description>CO2 exchange flux with terrestrial biosphere (mol yr-1) 120 PgC yr-1 == 1.0E16 mol yr-1</description>
                     </param>
                     <param name="ctrl_continuing">
 			<value datatype="boolean">.false.</value>
@@ -8797,7 +8797,7 @@ par_bio_red_PC_alpha2 scales the offset of 6.0e-3 of Galbraith & Martiny, 2015 C
 			<value datatype="real">99.9</value>
 	                  <description>Maximum applied temperature</description>
                     </param>
-		    <param name="bleach_temp">
+		    <param name="temp_bleach">
 		      <value datatype="real">40.0</value>
 		      <description>bleaching temperature threshold in Celsius </description>
 		    </param>		    

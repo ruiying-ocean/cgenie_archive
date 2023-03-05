@@ -346,7 +346,7 @@ subroutine ecogem(          &
                  
                  ! symbiont bleaching for foraminifera
                  ! implementation: manually disable photosynthesis
-                 if (ctrl_foram_bleach .and. (templocal .gt. (bleach_temp + 273.15))) then
+                 if (ctrl_foram_bleach .and. (templocal .gt. (temp_bleach + 273.15))) then
                     do jp=1,npmax
                        if (pft(jp).eq.'sn_foram' .or. pft(jp).eq.'ss_foram') then
                           VLlimit(jp) = 0.0

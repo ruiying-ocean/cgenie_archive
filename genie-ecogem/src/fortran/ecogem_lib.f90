@@ -140,8 +140,8 @@ MODULE ecogem_lib
   real ::  temp_A,temp_T0
   namelist/ini_ecogem_nml/temp_A,temp_T0
   ! maximum temperature
-  real ::  temp_max, bleach_temp
-  namelist/ini_ecogem_nml/temp_max, bleach_temp
+  real ::  temp_max, temp_bleach
+  namelist/ini_ecogem_nml/temp_max, temp_bleach
   ! CaCO3 production
   real ::  par_bio_red_POC_CaCO3,par_bio_red_POC_CaCO3_pP
   namelist/ini_ecogem_nml/par_bio_red_POC_CaCO3,par_bio_red_POC_CaCO3_pP
