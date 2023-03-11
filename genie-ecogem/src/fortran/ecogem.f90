@@ -377,7 +377,7 @@ subroutine ecogem(          &
                  if (ctrl_foram_oa .and. (omega(i,j,k) .lt. 1.0)) then
                     do jp=1,npmax
                        ! any foram
-                        if (index(pft(jprey), "foram") /= 0) then                       
+                        if (index(pft(jp), "foram") /= 0) then                       
                           mortality(jp) = 999.9
                        endif
                     enddo
