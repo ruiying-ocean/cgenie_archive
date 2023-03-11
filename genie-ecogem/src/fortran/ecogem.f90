@@ -371,6 +371,18 @@ subroutine ecogem(          &
 
                  ! calculate mortality rates
                  mortality(:)   = mort(:) * (1.0 - exp(-1.0e10 * loc_biomass(iCarb,:))) ! reduce mortality at very low biomass
+
+                 ! foram cannot live in environment with < 1 omega
+                 ! Roy et al. 2015. Biogeosciences, 12, 2873–2889, 2015
+                 if (ctrl_foram_oa .and. (omega(i,j,k) .lt. 1.0)) then
+                    do jp=1,npmax
+                       ! any foram
+                        if (index(pft(jprey), "foram") /= 0) then                       
+                          mortality(jp) = 999.9
+                       endif
+                    enddo
+                 endif
+
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                  ! Stoopid calcification related moratlity
                  !mortality(:)   = mortality(:) + mortality(:) * calcify(:) / omega(i,j,k) ! Coccolithophores and Forams only

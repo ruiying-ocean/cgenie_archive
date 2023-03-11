@@ -161,8 +161,8 @@ MODULE ecogem_lib
   logical::ctrl_force_T
   namelist /ini_ecogem_nml/ctrl_force_T
   ! RUI Foram bleaching
-  logical::ctrl_foram_bleach
-  namelist /ini_ecogem_nml/ctrl_foram_bleach
+  logical::ctrl_foram_bleach, ctrl_foram_oa
+  namelist /ini_ecogem_nml/ctrl_foram_bleach, ctrl_foram_oa
   character(LEN=127)::par_ecogem_force_T_file
   namelist /ini_ecogem_nml/par_ecogem_force_T_file
   ! explicit grazing parameters
