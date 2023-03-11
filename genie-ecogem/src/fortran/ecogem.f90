@@ -379,7 +379,7 @@ subroutine ecogem(          &
                        ! for any foram
                        if (index(pft(jp), "foram") /= 0) then
                           ! note mortality(:) is changing in place and mort(:) is fixed
-                          mortality(jp) = 99.9
+                          mortality(jp) = mortality(jp) * 100
                        endif
                     enddo
                  endif
