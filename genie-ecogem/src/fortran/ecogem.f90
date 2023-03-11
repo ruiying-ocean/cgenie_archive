@@ -376,9 +376,10 @@ subroutine ecogem(          &
                  ! Roy et al. 2015. Biogeosciences, 12, 2873–2889, 2015
                  if (ctrl_foram_oa .and. (omega(i,j,k) .lt. 1.0)) then
                     do jp=1,npmax
-                       ! any foram
-                        if (index(pft(jp), "foram") /= 0) then                       
-                          mortality(jp) = 999.9
+                       ! for any foram
+                       if (index(pft(jp), "foram") /= 0) then
+                          ! note mortality(:) is changing in place and mort(:) is fixed
+                          mortality(jp) = 99.9
                        endif
                     enddo
                  endif
