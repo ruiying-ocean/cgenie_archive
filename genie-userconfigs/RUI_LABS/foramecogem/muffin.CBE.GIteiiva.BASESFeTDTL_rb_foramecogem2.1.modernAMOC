@@ -159,7 +159,7 @@ bg_ocn_init_8=2.189613003283920e-06
 # modern SAL + 0.33 PSU
 go_saln0=35.23
 #
-# --- MISC ----------------------------------------------------------
+## --- MISC ----------------------------------------------------------
 #
 # (no preformed)
 bg_ctrl_bio_preformed=.false.
@@ -177,8 +177,8 @@ go_imld = 1
 # diagnosed only mixed layer depth 
 go_ctrl_diagmld=.true.
 
-# disable seaice attenuation of PAR
+# add seaice attenuation of PAR
 eg_ctrl_PARseaicelimit=.false.
-
+#
 # --- END -----------------------------------------------------------
 #
