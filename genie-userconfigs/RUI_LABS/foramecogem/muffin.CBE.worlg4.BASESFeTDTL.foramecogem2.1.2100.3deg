@@ -79,13 +79,13 @@ eg_ctrl_grazing_explicit=.true.
 eg_par_ecogem_plankton_file ='8P7Z4F.eco'
 eg_par_ecogem_grazing_file  ='FORAMECOGEM.zoo'
 
-eg_ah_size_ratio = 0.001
+eg_ah_size_ratio = 0.01
 
-eg_ss_tradeoff_a=0.8
-eg_ss_tradeoff_h=0.6
+eg_ss_tradeoff_a=0.055
+eg_ss_tradeoff_h=0.2
 
-eg_sn_tradeoff_a=0.8
-eg_sn_tradeoff_h=0.6
+eg_sn_tradeoff_a=0.045
+eg_sn_tradeoff_h=0.4
 
 #----------------- Nitrogen -------------------------
 eg_useNO3                   =.false.
@@ -143,7 +143,9 @@ bg_par_forcing_name="worlg4.RpCO2_Rp13CO2.FeMahowald2006.2100.3deg"
 bg_par_atm_force_scale_val_4=-6.5
 #
 # --- MISC ----------------------------------------------------------
-#
+## starting year
+bg_par_misc_t_start=2022.0
+
 # kraus-turner mixed layer scheme on (1) or off (0)
 go_imld = 1
 
@@ -153,8 +155,20 @@ go_ctrl_diagmld=.true.
 # add seaice attenuation of PAR
 eg_ctrl_PARseaicelimit=.false.
 
-# starting year
-bg_par_misc_t_start=2022.0
+# relative partitioning of C into DOM
+eg_par_beta_POCtoDOC=0.75
 
-# --- END -----------------------------------------------------------
+# maximum time-scale to geochemical reaction completion (days)
+bg_par_bio_geochem_tau=90.0
+
+# extend solubility and geochem constant T range (leave S range as default)
+gm_par_geochem_Tmin  = -2.0
+gm_par_geochem_Tmax  = 45.0
+gm_par_carbchem_Tmin = -2.0
+gm_par_carbchem_Tmax = 45.0
+
+# set 'instantaneous' water column remineralziation
+bg_par_bio_remin_sinkingrate_physical=9.9E9
+bg_par_bio_remin_sinkingrate_reaction=125.0
 #
+# --- END -----------------------------------------------------------

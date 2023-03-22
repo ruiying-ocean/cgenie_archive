@@ -50,14 +50,15 @@ eg_ctrl_grazing_explicit=.true.
 
 eg_par_ecogem_plankton_file ='8P7Z4F.eco'
 eg_par_ecogem_grazing_file  ='FORAMECOGEM.zoo'
+eg_par_ecogem_grazing_file  ='FORAMECOGEM.zoo'
 
-eg_ah_size_ratio = 0.001
+eg_ah_size_ratio = 0.01
 
-eg_ss_tradeoff_a=0.8
-eg_ss_tradeoff_h=0.6
+eg_ss_tradeoff_a=0.055
+eg_ss_tradeoff_h=0.2
 
-eg_sn_tradeoff_a=0.8
-eg_sn_tradeoff_h=0.6
+eg_sn_tradeoff_a=0.045
+eg_sn_tradeoff_h=0.4
 
 #################### Nitrogen ############################
 eg_useNO3                   =.false.
