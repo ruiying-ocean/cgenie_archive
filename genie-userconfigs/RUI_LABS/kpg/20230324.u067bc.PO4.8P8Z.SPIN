@@ -90,8 +90,6 @@ ma_debug_loop=1
 #
 # --- FORCINGS -------------------------------------------------
 #
-# Late-Cretaceous solar constatn(Brugger et al. 2016 GRL)
-ma_genie_solar_constant = 1354.0
 # pCO2 level 3xPI
 bg_par_atm_force_scale_val_3=834.0E-06
 bg_ctrl_force_GOLDSTEInTS=.true.
