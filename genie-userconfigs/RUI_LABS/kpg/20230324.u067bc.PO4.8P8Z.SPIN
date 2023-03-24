@@ -123,4 +123,4 @@ gm_par_carbchem_Tmin = -2.0
 gm_par_carbchem_Tmax = 45.0
 #
 # limit negative biomass
-eg_ctrl_limit_neg_biomass=.true. 
+eg_ctrl_limit_neg_biomass=.true.
