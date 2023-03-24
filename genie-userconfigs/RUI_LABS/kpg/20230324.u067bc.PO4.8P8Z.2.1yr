@@ -91,7 +91,8 @@ ma_debug_loop=1
 # --- FORCINGS -------------------------------------------------
 #
 bg_ctrl_force_GOLDSTEInTS=.true.
-bg_par_forcing_name="u067bc.RpCO2_Rp13CO2.Fsal_SUR"
+## turn the light off, biogem_force_solconst_sig.dat
+bg_par_forcing_name="_u067bc.Fsal_SUR_Rp_PO4_2.1"
 bg_par_ocn_force_scale_val_2=0.005
 bg_par_atm_force_scale_val_3=1112.0E-06
 bg_par_atm_force_scale_val_4=-4.9
@@ -121,3 +122,6 @@ gm_par_carbchem_Tmax = 45.0
 #
 # limit negative biomass
 eg_ctrl_limit_neg_biomass=.true.
+
+# add `biogem_force_solconst_sig.dat` in forcing directory
+bg_ctrl_force_solconst = .true.
