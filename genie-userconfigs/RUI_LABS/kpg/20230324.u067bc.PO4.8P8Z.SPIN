@@ -90,10 +90,13 @@ ma_debug_loop=1
 #
 # --- FORCINGS -------------------------------------------------
 #
+# Late-Cretaceous solar constatn(Brugger et al. 2016 GRL)
+ma_genie_solar_constant = 1354.0
+# pCO2 level 3xPI
+bg_par_atm_force_scale_val_3=834.0E-06
 bg_ctrl_force_GOLDSTEInTS=.true.
 bg_par_forcing_name="u067bc.RpCO2_Rp13CO2.Fsal_SUR"
 bg_par_ocn_force_scale_val_2=0.005
-bg_par_atm_force_scale_val_3=1112.0E-06
 bg_par_atm_force_scale_val_4=-4.9
 # set alternative wind speed field
 bg_par_windspeed_file="u067b__windspeed.dat"
@@ -120,4 +123,4 @@ gm_par_carbchem_Tmin = -2.0
 gm_par_carbchem_Tmax = 45.0
 #
 # limit negative biomass
-eg_ctrl_limit_neg_biomass=.true.
+eg_ctrl_limit_neg_biomass=.true. 
