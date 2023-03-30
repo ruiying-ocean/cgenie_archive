@@ -44,6 +44,9 @@ bg_par_bio_remin_sinkingrate_reaction=125.0
 #
 # *** ECOGEM ********************************************************
 #
+gm_ctrl_debug_init          =0
+eg_ctrl_debug_eco_init      =.false.
+
 # ecosystem configuration
 eg_par_ecogem_plankton_file='8P8Z.eco'
 #################### Nitrogen ############################
@@ -82,6 +85,10 @@ eg_par_bio_red_POC_CaCO3_pP  = 0.0 # exponent for modifier of CaCO3:POC export r
 # underlying export CaCO3 as a proportion of particulate organic matter (i.e., CaCO3/POC)
 eg_par_bio_red_POC_CaCO3     = 0.200 # underlying export CaCO3 as a proportion of particulate organic matter (i.e., CaCO3/POC)
 #
+# disable ECOGEM restarts (as not currently coded up / used)
+eg_ctrl_ncrst               =.false.
+eg_ctrl_continuing          =.false.
+
 # --- DATA SAVING ----------------------------------------------
 #
 bg_par_data_save_level=8
