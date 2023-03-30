@@ -81,6 +81,16 @@ eg_n_keco=1
 eg_par_bio_red_POC_CaCO3_pP  = 0.0 # exponent for modifier of CaCO3:POC export ratio
 # underlying export CaCO3 as a proportion of particulate organic matter (i.e., CaCO3/POC)
 eg_par_bio_red_POC_CaCO3     = 0.200 # underlying export CaCO3 as a proportion of particulate organic matter (i.e., CaCO3/POC)
+
+# disable ECOGEM restarts (as not currently coded up / used)
+eg_ctrl_ncrst               =.false.
+eg_ctrl_continuing          =.false.
+
+# Ward et al., (2018) set-up, except modified where commented
+gm_ctrl_debug_init          =0
+eg_ctrl_debug_eco_init      =.false.
+
+
 #
 # --- DATA SAVING ----------------------------------------------
 #
