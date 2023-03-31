@@ -614,9 +614,7 @@ CONTAINS
          & '2N2T_PN_Tdep',      &
          & '3N2T_PNFe_Tdep'     &
          & )
-       print*, phys_solar_constant
        loc_kI = phys_ocnatm(ipoa_solfor,dum_i,dum_j)/phys_solar_constant
-       print*, loc_kI
     case (                        &
          & 'Payal_Cd',            &
          & 'bio_P',               &

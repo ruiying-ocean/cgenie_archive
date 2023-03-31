@@ -188,7 +188,8 @@ c         osct = float(mod(istep-1,nyear)+1)*oscryr
             oscday = acos(- osctt)
 
             solfor(j,istep) = solconst*oscsolf*rpi*
-     &                       (oscss*oscday + osccc*sin(oscday))
+     &           (oscss*oscday + osccc*sin(oscday))
+            print*, solconst
 c SG > ENTS albedo scheme mod
          if (flag_ents) then
             call ocean_alb(oscss,osccc,oscday,j,istep)
