@@ -2656,6 +2656,7 @@ subroutine biogem_climate_sol( &
         ! solar insolation
         phys_ocnatm(ipoa_solfor,i,j) = dum_solfor(j)
         phys_ocnatm(ipoa_fxsw,i,j)   = dum_fxsw(i,j)
+        print*, phys_ocnatm(ipoa_fxsw,i,j)
      end DO
   end DO
   ! replace solar constant(!)
