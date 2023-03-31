@@ -102,6 +102,10 @@ bg_par_infile_sig_name='test_debug.dat'
 # --- FORCINGS -------------------------------------------------
 #
 bg_ctrl_force_GOLDSTEInTS=.true.
+
+# add `biogem_force_solconst_sig.dat` in forcing directory
+bg_ctrl_force_solconst = .true.
+
 ## turn the light off, biogem_force_solconst_sig.dat
 bg_par_forcing_name="test_debug"
 bg_par_ocn_force_scale_val_2=0.005
@@ -133,6 +137,3 @@ gm_par_carbchem_Tmax = 45.0
 #
 # limit negative biomass
 eg_ctrl_limit_neg_biomass=.true.
-
-# add `biogem_force_solconst_sig.dat` in forcing directory
-bg_ctrl_force_solconst = .true.
