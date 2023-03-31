@@ -95,13 +95,16 @@ bg_par_data_save_level=8
 bg_ctrl_debug_lvl0=.true.
 ma_debug_loop=1
 #
+bg_par_infile_slice_name='save_timeslice_kpg.dat'
+
+## must accompany the light-off forcing with same time series saving file
+bg_par_infile_sig_name='save_timeseries_kpg.dat'
 # --- FORCINGS -------------------------------------------------
 #
 bg_ctrl_force_GOLDSTEInTS=.true.
 ## turn the light off, biogem_force_solconst_sig.dat
 bg_par_forcing_name="u067bc.RpCO2_Rp13CO2.Fsal_SUR.4.3"
-## must accompany the light-off forcing with same time series saving file
-bg_par_infile_sig_name='save_timeseries_KPG.dat'
+
 bg_par_ocn_force_scale_val_2=0.005
 bg_par_atm_force_scale_val_3=8.3333e+013
 bg_par_atm_force_scale_val_4=-4.9
