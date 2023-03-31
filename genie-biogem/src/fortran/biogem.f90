@@ -2621,7 +2621,6 @@ subroutine biogem_climate( &
   end if
   ! replace solar constant(!)
   if (ctrl_force_solconst) dum_solconst = force_solconst_sig(2,par_data_save_sig_i)
-  print*, dum_solconst
   ! make internal copy of solar constant
   phys_solar_constant = dum_solconst
   ! reset cost function
@@ -2656,7 +2655,6 @@ subroutine biogem_climate_sol( &
         ! solar insolation
         phys_ocnatm(ipoa_solfor,i,j) = dum_solfor(j)
         phys_ocnatm(ipoa_fxsw,i,j)   = dum_fxsw(i,j)
-        print*, phys_ocnatm(ipoa_fxsw,i,j)
      end DO
   end DO
   ! replace solar constant(!)
