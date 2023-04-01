@@ -2581,7 +2581,9 @@ subroutine biogem_climate( &
         end do
         ! solar insolation
         phys_ocnatm(ipoa_solfor,i,j) = dum_solfor(j)
+        print*, dum_solfor(j)
         phys_ocnatm(ipoa_fxsw,i,j)   = dum_fxsw(i,j)
+        print*, dum_fxsw(i,j)
         ! wind velocity
         phys_ocnatm(ipoa_u,i,j) = dum_uv(1,i,j)
         phys_ocnatm(ipoa_v,i,j) = dum_uv(2,i,j)
