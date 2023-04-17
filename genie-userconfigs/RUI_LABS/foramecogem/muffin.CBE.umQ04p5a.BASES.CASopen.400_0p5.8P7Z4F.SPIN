@@ -49,15 +49,14 @@ eg_gkernel_cap = .false.
 eg_ctrl_grazing_explicit=.true.
 
 eg_par_ecogem_plankton_file ='8P7Z4F.eco'
-eg_par_ecogem_grazing_file  ='FORAMECOGEM.zoo'
+eg_par_ecogem_grazing_file  ='Yingetal_GMD2022.zoo'
 
-eg_ah_size_ratio = 0.01
+eg_ah_size_ratio = 0.0015
+eg_ss_tradeoff_a=0.85
+eg_ss_tradeoff_h=0.6
 
-eg_ss_tradeoff_a=0.045
-eg_ss_tradeoff_h=0.2
-
-eg_sn_tradeoff_a=0.035
-eg_sn_tradeoff_h=0.4
+eg_sn_tradeoff_a=0.45
+eg_sn_tradeoff_h=0.7
 
 #################### Nitrogen ############################
 eg_useNO3                   =.false.

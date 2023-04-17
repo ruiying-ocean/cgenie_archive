@@ -77,15 +77,14 @@ eg_gkernel_cap = .false.
 eg_ctrl_grazing_explicit=.true.
 
 eg_par_ecogem_plankton_file ='8P7Z4F.eco'
-eg_par_ecogem_grazing_file  ='FORAMECOGEM.zoo'
+eg_par_ecogem_grazing_file  ='Yingetal_GMD2022.zoo'
 
-eg_ah_size_ratio = 0.01
+eg_ah_size_ratio = 0.0015
+eg_ss_tradeoff_a=0.85
+eg_ss_tradeoff_h=0.6
 
-eg_ss_tradeoff_a=0.045
-eg_ss_tradeoff_h=0.2
-
-eg_sn_tradeoff_a=0.035
-eg_sn_tradeoff_h=0.4
+eg_sn_tradeoff_a=0.45
+eg_sn_tradeoff_h=0.7
 
 #----------------- Nitrogen -------------------------
 eg_useNO3                   =.false.
@@ -154,21 +153,5 @@ go_ctrl_diagmld=.true.
 
 # add seaice attenuation of PAR
 eg_ctrl_PARseaicelimit=.false.
-
-# relative partitioning of C into DOM
-eg_par_beta_POCtoDOC=0.75
-
-# maximum time-scale to geochemical reaction completion (days)
-bg_par_bio_geochem_tau=90.0
-
-# extend solubility and geochem constant T range (leave S range as default)
-gm_par_geochem_Tmin  = -2.0
-gm_par_geochem_Tmax  = 45.0
-gm_par_carbchem_Tmin = -2.0
-gm_par_carbchem_Tmax = 45.0
-
-# set 'instantaneous' water column remineralziation
-bg_par_bio_remin_sinkingrate_physical=9.9E9
-bg_par_bio_remin_sinkingrate_reaction=125.0
 #
 # --- END -----------------------------------------------------------
