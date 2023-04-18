@@ -69,7 +69,7 @@ qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CBE.worlg4.BASESFeTD
 ## LGM
 
 ```sh
-qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CB.GIteiiva.BASESFeTDTL_rb_ecogem RUI_LABS/foramecogem muffin.CBE.GIteiiva.BASESFeTDTL_rb_foramecogem2.1 10000
+qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CBE.GIteiiva.BASESFeTDTL_rb_ecogem RUI_LABS/foramecogem muffin.CBE.GIteiiva.BASESFeTDTL_rb_foramecogem2.1 10000
 ```
 
 ## Pliocene
