@@ -76,13 +76,6 @@ eg_gkernel_cap = .false.
 eg_ctrl_grazing_explicit=.false.
 
 eg_par_ecogem_plankton_file ='8P8Z8M.eco'
-
-eg_ah_size_ratio = 0.0015
-eg_ss_tradeoff_a=0.7
-eg_ss_tradeoff_h=0.5
-
-eg_sn_tradeoff_a=0.2
-eg_sn_tradeoff_h=0.7
 #----------------- Nitrogen -------------------------
 eg_useNO3                   =.false.
 eg_nquota                   =.false.

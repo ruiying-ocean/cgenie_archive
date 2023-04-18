@@ -22,3 +22,16 @@ qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CB.GIteiiva.BASESFeT
 ```
 qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CB.GIteiiva.BASESFeTDTL_rb_biogem RUI_LABS/lgm_ecology LGM_biogem 10000
 ```
+
+
+
+
+# Test the role of marine ecosystem in the LGM export productivity
+
+## Ecosystem structure
+NPZD/8P8Z/8P8Z8M/13P13Z
+
+## Thermal response
+
+## Stoichiometry
+
