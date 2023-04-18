@@ -75,7 +75,7 @@ bg_par_bio_FetoC_C=0.0
 eg_gkernel_cap = .false.
 eg_ctrl_grazing_explicit=.false.
 
-eg_par_ecogem_plankton_file ='8P8Z.eco'
+eg_par_ecogem_plankton_file ='1P1Z.eco'
 eg_ctrl_tdep_form = "Bissinger"
 
 #----------------- Nitrogen -------------------------
