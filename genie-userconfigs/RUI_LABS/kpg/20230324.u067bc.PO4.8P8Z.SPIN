@@ -92,19 +92,29 @@ ma_debug_loop=1
 #
 # pCO2 level 3xPI
 bg_par_atm_force_scale_val_3=834.0E-06
-bg_ctrl_force_GOLDSTEInTS=.true.
+
+bg_ctrl_force_GOLDSTEInTS=.false.
+
+## sine of obliquity, 23.5 degree
+ea_par_orbit_oscsob=0.39874906892
+
 bg_par_forcing_name="u067bc.RpCO2_Rp13CO2.Fsal_SUR"
+
 bg_par_ocn_force_scale_val_2=0.005
 bg_par_atm_force_scale_val_4=-4.9
 # set alternative wind speed field
 bg_par_windspeed_file="u067b__windspeed.dat"
 #re-scale gas transfer coeff to give ~0.058 mol m-2 yr-1 uatm-1 global mean air-sea coefficient (original: 0.310)
 bg_par_gastransfer_a=0.4675
+
+# INIT ALK
+bg_ocn_init_12=2.000-03
 #
 # *** MISC **********************************************************
 # EcoGEnIE 1.1. Parameters
 # kraus-turner mixed layer scheme on (1) or off (0)
 go_imld = 1
+
 # *** optional changes to align with PALEO recommendations **********
 # set mixed layer to be only diagnosed (for ECOGEM)
 go_ctrl_diagmld=.true.
