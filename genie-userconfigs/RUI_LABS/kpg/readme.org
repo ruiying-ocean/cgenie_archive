@@ -29,8 +29,8 @@
 2. run the following commands
       
 #+begin_src
-qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh cgenie.eb_go_gs_ac_bg_eg.u067bc.BASES RUI_LABS/kpg 20230324.u067bc.PO4.8P8Z.SPIN 10000
-qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh cgenie.eb_go_gs_ac_bg_eg.u067bc.BASES RUI_LABS/kpg 20230324.u067bc.PO4.8P8Z.[XX]yr 200 20230324.u067bc.PO4.8P8Z.SPIN
+qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh cgenie.eb_go_gs_ac_bg_eg.u067bc.BASES RUI_LABS/kpg muffin.u067bc.PO4.8P8Z.SPIN 10000
+qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh cgenie.eb_go_gs_ac_bg_eg.u067bc.BASES RUI_LABS/kpg muffin.u067bc.PO4.8P8Z.[XX]yr 200 muffin.u067bc.PO4.8P8Z.SPIN
 #+end_src
 
 
