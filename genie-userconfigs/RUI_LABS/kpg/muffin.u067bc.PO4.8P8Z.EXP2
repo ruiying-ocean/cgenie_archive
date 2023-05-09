@@ -113,9 +113,9 @@ ea_dosc=.true.
 go_dosc=.true.
 gs_dosc=.true.
 
-# force solar constant
+# DO NOT force solar constant
 bg_ctrl_force_GOLDSTEInTS=.false.
-bg_ctrl_force_solconst = .true.
+bg_ctrl_force_solconst = .false.
 bg_par_forcing_name="u067bc.RpCO2_Rp13CO2.Fsal_SUR.EXP2"
 
 # scale
