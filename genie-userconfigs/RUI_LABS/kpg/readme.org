@@ -13,6 +13,7 @@
 ** Marine ecosystem: 8 Phytoplankton, 8 Zooplankton, 8 Mixotroph
 ** EXP1: reduced solar fluxes
 + fixed CO2, 12 simulations
++ larger `x`, recover later; larger `k`, recover faster
 
 ** EXP2: CO2 only
 + 1 simulation
@@ -30,7 +31,7 @@
       
 #+begin_src
 qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh cgenie.eb_go_gs_ac_bg_eg.u067bc.BASES RUI_LABS/kpg muffin.u067bc.PO4.8P8Z.SPIN 10000
-qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh cgenie.eb_go_gs_ac_bg_eg.u067bc.BASES RUI_LABS/kpg muffin.u067bc.PO4.8P8Z.[XX]yr 200 muffin.u067bc.PO4.8P8Z.SPIN
+qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh cgenie.eb_go_gs_ac_bg_eg.u067bc.BASES RUI_LABS/kpg muffin.u067bc.PO4.8P8Z.EXP1.XXXX 200 muffin.u067bc.PO4.8P8Z.SPIN
 #+end_src
 
 
