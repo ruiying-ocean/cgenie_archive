@@ -9,11 +9,13 @@ def update_foramecogem(directory):
     parameters = {
         'eg_par_ecogem_plankton_file': "'8P7Z4F.eco'",
         'eg_par_ecogem_grazing_file': "'FORAMECOGEM.zoo'",
-        'eg_ah_size_ratio': '0.002',
-        'eg_ss_tradeoff_a': '0.35',
-        'eg_ss_tradeoff_h': '0.1',
-        'eg_sn_tradeoff_a': '0.3',
-        'eg_sn_tradeoff_h': '0.5'
+        'eg_ah_size_ratio': '0.0015',
+        'eg_ss_tradeoff_a': '1.0',
+        'eg_ss_tradeoff_h': '0.5',
+        'eg_sn_tradeoff_a': '0.8',
+        'eg_sn_tradeoff_h': '0.5',
+        'eg_ctrl_ncrst' : '.false.',
+        'eg_ctrl_continuing' : '.false.',
     }
     
 
