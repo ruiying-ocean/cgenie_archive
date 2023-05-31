@@ -9,10 +9,8 @@ run_exp1:
 		done
 
 run_exp2:
-	cd $(GENIE_MAIN_DIR) && \
-		for par in $(PARAMETERS); do \
-			qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh cgenie.ebf_go_gs_ac_bg_eg.u067bc.BASES RUI_LABS/kpg muffin.u067bc.PO4.8P8Z.EXP2 200 muffin.u067bc.PO4.8P8Z.SPIN; \
-		done
+	cd $(GENIE_MAIN_DIR) &&
+		qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh cgenie.ebf_go_gs_ac_bg_eg.u067bc.BASES RUI_LABS/kpg muffin.u067bc.PO4.8P8Z.EXP2 200 muffin.u067bc.PO4.8P8Z.SPIN;
 
 run_exp3:
 	cd $(GENIE_MAIN_DIR) && \
