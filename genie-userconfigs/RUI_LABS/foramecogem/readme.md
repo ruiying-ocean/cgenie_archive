@@ -41,7 +41,7 @@ Tested implementation: directly transfer biomass from phytoplankton, or mixotrop
 
 
 ## Limitation
-+ foram body size is fixed
++ only adult foram are incldued
 + no 3D water column ecosystem;
 + cGENIE has little primary production in the tropical oceans  
 + fixed zooplankton Q10 (the respiration of foram has high Q10 (>3, Lombard et al. 2009 L&O), Photo:Respir = 2-10
