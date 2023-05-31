@@ -133,6 +133,9 @@ bg_par_windspeed_file="u067b__windspeed.dat"
 #re-scale gas transfer coeff to give ~0.058 mol m-2 yr-1 uatm-1 global mean air-sea coefficient (original: 0.310)
 bg_par_gastransfer_a=0.4675
 
+# INIT ALK
+bg_ocn_init_12=2.000-03
+
 #
 # *** MISC **********************************************************
 
