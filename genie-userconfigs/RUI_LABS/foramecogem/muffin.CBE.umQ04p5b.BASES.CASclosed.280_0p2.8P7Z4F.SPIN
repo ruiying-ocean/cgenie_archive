@@ -45,7 +45,7 @@ bg_par_bio_remin_sinkingrate_reaction=125.0
 # *** ECOGEM ********************************************************
 #
 # Planktic Foraminifer and Ecosystem
-eg_gkernel_cap = .false.
+eg_gkernel_cap=.false.
 eg_ctrl_grazing_explicit=.true.
 
 eg_par_ecogem_plankton_file='8P7Z4F.eco'

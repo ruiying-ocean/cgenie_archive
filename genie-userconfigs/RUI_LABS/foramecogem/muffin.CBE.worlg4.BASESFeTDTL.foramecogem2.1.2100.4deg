@@ -71,9 +71,9 @@ bg_par_bio_FetoC_C=0.0
 # --- ECOGEM ----------------------------------------------------------
 #
 gm_ctrl_debug_init          =0
-eg_ctrl_debug_eco_init      =.false.
+eg_ctrl_debug_eco_init=.false.
 
-eg_gkernel_cap = .false.
+eg_gkernel_cap=.false.
 eg_ctrl_grazing_explicit=.true.
 
 eg_par_ecogem_plankton_file='8P7Z4F.eco'
