@@ -63,7 +63,7 @@ qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CBE.worlg4.BASESFeTD
 ## Future (2022-2100)
 
 ```sh
-qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CBE.worlg4.BASESFeTDTL RUI_LABS/foramecogem muffin.CBE.worlg4.BASESFeTDTL.foramecogem2.1.2100.[XXX]deg 78 muffin.CBE.worlg4.BASESFeTDTL.foramecogem2.1.SPIN
+qsub -j y -o cgenie_log -V -S /bin/bash runmuffin.sh muffin.CBE.worlg4.BASESFeTDTL RUI_LABS/foramecogem muffin.CBE.worlg4.BASESFeTDTL.foramecogem2.1.2100.[XXX]deg 78 muffin.CBE.worlg4.BASESFeTDTL.foramecogem2.1.historical
 ```
 
 ## LGM
