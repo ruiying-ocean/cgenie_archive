@@ -30,8 +30,8 @@ RESTARTREAD="FALSE"
 REMAKE="TRUE"
 OLD_CONFIG="FALSE"
 EXPID=genie_test
-TRANSLATE_CONFIG="python ./translate_config.py"
-MAKE=make
+TRANSLATE_CONFIG="/usr/local/bin/python2 ./translate_config.py"
+MAKE=makes
 
 # == USER ded=faults read from file: user.sh ==
 source user.sh

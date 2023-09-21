@@ -37,7 +37,7 @@ F77=gfortran
 #F77=pathf90
 #F77=g95
 #F77=f90.exe
-#F77=ifort.exe
+##F77=ifort
 #F77=gfc.exe
 #F77=g95.exe
 
@@ -54,11 +54,11 @@ BUILD=SHIP
 #BUILD=PROFILE
 #BUILD=BOUNDS
 # === Machine type (LINUX/SLOARIS/SGI) ===
-MACHINE=LINUX
+#MACHINE=LINUX
 #MACHINE=SGI
 #MACHINE=SOLARIS
 #MACHINE=WIN32
-#MACHINE=OSX
+MACHINE=OSX
 
 # === Extension for module files ===
 MODEXT=mod
@@ -74,7 +74,7 @@ MODEXT=mod
 # (http://www.unidata.ucar.edu/packages/netcdf/index.html)
 
 ### DEFAULT ###
-#NETCDF_DIR=/usr/local
+##NETCDF_DIR=/usr/local
 ### domino ###
 #NETCDF_DIR=/share/apps
 ### eevee ###
@@ -82,7 +82,7 @@ MODEXT=mod
 ### iwan ###
 #NETCDF_DIR=/share/apps/netcdf/4.0/gnu_fc_4.4.4
 ### sprout ###
-NETCDF_DIR=/share/apps/netcdf/4.0/gnu_fc_4.4.6
+##NETCDF_DIR=/share/apps/netcdf/4.0/gnu_fc_4.4.6
 ### almond ###
 ##NETCDF_DIR=/share/apps/netcdf-4.0/gcc-4.4.7
 ### VM ###
@@ -91,4 +91,6 @@ NETCDF_DIR=/share/apps/netcdf/4.0/gnu_fc_4.4.6
 #NETCDF_DIR=/opt/local
 
 NETCDF_NAME=netcdf
-
+NETCDF_DIR=/usr/local
+##NETCDF_DIR=/opt/homebrew/Cellar/netcdf/4.9.2
+##NETCDF_DIR=/opt/homebrew/Cellar/netcdf-fortran/4.6.0

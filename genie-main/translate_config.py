@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/local/bin/python2
 
 def translate_config(config_filename,script_name='translate_config.py'):
     #

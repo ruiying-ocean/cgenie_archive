@@ -400,7 +400,7 @@ CONTAINS
           autotrophy(jp)      = trophic_tradeoff
           heterotrophy(jp)    = trophic_tradeoff
           symbiont_size(jp)   = 1.0
-       elseif (pft(jp).eq.'bn_foram') then
+       elseif (pft(jp).eq.'foram_bn') then
           !symbiont-barren non-spinose foram
           NO3up(jp)           = 0.0
           Nfix(jp)            = 0.0
@@ -409,8 +409,8 @@ CONTAINS
           autotrophy(jp)      = 0.0
           heterotrophy(jp)    = 1.0
           symbiont_size(jp)   = 1.0
-       elseif (pft(jp).eq.'bs_foram') then
-          !symbint-barren spinose foram
+       elseif (pft(jp).eq.'foram_bs') then
+          !symbiont-barren spinose foram
           NO3up(jp)           = 0.0
           Nfix(jp)            = 0.0
           calcify(jp)         = 1.0
@@ -418,16 +418,17 @@ CONTAINS
           autotrophy(jp)      = 0.0
           heterotrophy(jp)    = 1.0
           symbiont_size(jp)   = 1.0
-       elseif (pft(jp).eq.'sn_foram') then
+       elseif (pft(jp).eq.'foram_sn') then
+          ! symbiont-facultative non-spinose foram
           NO3up(jp)           = 0.0
           Nfix(jp)            = 0.0
           calcify(jp)         = 1.0
           silicify(jp)        = 0.0
-          autotrophy(jp)      = sn_tradeoff_a
-          heterotrophy(jp)    = sn_tradeoff_h
+          autotrophy(jp)      = foram_sn_tradeoff_a
+          heterotrophy(jp)    = foram_sn_tradeoff_h
           symbiont_size(jp)   = ah_size_ratio
-       elseif (pft(jp).eq.'ss_foram') then
-          !symbiotic spinose foram
+       elseif (pft(jp).eq.'foram_ss') then
+          ! symbiotic spinose foram
           NO3up(jp)           = 0.0
           Nfix(jp)            = 0.0
           calcify(jp)         = 1.0

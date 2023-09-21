@@ -140,8 +140,8 @@ ifeq ($(F77),ifort)
   FFLAGS += -warn all -implicitnone -extend-source
   #FFLAGS += -diag-disable remark
   #FFLAGS +=  -noautomatic
-  FFLAGS += -openmp
-  LDFLAGS += -openmp
+  ##FFLAGS += -openmp
+  ##LDFLAGS += -openmp
   ifeq ($(BUILD),SHIP)
     FFLAGS += -O3 -static
   endif
@@ -317,13 +317,14 @@ ifeq ($(F77),gfortran)
   F90FLAGS += -x f95-cpp-input -ffree-line-length-none
   FFLAGS += -Wall -fimplicit-none
   FFLAGS += -fopenmp
+  FFLAGS += -fallow-argument-mismatch
 ###  LDFLAGS += -static
   LDFLAGS += -fopenmp
   ifeq ($(BUILD),SHIP)
     FFLAGS += -O2
     FFLAGS += -O3 
     FFLAGS += -funroll-loops 
-    FFLAGS += -msse
+    ## FFLAGS += -msse
     FFLAGS += -fno-automatic
   endif
   ifeq ($(BUILD),DEBUG)
@@ -537,10 +538,10 @@ endif
 # === NetCDF paths ===
 ###################################################
 ### FOR COMBINED C+FORTRAN NETCDF LIBRARIES #######
-NETCDF=$(LIB_SEARCH_FLAG)$(PATH_QUOTE)$(NETCDF_DIR)/lib$(PATH_QUOTE) $(LIB_FLAG)$(NETCDF_NAME)
+#NETCDF=$(LIB_SEARCH_FLAG)$(PATH_QUOTE)$(NETCDF_DIR)/lib$(PATH_QUOTE) $(LIB_FLAG)$(NETCDF_NAME)
 ### FOR SEPERATE C AND FORTRAN NETCDF LIBRARIES ###
-#NETCDF_NAMEF=$(NETCDF_NAME)f
-#NETCDF= $(LIB_SEARCH_FLAG)$(PATH_QUOTE)$(NETCDF_DIR)/lib$(PATH_QUOTE) $(LIB_FLAG)$(NETCDF_NAME) $(LIB_FLAG)$(NETCDF_NAMEF)
+NETCDF_NAMEF=$(NETCDF_NAME)f
+NETCDF= $(LIB_SEARCH_FLAG)$(PATH_QUOTE)$(NETCDF_DIR)/lib$(PATH_QUOTE) $(LIB_FLAG)$(NETCDF_NAME) $(LIB_FLAG)$(NETCDF_NAMEF)
 ###################################################
 NETCDF_INC=$(INC_FLAG)$(PATH_QUOTE)$(NETCDF_DIR)/include$(PATH_QUOTE)
 ifeq ($(F77),f95)

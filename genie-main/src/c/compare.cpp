@@ -19,7 +19,8 @@
 #include <cmath>
 #include <cstring>
 #include <cassert>
-#include <netcdf.hh>
+#include <netcdf.h>
+
 
 #if !defined(WIN32)
 #include <unistd.h>
@@ -49,7 +50,7 @@ bool zerocheck = false;
 #define ERRVALS   4
 
 // Prototype comparison functions
-int varComp(NcVar *A, NcVar *B, double dMinAbs, int iMaxUlps);
+int varComp(NcVar *A, netCDF NcVar *B, double dMinAbs, int iMaxUlps);
 bool AlmostEqual2sComplement(float A, float B, int maxUlps);
 int twosComplementDiff(float A, float B);
 

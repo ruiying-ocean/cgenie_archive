@@ -3,5 +3,5 @@
 *.mod
 *.dep
 *.a
-*.zoo
+#*.zoo
 genie-main/tmp*
